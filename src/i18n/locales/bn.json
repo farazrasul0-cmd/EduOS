@@ -311,7 +311,33 @@
     "historyTitle": "উপস্থিতির ইতিহাস",
     "historySub": "পর্যালোচনা বা সম্পাদনার জন্য সংরক্ষিত দিন বেছে নিন, অথবা CSV রিপোর্ট ডাউনলোড করুন।",
     "history": { "date": "তারিখ" },
-    "historyEmpty": "এখনও কোনো উপস্থিতির দিন সংরক্ষিত নেই।"
+    "historyEmpty": "এখনও কোনো উপস্থিতির দিন সংরক্ষিত নেই।",
+    "tabs": {
+      "daily": "দৈনিক হাজিরা",
+      "monthly": "মাসিক খাতা",
+      "defaulters": "ঝুঁকিপূর্ণ উপস্থিতি (<৭৫%)"
+    },
+    "collegiate": {
+      "collegiate": "নিয়মিত (>=৭৫%)",
+      "nonCollegiate": "নন-কলেজিয়েট (৬০-৭৪%)",
+      "disCollegiate": "ডিস-কলেজিয়েট (<৬০%)"
+    },
+    "smsModal": {
+      "title": "অনুপস্থিতির SMS পাঠান",
+      "sub": "বাংলাদেশ SMS গেটওয়ের মাধ্যমে {{count}} জন অনুপস্থিত শিক্ষার্থীর অভিভাবকদের জানান।",
+      "recipients": "প্রাপক (অনুপস্থিত শিক্ষার্থীদের অভিভাবক)",
+      "preview": "BTRC-অনুমোদিত SMS প্রিভিউ",
+      "send": "{{count}}টি SMS পাঠান",
+      "sending": "SMS পাঠানো হচ্ছে…",
+      "sentSuccess": "অনুপস্থিতির SMS সফলভাবে পাঠানো হয়েছে।"
+    },
+    "downloadMonthlyPdf": "মাসিক উপস্থিতি খাতা ডাউনলোড (PDF)",
+    "exportMonthlyCsv": "মাসিক খাতা এক্সপোর্ট (CSV)",
+    "monthlyRegister": "মাসিক উপস্থিতি খাতা",
+    "workingDays": "কর্মদিবস",
+    "totalPresent": "মোট উপস্থিত",
+    "totalAbsent": "মোট অনুপস্থিত",
+    "attendanceRate": "উপস্থিতির হার"
   },
   "fees": {
     "title": "ফি",
