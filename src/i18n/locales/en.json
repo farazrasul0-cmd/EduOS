@@ -354,6 +354,21 @@
       "history": "Payment history",
       "empty": "No successful payments recorded.",
       "methods": { "cash": "Cash", "bank": "Bank", "bkash": "bKash", "nagad": "Nagad", "rocket": "Rocket", "upay": "Upay", "card": "Card" }
+    },
+    "validation": {
+      "trxIdRequired": "Transaction reference is required.",
+      "trxIdInvalidBkash": "bKash TrxID must be a 10-character alphanumeric code (e.g. 9J82K39L2A).",
+      "trxIdInvalidNagad": "Nagad TrxID must be an 8 to 12 character alphanumeric code.",
+      "trxIdInvalid": "Enter a valid transaction reference."
+    },
+    "online": {
+      "payOnline": "Pay Online (bKash / Nagad / Cards)",
+      "payWith": "Pay with {{method}}",
+      "chooseMethod": "Select online payment method",
+      "simulate": "Simulate payment",
+      "processing": "Connecting to payment gateway...",
+      "successTitle": "Payment successful",
+      "successSub": "Transaction {{trxId}} verified and recorded."
     }
   },
   "exams": {
@@ -720,8 +735,20 @@
         "whatsappTitle": "WhatsApp Business",
         "whatsappSub": "Parent messaging",
         "zoomTitle": "Zoom",
-        "zoomSub": "Schedule online classes"
-      }
+        "zoomSub": "Schedule online classes",
+        "bulksmsbdTitle": "BulkSMSBD",
+        "bulksmsbdSub": "Bangladesh SMS Gateway for parent alerts"
+      },
+      "testSms": "Send test SMS",
+      "testSmsModalTitle": "Send test SMS message",
+      "testSmsModalSub": "Verify your SMS gateway credentials with an immediate mobile delivery test.",
+      "testPhone": "Recipient mobile number",
+      "testPhonePlaceholder": "01711000000",
+      "testMessage": "Test message",
+      "testSending": "Sending SMS...",
+      "testSendBtn": "Send test SMS",
+      "testSuccess": "Test SMS sent successfully to {{phone}}.",
+      "testFailed": "Failed to send SMS: {{error}}"
     },
     "security": {
       "title": "Security",

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Download, Plus, Wallet, Hourglass, CircleAlert, Receipt, Loader2, History } from 'lucide-react'
+import { Download, Plus, Wallet, Hourglass, CircleAlert, Receipt, Loader2, History, CreditCard } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { KPI } from '@/components/ui/KPI'
@@ -11,8 +11,12 @@ import { Empty } from '@/components/ui/Empty'
 import { Field, Input, SearchInput, Select } from '@/components/ui/form'
 import { Modal } from '@/components/ui/Modal'
 import { Toolbar, TableWrap, Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
+import { useToast } from '@/components/ui/Toast'
 import { formatDate, formatTaka, formatNumber } from '@/lib/utils'
 import { invoiceOutstanding, matchesInvoiceSearch, validPaymentAmount } from '@/lib/fees'
+import { formatTrxId, validateTrxId } from '@/lib/mfs-validation'
+import { initiateGatewayPayment } from '@/lib/payment-gateway'
+import { createPaymentReceiptPdf } from '@/lib/payment-receipt-pdf'
 import { useCreateInvoice, useFeePlans, useInvoicePayments, useInvoices, useRecordPayment, type InvoiceWithStudent } from '@/data/fees'
 import { useStudents } from '@/data/students'
 import type { InvoiceStatus, Payment, PaymentMethod } from '@/types/models'
@@ -22,17 +26,13 @@ const stateTone: Record<InvoiceStatus, BadgeTone> = { paid: 'success', due: 'war
 const stateKey: Record<InvoiceStatus, string> = { paid: 'badge.paid', due: 'badge.due', overdue: 'badge.overdue', partial: 'fees.filter.partial' }
 const paymentMethods: PaymentMethod[] = ['cash', 'bank', 'bkash', 'nagad', 'rocket', 'upay', 'card']
 
-function downloadText(name: string, text: string, type: string) {
-  const url = URL.createObjectURL(new Blob([text], { type }))
-  const anchor = document.createElement('a')
-  anchor.href = url
-  anchor.download = name
-  anchor.click()
-  URL.revokeObjectURL(url)
+function makeCashReference(): string {
+  return `REC-${crypto.randomUUID().slice(0, 8).toUpperCase()}`
 }
 
 export default function Fees() {
   const { t, i18n } = useTranslation()
+  const toast = useToast()
   const lang = (i18n.resolvedLanguage ?? 'en') as AppLanguage
   const invoicesQuery = useInvoices()
   const plansQuery = useFeePlans()
@@ -43,6 +43,7 @@ export default function Fees() {
   const [search, setSearch] = useState('')
   const [invoiceOpen, setInvoiceOpen] = useState(false)
   const [selected, setSelected] = useState<InvoiceWithStudent | null>(null)
+  const [onlinePaying, setOnlinePaying] = useState(false)
   const paymentsQuery = useInvoicePayments(selected?.id ?? null)
   const [invoiceForm, setInvoiceForm] = useState({ studentId: '', feePlanId: '', planName: '', period: 'monthly', amount: '', dueDate: '' })
   const [paymentForm, setPaymentForm] = useState({ amount: '', method: 'cash' as PaymentMethod, reference: '' })
@@ -60,6 +61,11 @@ export default function Fees() {
   const outstanding = totals.total - totals.collected
   const collectedPct = totals.total ? Math.round((totals.collected / totals.total) * 100) : 0
 
+  const trxValidation = useMemo(
+    () => validateTrxId(paymentForm.method, paymentForm.reference),
+    [paymentForm.method, paymentForm.reference],
+  )
+
   function choosePlan(id: string) {
     const plan = plansQuery.data?.find((item) => item.id === id)
     setInvoiceForm((form) => ({ ...form, feePlanId: id, amount: plan ? String(plan.amount) : form.amount }))
@@ -73,28 +79,121 @@ export default function Fees() {
   }
   function openInvoice(invoice: InvoiceWithStudent) {
     setSelected(invoice)
-    setPaymentForm({ amount: String(Math.max(0, invoice.amount - invoice.paid_amount)), method: 'cash', reference: crypto.randomUUID() })
+    setPaymentForm({
+      amount: String(Math.max(0, invoice.amount - invoice.paid_amount)),
+      method: 'cash',
+      reference: makeCashReference(),
+    })
+  }
+  function handleMethodChange(newMethod: PaymentMethod) {
+    setPaymentForm((form) => ({
+      ...form,
+      method: newMethod,
+      reference: newMethod === 'cash' ? makeCashReference() : '',
+    }))
   }
   function submitPayment() {
     if (!selected) return
     const amount = Number(paymentForm.amount)
     const remaining = invoiceOutstanding(selected)
-    if (!validPaymentAmount(amount, remaining) || !paymentForm.reference.trim()) return
-    recordPayment.mutate({ invoice: selected, amount, method: paymentForm.method, reference: paymentForm.reference }, {
+    if (!validPaymentAmount(amount, remaining)) return
+
+    const validation = validateTrxId(paymentForm.method, paymentForm.reference)
+    if (!validation.valid) {
+      toast.error(t(validation.errorKey ?? 'fees.validation.trxIdInvalid'))
+      return
+    }
+
+    const reference = formatTrxId(paymentForm.reference)
+    recordPayment.mutate({ invoice: selected, amount, method: paymentForm.method, reference }, {
       onSuccess: () => {
-        setPaymentForm((form) => ({ ...form, amount: '', reference: crypto.randomUUID() }))
+        setPaymentForm((form) => ({ ...form, amount: '', reference: makeCashReference() }))
         const paidAmount = selected.paid_amount + amount
         setSelected({ ...selected, paid_amount: paidAmount, status: paidAmount >= selected.amount ? 'paid' : 'partial' })
       },
     })
   }
+  async function payOnline(gatewayMethod: 'bkash' | 'nagad' | 'sslcommerz') {
+    if (!selected) return
+    const remaining = invoiceOutstanding(selected)
+    const amount = Number(paymentForm.amount) || remaining
+    if (amount <= 0 || amount > remaining) {
+      toast.error(t('fees.validation.trxIdInvalid'))
+      return
+    }
+
+    setOnlinePaying(true)
+    try {
+      const res = await initiateGatewayPayment({
+        invoiceId: selected.id,
+        invoiceNo: selected.invoice_no,
+        studentName: selected.student_name ?? 'Student',
+        amount,
+        method: gatewayMethod,
+        schoolId: selected.school_id,
+      })
+      if (!res.success) {
+        toast.error(res.error || 'Payment gateway failed')
+        return
+      }
+
+      recordPayment.mutate(
+        {
+          invoice: selected,
+          amount: res.amount,
+          method: res.method,
+          reference: res.trxId!,
+        },
+        {
+          onSuccess: () => {
+            toast.success(
+              t('fees.online.successSub', { trxId: res.trxId }),
+              t('fees.online.successTitle'),
+            )
+            const paidAmount = selected.paid_amount + res.amount
+            setSelected({
+              ...selected,
+              paid_amount: paidAmount,
+              status: paidAmount >= selected.amount ? 'paid' : 'partial',
+            })
+          },
+        },
+      )
+    } finally {
+      setOnlinePaying(false)
+    }
+  }
   function exportInvoices() {
     const csv = ['invoice,student,due_date,status,amount,paid,outstanding', ...rows.map((row) => [row.invoice_no, JSON.stringify(row.student_name ?? ''), row.due_date ?? '', row.status, row.amount, row.paid_amount, row.amount - row.paid_amount].join(','))].join('\n')
-    downloadText('invoices.csv', csv, 'text/csv;charset=utf-8')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = 'invoices.csv'
+    anchor.click()
+    URL.revokeObjectURL(url)
   }
   function receipt(invoice: InvoiceWithStudent, payment: Payment) {
-    const html = `<!doctype html><meta charset="utf-8"><title>Receipt ${payment.reference ?? payment.id}</title><style>body{font-family:Arial;max-width:640px;margin:48px auto;color:#172033}h1{margin-bottom:4px}.row{display:flex;justify-content:space-between;border-bottom:1px solid #ddd;padding:12px 0}</style><h1>EduOS payment receipt</h1><p>${invoice.student_name ?? ''}</p><div class="row"><span>Invoice</span><b>${invoice.invoice_no}</b></div><div class="row"><span>Amount</span><b>BDT ${payment.amount.toFixed(2)}</b></div><div class="row"><span>Method</span><b>${payment.method}</b></div><div class="row"><span>Reference</span><b>${payment.reference ?? '—'}</b></div><div class="row"><span>Paid at</span><b>${payment.paid_at}</b></div><p>Generated by EduOS</p>`
-    downloadText(`receipt-${invoice.invoice_no}-${payment.id.slice(0, 8)}.html`, html, 'text/html;charset=utf-8')
+    const studentInfo = (studentsQuery.data ?? []).find((s) => s.id === invoice.student_id)
+    const bytes = createPaymentReceiptPdf({
+      schoolName: t('app.school'),
+      studentName: invoice.student_name ?? '—',
+      rollNo: studentInfo?.roll_no,
+      className: studentInfo?.class_name,
+      invoiceNo: invoice.invoice_no,
+      receiptNo: `REC-${payment.id.slice(0, 8).toUpperCase()}`,
+      amount: payment.amount,
+      method: payment.method,
+      reference: payment.reference ?? 'N/A',
+      paidAt: formatDate(payment.paid_at, lang),
+      remainingBalance: Math.max(0, invoice.amount - invoice.paid_amount),
+    })
+    const url = URL.createObjectURL(new Blob([bytes as BlobPart], { type: 'application/pdf' }))
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = `receipt-${invoice.invoice_no}-${payment.id.slice(0, 8)}.pdf`
+    anchor.click()
+    URL.revokeObjectURL(url)
   }
 
   return <div>
@@ -116,7 +215,136 @@ export default function Fees() {
     </Modal>
 
     <Modal open={Boolean(selected)} onClose={() => setSelected(null)} title={selected?.invoice_no} sub={selected?.student_name} width={640}>
-      {selected && <><div className="mb-5 grid grid-cols-3 gap-3 rounded-sm bg-app p-4 text-sm"><div><span className="block text-xs text-fg-3">{t('fees.table.amount')}</span><b>{formatTaka(selected.amount, lang)}</b></div><div><span className="block text-xs text-fg-3">{t('fees.paid')}</span><b>{formatTaka(selected.paid_amount, lang)}</b></div><div><span className="block text-xs text-fg-3">{t('fees.table.outstanding')}</span><b>{formatTaka(selected.amount - selected.paid_amount, lang)}</b></div></div>{selected.status !== 'paid' && <div className="mb-5 grid gap-3 border-b border-divider pb-5 sm:grid-cols-2"><Field label={t('fees.payment.amount')}><Input type="number" min="0.01" max={selected.amount - selected.paid_amount} step="0.01" value={paymentForm.amount} onChange={(event) => setPaymentForm((form) => ({ ...form, amount: event.target.value }))} /></Field><Field label={t('fees.payment.method')}><Select value={paymentForm.method} onChange={(event) => setPaymentForm((form) => ({ ...form, method: event.target.value as PaymentMethod }))}>{paymentMethods.map((method) => <option key={method} value={method}>{t(`fees.payment.methods.${method}`)}</option>)}</Select></Field><Field className="sm:col-span-2" label={t('fees.payment.reference')} hint={t('fees.payment.referenceHint')}><Input value={paymentForm.reference} onChange={(event) => setPaymentForm((form) => ({ ...form, reference: event.target.value }))} /></Field><Button className="sm:col-span-2" variant="primary" onClick={submitPayment} disabled={recordPayment.isPending}>{recordPayment.isPending ? t('common.saving') : t('fees.payment.record')}</Button></div>}<h3 className="mb-2 font-semibold">{t('fees.payment.history')}</h3>{paymentsQuery.isPending ? <Loader2 className="animate-spin" /> : !paymentsQuery.data?.length ? <p className="text-sm text-fg-3">{t('fees.payment.empty')}</p> : <div>{paymentsQuery.data.map((payment) => <div key={payment.id} className="flex items-center justify-between gap-3 border-t border-divider py-3 text-sm"><div><b>{formatTaka(payment.amount, lang)}</b><div className="text-xs text-fg-3">{formatDate(payment.paid_at, lang)} · {payment.method} · {payment.reference}</div></div><Button variant="ghost" size="sm" icon={<Download size={14} />} onClick={() => receipt(selected, payment)}>{t('actions.receipt')}</Button></div>)}</div>}</>}
+      {selected && (
+        <>
+          <div className="mb-5 grid grid-cols-3 gap-3 rounded-sm bg-app p-4 text-sm">
+            <div>
+              <span className="block text-xs text-fg-3">{t('fees.table.amount')}</span>
+              <b>{formatTaka(selected.amount, lang)}</b>
+            </div>
+            <div>
+              <span className="block text-xs text-fg-3">{t('fees.paid')}</span>
+              <b>{formatTaka(selected.paid_amount, lang)}</b>
+            </div>
+            <div>
+              <span className="block text-xs text-fg-3">{t('fees.table.outstanding')}</span>
+              <b>{formatTaka(selected.amount - selected.paid_amount, lang)}</b>
+            </div>
+          </div>
+
+          {selected.status !== 'paid' && (
+            <div className="mb-5 border-b border-divider pb-5">
+              {/* Online payment quick checkout */}
+              <div className="mb-4 rounded-md border border-primary/20 bg-primary-tint/30 p-3.5">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-xs font-semibold text-primary">{t('fees.online.payOnline')}</span>
+                  {onlinePaying && <Loader2 size={14} className="animate-spin text-primary" />}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    disabled={onlinePaying}
+                    onClick={() => void payOnline('bkash')}
+                    className="border-[#D12053]/40 text-[#D12053] hover:bg-[#D12053]/10"
+                  >
+                    bKash
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    disabled={onlinePaying}
+                    onClick={() => void payOnline('nagad')}
+                    className="border-[#F7941D]/40 text-[#F7941D] hover:bg-[#F7941D]/10"
+                  >
+                    Nagad
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    disabled={onlinePaying}
+                    onClick={() => void payOnline('sslcommerz')}
+                    icon={<CreditCard size={14} />}
+                  >
+                    Cards / Net Banking
+                  </Button>
+                </div>
+              </div>
+
+              {/* Manual fee collection form */}
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Field label={t('fees.payment.amount')}>
+                  <Input
+                    type="number"
+                    min="0.01"
+                    max={selected.amount - selected.paid_amount}
+                    step="0.01"
+                    value={paymentForm.amount}
+                    onChange={(event) => setPaymentForm((form) => ({ ...form, amount: event.target.value }))}
+                  />
+                </Field>
+                <Field label={t('fees.payment.method')}>
+                  <Select
+                    value={paymentForm.method}
+                    onChange={(event) => handleMethodChange(event.target.value as PaymentMethod)}
+                  >
+                    {paymentMethods.map((method) => (
+                      <option key={method} value={method}>
+                        {t(`fees.payment.methods.${method}`)}
+                      </option>
+                    ))}
+                  </Select>
+                </Field>
+                <Field
+                  className="sm:col-span-2"
+                  label={t('fees.payment.reference')}
+                  hint={t('fees.payment.referenceHint')}
+                >
+                  <Input
+                    value={paymentForm.reference}
+                    onChange={(event) => setPaymentForm((form) => ({ ...form, reference: event.target.value }))}
+                    placeholder={paymentForm.method === 'bkash' ? 'e.g. 9J82K39L2A' : paymentForm.method === 'nagad' ? 'e.g. NGD1029384' : ''}
+                  />
+                  {paymentForm.reference && !trxValidation.valid && (
+                    <div className="mt-1 text-xs text-danger">{t(trxValidation.errorKey ?? 'fees.validation.trxIdInvalid')}</div>
+                  )}
+                </Field>
+                <Button
+                  className="sm:col-span-2"
+                  variant="primary"
+                  onClick={submitPayment}
+                  disabled={recordPayment.isPending || (paymentForm.reference.length > 0 && !trxValidation.valid)}
+                >
+                  {recordPayment.isPending ? t('common.saving') : t('fees.payment.record')}
+                </Button>
+              </div>
+            </div>
+          )}
+
+          <h3 className="mb-2 font-semibold">{t('fees.payment.history')}</h3>
+          {paymentsQuery.isPending ? (
+            <Loader2 className="animate-spin" />
+          ) : !paymentsQuery.data?.length ? (
+            <p className="text-sm text-fg-3">{t('fees.payment.empty')}</p>
+          ) : (
+            <div>
+              {paymentsQuery.data.map((payment) => (
+                <div key={payment.id} className="flex items-center justify-between gap-3 border-t border-divider py-3 text-sm">
+                  <div>
+                    <b>{formatTaka(payment.amount, lang)}</b>
+                    <div className="text-xs text-fg-3">
+                      {formatDate(payment.paid_at, lang)} · {payment.method} · {payment.reference}
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="sm" icon={<Download size={14} />} onClick={() => receipt(selected, payment)}>
+                    {t('actions.receipt')}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      )}
     </Modal>
   </div>
 }
