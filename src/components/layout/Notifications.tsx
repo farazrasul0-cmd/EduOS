@@ -40,7 +40,7 @@ export function Notifications({ onClose }: { onClose: () => void }) {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="absolute right-0 top-11 z-50 w-[360px] overflow-hidden rounded-md border border-border bg-surface shadow-md"
+      className="absolute right-0 top-11 z-50 w-[calc(100vw-2rem)] max-w-[360px] sm:w-[360px] overflow-hidden rounded-md border border-border bg-surface shadow-md"
     >
       <div className="flex items-center gap-2.5 border-b border-border px-4 py-3.5">
         <div className="flex-1 font-semibold">{t('notifications.title')}</div>

@@ -27,10 +27,16 @@
     "collapse": "Collapse"
   },
   "topbar": {
+    "menu": "Menu",
     "class": "Class 7-A",
     "searchPlaceholder": "Search students, fees, exams…",
     "help": "Help",
     "notifications": "Notifications"
+  },
+  "offline": {
+    "title": "You are currently offline",
+    "description": "Changes will sync when your internet connection is restored.",
+    "restored": "Internet connection restored"
   },
   "notifications": {
     "title": "Notifications",
@@ -617,6 +623,9 @@
     "parentOfClass": "Parent of {{child}} · 7-A",
     "replyPlaceholder": "Write a reply…",
     "unreadCount": "{{count}} unread",
+    "back": "Back to conversations",
+    "studentInfo": "Student information",
+    "hideStudentInfo": "Hide student information",
     "newThread": {
       "title": "New parent conversation",
       "sub": "Choose a guardian and their linked student.",
