@@ -354,6 +354,21 @@
       "history": "পরিশোধের ইতিহাস",
       "empty": "কোনো সফল পরিশোধ রেকর্ড নেই।",
       "methods": { "cash": "নগদ", "bank": "ব্যাংক", "bkash": "বিকাশ", "nagad": "নগদ", "rocket": "রকেট", "upay": "উপায়", "card": "কার্ড" }
+    },
+    "validation": {
+      "trxIdRequired": "লেনদেন রেফারেন্স নম্বর প্রয়োজন।",
+      "trxIdInvalidBkash": "বিকাশ TrxID অবশ্যই ১০ অক্ষরের আলফানামেরিক কোড হতে হবে (যেমন: 9J82K39L2A)।",
+      "trxIdInvalidNagad": "নগদ TrxID অবশ্যই ৮ থেকে ১২ অক্ষরের কোড হতে হবে।",
+      "trxIdInvalid": "একটি সঠিক লেনদেন রেফারেন্স প্রবেশ করান।"
+    },
+    "online": {
+      "payOnline": "অনলাইনে পরিশোধ (বিকাশ / নগদ / কার্ড)",
+      "payWith": "{{method}} দিয়ে পরিশোধ",
+      "chooseMethod": "অনলাইন পেমেন্ট মাধ্যম নির্বাচন করুন",
+      "simulate": "পেমেন্ট সিমুলেট করুন",
+      "processing": "পেমেন্ট গেটওয়েতে সংযোগ করা হচ্ছে...",
+      "successTitle": "পেমেন্ট সফল হয়েছে",
+      "successSub": "লেনদেন {{trxId}} যাচাই ও রেকর্ড করা হয়েছে।"
     }
   },
   "exams": {
@@ -720,8 +735,20 @@
         "whatsappTitle": "WhatsApp Business",
         "whatsappSub": "অভিভাবক বার্তা",
         "zoomTitle": "Zoom",
-        "zoomSub": "অনলাইন ক্লাস নির্ধারণ"
-      }
+        "zoomSub": "অনলাইন ক্লাস নির্ধারণ",
+        "bulksmsbdTitle": "বাল্কএসএমএস বিডি",
+        "bulksmsbdSub": "অভিভাবকদের সতর্কবার্তার জন্য বাংলাদেশ SMS গেটওয়ে"
+      },
+      "testSms": "টেস্ট SMS পাঠান",
+      "testSmsModalTitle": "টেস্ট SMS বার্তা পাঠান",
+      "testSmsModalSub": "অবিলম্বে মোবাইল ডেলিভারি পরীক্ষার মাধ্যমে আপনার SMS গেটওয়ে যাচাই করুন।",
+      "testPhone": "প্রাপকের মোবাইল নম্বর",
+      "testPhonePlaceholder": "01711000000",
+      "testMessage": "টেস্ট বার্তা",
+      "testSending": "SMS পাঠানো হচ্ছে...",
+      "testSendBtn": "টেস্ট SMS পাঠান",
+      "testSuccess": "{{phone}} নম্বরে টেস্ট SMS সফলভাবে পাঠানো হয়েছে।",
+      "testFailed": "SMS পাঠাতে ব্যর্থ: {{error}}"
     },
     "security": {
       "title": "নিরাপত্তা",
