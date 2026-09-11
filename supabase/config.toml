@@ -1,0 +1,13 @@
+# Supabase local/project config for EduOS.
+# Docs: https://supabase.com/docs/guides/cli/config
+project_id = "eduos"
+
+[db]
+major_version = 15
+
+[auth]
+# Email/password sign-in for the MVP. Add OTP/social later.
+enable_signup = true
+
+[auth.email]
+enable_confirmations = false

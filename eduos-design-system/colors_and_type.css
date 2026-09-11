@@ -1,0 +1,185 @@
+/* =========================================================
+   EduOS Design System — Foundations
+   colors_and_type.css
+   Drop this into the <head> of any HTML artifact:
+     <link rel="stylesheet" href="colors_and_type.css" />
+   Pair with Inter from Google Fonts.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* ---------- Color: Brand ---------- */
+  --eduos-primary:        #2F6FED;  /* indigo / deep blue */
+  --eduos-primary-hover:  #2558C8;
+  --eduos-primary-press:  #1E47A8;
+  --eduos-primary-tint:   #EAF1FE;  /* selected nav bg, badge fill */
+  --eduos-primary-tint-2: #D6E4FC;  /* hover on tinted surfaces */
+
+  /* ---------- Color: Neutrals (9-step) ---------- */
+  --eduos-neutral-0:  #FFFFFF;  /* card surface */
+  --eduos-neutral-50: #F7F8FA;  /* page background */
+  --eduos-neutral-100:#F1F3F6;  /* hover bg, subtle fill */
+  --eduos-neutral-200:#E5E7EB;  /* borders */
+  --eduos-neutral-300:#D1D5DB;  /* input borders, dividers */
+  --eduos-neutral-400:#9CA3AF;  /* placeholder text */
+  --eduos-neutral-500:#6B7280;  /* secondary text */
+  --eduos-neutral-600:#475569;  /* default icon, sidebar label */
+  --eduos-neutral-700:#334155;  /* h3 body-strong */
+  --eduos-neutral-900:#0F172A;  /* primary text */
+
+  /* table-only divider, lighter than 200 */
+  --eduos-divider-row: #EEF0F3;
+
+  /* ---------- Color: Semantic ---------- */
+  --eduos-success:      #16A34A;
+  --eduos-success-tint: #DCFCE7;
+  --eduos-warning:      #D97706;
+  --eduos-warning-tint: #FEF3C7;
+  --eduos-danger:       #DC2626;
+  --eduos-danger-tint:  #FEE2E2;
+  --eduos-info:         #0284C7;
+  --eduos-info-tint:    #E0F2FE;
+
+  /* ---------- Semantic foreground/background tokens ---------- */
+  --fg-1: var(--eduos-neutral-900);   /* primary text */
+  --fg-2: var(--eduos-neutral-700);   /* strong body */
+  --fg-3: var(--eduos-neutral-500);   /* secondary text */
+  --fg-4: var(--eduos-neutral-400);   /* placeholder */
+  --fg-inverse: #FFFFFF;
+  --fg-link: var(--eduos-primary);
+
+  --bg-app:     var(--eduos-neutral-50);
+  --bg-surface: var(--eduos-neutral-0);
+  --bg-hover:   var(--eduos-neutral-100);
+  --bg-selected:var(--eduos-primary-tint);
+
+  --border-default: var(--eduos-neutral-200);
+  --border-strong:  var(--eduos-neutral-300);
+  --border-focus:   var(--eduos-primary);
+
+  /* ---------- Typography ---------- */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Type scale: size / line-height / weight */
+  --t-display-size: 28px;  --t-display-lh: 36px;  --t-display-weight: 600;
+  --t-h2-size:      20px;  --t-h2-lh:      28px;  --t-h2-weight:      600;
+  --t-h3-size:      16px;  --t-h3-lh:      24px;  --t-h3-weight:      600;
+  --t-body-size:    14px;  --t-body-lh:    20px;  --t-body-weight:    400;
+  --t-small-size:   13px;  --t-small-lh:   18px;  --t-small-weight:   400;
+  --t-micro-size:   11px;  --t-micro-lh:   14px;  --t-micro-weight:   500;
+
+  /* ---------- Spacing (4pt) ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ---------- Radius ---------- */
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-full: 999px;
+
+  /* ---------- Shadow ---------- */
+  --shadow-sm: 0 1px 2px rgba(15,23,42,0.04), 0 1px 3px rgba(15,23,42,0.06);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.06), 0 12px 32px rgba(15,23,42,0.08);
+  --shadow-focus: 0 0 0 3px rgba(47,111,237,0.25);
+
+  /* ---------- Motion ---------- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:   120ms;
+  --dur-base:   160ms;
+  --dur-modal:  220ms;
+
+  /* ---------- Layout ---------- */
+  --sidebar-w-expanded: 240px;
+  --sidebar-w-collapsed: 72px;
+  --topbar-h: 60px;
+}
+
+/* =========================================================
+   Element defaults — opt-in via `eduos` class on a root
+   ========================================================= */
+
+.eduos,
+.eduos * {
+  box-sizing: border-box;
+}
+
+.eduos {
+  font-family: var(--font-sans);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  color: var(--fg-1);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.eduos h1, .eduos .t-display {
+  font-size: var(--t-display-size);
+  line-height: var(--t-display-lh);
+  font-weight: var(--t-display-weight);
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.eduos h2, .eduos .t-h2 {
+  font-size: var(--t-h2-size);
+  line-height: var(--t-h2-lh);
+  font-weight: var(--t-h2-weight);
+  letter-spacing: -0.005em;
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.eduos h3, .eduos .t-h3 {
+  font-size: var(--t-h3-size);
+  line-height: var(--t-h3-lh);
+  font-weight: var(--t-h3-weight);
+  color: var(--fg-1);
+  margin: 0;
+}
+
+.eduos p, .eduos .t-body {
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  color: var(--fg-2);
+  margin: 0;
+}
+
+.eduos .t-small {
+  font-size: var(--t-small-size);
+  line-height: var(--t-small-lh);
+  color: var(--fg-3);
+}
+
+.eduos .t-micro {
+  font-size: var(--t-micro-size);
+  line-height: var(--t-micro-lh);
+  font-weight: var(--t-micro-weight);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.eduos table { font-variant-numeric: tabular-nums; }
+.eduos code, .eduos pre { font-family: var(--font-mono); }
+
+/* Focus ring helper */
+.eduos .focus-ring:focus-visible,
+.eduos *:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-color: var(--border-focus);
+}

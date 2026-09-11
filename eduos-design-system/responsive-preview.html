@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduOS · Responsive views</title>
+  <link rel="stylesheet" href="colors_and_type.css" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #F1F3F6; font-family: var(--font-sans); color: var(--fg-1); -webkit-font-smoothing: antialiased; }
+    .page { padding: 32px; }
+    h1 { font: 600 24px/32px var(--font-sans); letter-spacing: -0.01em; margin: 0 0 4px; }
+    .sub { color: var(--fg-3); font-size: 14px; margin-bottom: 28px; }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+      padding: 12px 16px; background: #FFF; border: 1px solid var(--border-default);
+      border-radius: 10px; box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+    }
+    .toolbar label { font-size: 12px; font-weight: 600; color: var(--fg-3); text-transform: uppercase; letter-spacing: 0.04em; }
+    .toolbar select {
+      height: 32px; padding: 0 28px 0 10px; border: 1px solid var(--border-strong); border-radius: 8px;
+      font: 500 13px var(--font-sans); background: #FFF;
+    }
+
+    /* Frame grid */
+    .frames {
+      display: grid;
+      grid-template-columns: 390px 768px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 1400px) {
+      .frames { grid-template-columns: 390px 1fr; }
+      .frame-desktop { display: none; }
+    }
+    @media (max-width: 980px) {
+      .frames { grid-template-columns: 1fr; }
+      .frame-tablet { display: none; }
+    }
+
+    .frame {
+      background: #FFF;
+      border: 1px solid var(--border-default);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .frame-hd {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-default);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: #FAFBFC;
+    }
+    .frame-hd .name {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 13px;
+    }
+    .frame-hd .dim {
+      font: 500 11px var(--font-mono); color: var(--fg-3);
+      padding: 2px 8px; background: #FFF; border: 1px solid var(--border-default); border-radius: 6px;
+    }
+    .frame-hd .glyph {
+      width: 24px; height: 24px; border-radius: 6px; background: var(--eduos-primary-tint);
+      color: var(--eduos-primary); display: inline-flex; align-items: center; justify-content: center;
+    }
+
+    /* The actual frames hold an iframe sized exactly */
+    .frame-phone   iframe { width: 390px;  height: 760px; }
+    .frame-tablet  iframe { width: 768px;  height: 920px; }
+    .frame-desktop iframe { width: 100%;   height: 760px; min-width: 0; }
+
+    /* Phone bezel — subtle rounded corners */
+    .frame-phone {
+      width: 390px; align-self: start;
+    }
+    .frame-phone iframe { border-bottom-left-radius: 14px; border-bottom-right-radius: 14px; }
+
+    .frame-tablet { width: 768px; }
+    .frame-desktop { width: 100%; min-width: 0; }
+
+    iframe {
+      border: none; display: block; background: #FFF;
+    }
+
+    /* Featured callouts at top */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 1024px) { .features { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .features { grid-template-columns: 1fr; } }
+    .feat {
+      background: #FFF; padding: 14px 16px; border: 1px solid var(--border-default); border-radius: 10px;
+      display: flex; gap: 12px; align-items: flex-start; box-shadow: var(--shadow-sm);
+    }
+    .feat .ic {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--eduos-primary-tint); color: var(--eduos-primary);
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .feat h3 { margin: 0 0 2px; font: 600 13px var(--font-sans); }
+    .feat p  { margin: 0; font-size: 12px; color: var(--fg-3); line-height: 1.5; }
+
+    /* Lucide icon helper (inline SVG) */
+    .ic svg { width: 16px; height: 16px; }
+  </style>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body class="eduos">
+  <div class="page">
+    <h1>Responsive views</h1>
+    <div class="sub">The EduOS dashboard, side-by-side at phone, tablet, and desktop widths.</div>
+
+    <div class="features">
+      <div class="feat">
+        <span class="ic"><i data-lucide="menu"></i></span>
+        <div><h3>Sidebar becomes a drawer</h3><p>Tap the hamburger to slide it in. Tap the scrim to close.</p></div>
+      </div>
+      <div class="feat">
+        <span class="ic"><i data-lucide="layout-grid"></i></span>
+        <div><h3>Grids collapse</h3><p>KPI rows fold from 4-up → 2-up → 1-up as width drops.</p></div>
+      </div>
+      <div class="feat">
+        <span class="ic"><i data-lucide="table"></i></span>
+        <div><h3>Tables stay tables</h3><p>Horizontal scroll inside their card — no awkward stacking.</p></div>
+      </div>
+      <div class="feat">
+        <span class="ic"><i data-lucide="hand"></i></span>
+        <div><h3>Thumb-sized targets</h3><p>Buttons grow to 40px on phone; nav rows are full-width.</p></div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <label>Show page:</label>
+      <select id="page-select">
+        <option value="dashboard">Dashboard</option>
+        <option value="students">Students</option>
+        <option value="attendance">Attendance</option>
+        <option value="timetable">Timetable</option>
+        <option value="assignments">Assignments</option>
+        <option value="exams">Exams</option>
+        <option value="results">Results</option>
+        <option value="fees">Fees</option>
+        <option value="calendar">Calendar</option>
+        <option value="parent">Parent messages</option>
+        <option value="settings">Settings</option>
+      </select>
+      <div style="margin-left:auto; color: var(--fg-3); font-size: 12px;">Use the dropdown to sync all three previews.</div>
+    </div>
+
+    <div class="frames">
+      <div class="frame frame-phone">
+        <div class="frame-hd">
+          <div class="name"><span class="glyph"><i data-lucide="smartphone"></i></span> Phone</div>
+          <span class="dim">390 × 760</span>
+        </div>
+        <iframe id="if-phone"   src="ui_kits/teacher-dashboard/index.html#dashboard"></iframe>
+      </div>
+      <div class="frame frame-tablet">
+        <div class="frame-hd">
+          <div class="name"><span class="glyph"><i data-lucide="tablet"></i></span> Tablet</div>
+          <span class="dim">768 × 920</span>
+        </div>
+        <iframe id="if-tablet"  src="ui_kits/teacher-dashboard/index.html#dashboard"></iframe>
+      </div>
+      <div class="frame frame-desktop">
+        <div class="frame-hd">
+          <div class="name"><span class="glyph"><i data-lucide="monitor"></i></span> Desktop</div>
+          <span class="dim">fluid · 1280+</span>
+        </div>
+        <iframe id="if-desktop" src="ui_kits/teacher-dashboard/index.html#dashboard"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("load", () => {
+      try { window.lucide && window.lucide.createIcons(); } catch {}
+      const sel = document.getElementById("page-select");
+      sel.addEventListener("change", () => {
+        const hash = "#" + sel.value;
+        for (const id of ["if-phone","if-tablet","if-desktop"]) {
+          const f = document.getElementById(id);
+          f.src = "ui_kits/teacher-dashboard/index.html" + hash;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

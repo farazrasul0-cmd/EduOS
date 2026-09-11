@@ -1,0 +1,847 @@
+{
+  "app": {
+    "name": "EduOS",
+    "school": "Riverside Public School"
+  },
+  "lang": {
+    "en": "English",
+    "bn": "বাংলা",
+    "toggle": "Change language"
+  },
+  "nav": {
+    "sections": {
+      "teach": "Teach",
+      "operate": "Operate"
+    },
+    "dashboard": "Dashboard",
+    "students": "Students",
+    "attendance": "Attendance",
+    "timetable": "Timetable",
+    "assignments": "Assignments",
+    "exams": "Exams",
+    "results": "Results",
+    "fees": "Fees",
+    "calendar": "Calendar",
+    "parent": "Parent messages",
+    "settings": "Settings",
+    "collapse": "Collapse"
+  },
+  "topbar": {
+    "class": "Class 7-A",
+    "searchPlaceholder": "Search students, fees, exams…",
+    "help": "Help",
+    "notifications": "Notifications"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "all": "All",
+    "unread": "Unread",
+    "markAllRead": "Mark all read",
+    "empty": "No notifications.",
+    "viewAll": "View all notifications"
+  },
+  "common": {
+    "comingSoon": "This screen is coming soon.",
+    "placeholderBody": "The {{page}} screen will be built here. Layout, data, and actions land in a later phase.",
+    "loading": "Loading…",
+    "error": "Couldn't load data.",
+    "retry": "Retry",
+    "signOut": "Sign out",
+    "saving": "Saving…",
+    "appErrorTitle": "Something went wrong",
+    "appErrorBody": "EduOS hit an unexpected error. Reload the app to continue.",
+    "reload": "Reload app",
+    "weekdaysShort": {
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    }
+  },
+  "dashboard": {
+    "greeting": "Good morning, {{name}}",
+    "subtitle": "Here's what's happening across your classes today.",
+    "export": "Export",
+    "quickAdd": "Quick add",
+    "kpi": {
+      "attendanceToday": "Attendance today",
+      "attendanceDelta": "+{{pct}}% vs. last week",
+      "activeStudents": "Active students",
+      "activeStudentsFooter": "across {{count}} classes",
+      "pendingFees": "Pending fees",
+      "pendingFeesDelta": "{{count}} students",
+      "upcomingExams": "Upcoming exams",
+      "upcomingExamsFooter": "this week"
+    },
+    "attendanceCard": {
+      "title": "Attendance this week",
+      "sub": "Class 7-A · Mon – Sat"
+    },
+    "noAttendanceData": "No attendance saved yet — mark a day in Attendance.",
+    "activityEmpty": "No activity yet — actions like saving attendance or marking fees paid will show up here.",
+    "nextEmpty": "Nothing scheduled — create an exam or assignment.",
+    "feeCard": {
+      "title": "Fee status",
+      "sub": "May 2026",
+      "collected": "collected",
+      "paid": "Paid",
+      "dueSoon": "Due soon",
+      "overdue": "Overdue"
+    },
+    "activity": {
+      "title": "Recent activity",
+      "viewAll": "View all",
+      "items": [
+        { "who": "Tahmid Rahman", "what": "submitted Algebra worksheet", "when": "2m ago" },
+        { "who": "Nusrat Jahan's parent", "what": "paid term-2 tuition fee", "when": "18m ago" },
+        { "who": "You", "what": "published Mid-term results to 7-A", "when": "1h ago" },
+        { "who": "Rafiq Islam", "what": "marked absent", "when": "today, 9:05 AM" },
+        { "who": "Maya Karim", "what": "joined Class 7-A", "when": "yesterday" }
+      ]
+    },
+    "next": {
+      "title": "What's next",
+      "add": "Add",
+      "items": [
+        { "name": "Mid-term · Mathematics", "date": "Mon, 27 May", "state": "Scheduled" },
+        { "name": "Algebra · Worksheet 4", "date": "Due Wed, 27 May", "state": "12 / 12 submitted" },
+        { "name": "Science · Lab report", "date": "Due Fri, 30 May", "state": "8 / 12 submitted" }
+      ]
+    }
+  },
+  "actions": {
+    "export": "Export",
+    "import": "Import CSV",
+    "save": "Save",
+    "saveChanges": "Save changes",
+    "saveDraft": "Save draft",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "add": "Add",
+    "open": "Open",
+    "publish": "Publish",
+    "send": "Send",
+    "print": "Print",
+    "filters": "Filters",
+    "viewAll": "View all",
+    "upload": "Upload photo",
+    "replace": "Replace photo",
+    "remove": "Remove",
+    "markPaid": "Mark paid",
+    "receipt": "Receipt",
+    "sendReminder": "Send reminder",
+    "newInvoice": "New invoice",
+    "exportPdf": "Export PDF",
+    "newExam": "New exam",
+    "generate": "Generate exam",
+    "regenerate": "Regenerate",
+    "shareParents": "Share with parents",
+    "publishResults": "Publish results",
+    "newEvent": "New event",
+    "syncGoogle": "Sync to Google",
+    "newAnnouncement": "New announcement",
+    "newMessage": "New message",
+    "connect": "Connect",
+    "previous": "Previous",
+    "next": "Next",
+    "downloadAll": "Download all",
+    "remindMissing": "Remind missing",
+    "addStudent": "Add student",
+    "addClass": "Add class",
+    "newAssignment": "New assignment",
+    "editTimetable": "Edit timetable",
+    "thisWeek": "This week",
+    "today": "Today",
+    "analyze": "Analyze",
+    "enterMarks": "Enter marks",
+    "markAllPresent": "Mark all present",
+    "saveAttendance": "Save attendance",
+    "signOutEverywhere": "Sign out everywhere",
+    "saveGrade": "Save grade",
+    "call": "Call",
+    "more": "More"
+  },
+  "badge": {
+    "paid": "Paid",
+    "due": "Due",
+    "overdue": "Overdue",
+    "published": "Published",
+    "scheduled": "Scheduled",
+    "draft": "Draft",
+    "open": "Open",
+    "closed": "Closed",
+    "graded": "Graded",
+    "submitted": "Submitted",
+    "submittedLate": "Submitted · late",
+    "missing": "Missing",
+    "inProgress": "In progress",
+    "connected": "Connected"
+  },
+  "relativeTime": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "{{count}} days ago"
+  },
+  "students": {
+    "title": "Students",
+    "sub": "142 active students across 4 classes.",
+    "searchPlaceholder": "Search by name or roll no.",
+    "allClasses": "All classes",
+    "ofTotal": "{{shown}} of {{total}}",
+    "statusActive": "Active",
+    "empty": "No students yet",
+    "emptySub": "Add your first student to get started.",
+    "table": {
+      "student": "Student",
+      "roll": "Roll no.",
+      "class": "Class",
+      "parent": "Parent",
+      "attendance": "Attendance",
+      "fees": "Fees",
+      "lastActivity": "Last activity",
+      "status": "Status"
+    },
+    "modal": {
+      "title": "Add student",
+      "sub": "They'll be invited to join Class 7-A.",
+      "profilePhoto": "Profile photo",
+      "photoHint": "PNG or JPG, up to 5 MB. Square images look best.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Tahmid Rahman",
+      "rollNo": "Roll no.",
+      "autoAssigned": "Auto-assigned",
+      "dob": "Date of birth",
+      "class": "Class",
+      "parentEmail": "Parent email",
+      "parentEmailPlaceholder": "parent@email.com",
+      "parentEmailHint": "Used for SMS receipts and the Parent portal invite."
+    },
+    "detail": {
+      "back": "Back to students",
+      "notFound": "Student not found",
+      "attendanceRate": "Attendance rate",
+      "records": "{{count}} saved records",
+      "feesDue": "Fees due",
+      "invoices": "{{count}} invoices",
+      "resultAverage": "Result average",
+      "publishedResults": "{{count}} published results",
+      "assignments": "Assignments",
+      "graded": "{{count}} graded",
+      "recentAttendance": "Recent attendance",
+      "feeHistory": "Fee history",
+      "noFees": "No invoices for this student",
+      "assignmentHistory": "Assignment history",
+      "resultHistory": "Result history"
+      ,"editTitle": "Edit student"
+      ,"archive": "Archive"
+      ,"archiveTitle": "Archive student?"
+      ,"archiveBody": "{{name}} will become inactive and remain available in school records."
+      ,"guardians": "Guardians"
+      ,"addGuardian": "Add guardian"
+      ,"noGuardians": "No guardians linked"
+      ,"primary": "Primary"
+      ,"guardianSub": "Create or reuse a guardian record and link it to this student."
+      ,"guardianName": "Guardian name"
+      ,"relationship": "Relationship"
+      ,"guardianEmail": "Email"
+      ,"guardianPhone": "Phone"
+      ,"makePrimary": "Make this the primary guardian"
+      ,"linkGuardian": "Link guardian"
+      ,"sendInvite": "Send invite"
+      ,"inviteSent": "Invitation sent to {{email}}."
+      ,"portalLinked": "Portal linked"
+    },
+    "validation": {
+      "invalid": "Check the student's name, roll number, class, and date of birth. Dates cannot be in the future.",
+      "guardianInvalid": "Enter a valid guardian name, email address, phone number, and relationship.",
+      "avatar": {
+        "type": "Use a PNG or JPEG image.",
+        "size": "The photo must be 5 MB or smaller."
+      }
+    },
+    "import": {
+      "title": "Import students from CSV",
+      "sub": "Review valid rows and download any errors before importing.",
+      "choose": "Choose a CSV file",
+      "columns": "Columns: full_name (required), roll_no, dob, class",
+      "rows": "Rows",
+      "valid": "Valid",
+      "errors": "Errors",
+      "importCount": "Import {{count}} students",
+      "downloadErrors": "Download error report",
+      "readError": "The CSV file could not be read."
+    }
+  },
+  "attendance": {
+    "title": "Attendance",
+    "sub": "Class 7-A · Mon, 25 May 2026",
+    "kpi": {
+      "total": "Total students",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "needsAttention": "needs attention"
+    },
+    "status": { "present": "Present", "absent": "Absent", "late": "Late", "leave": "Leave" },
+    "markTitle": "Mark attendance",
+    "markSub": "Tap a status for each student.",
+    "day": "Day",
+    "period": "Period",
+    "summaryTitle": "Today's summary",
+    "summaryCenter": "present",
+    "notifyTitle": "Auto-notify parents",
+    "notifyBody": "When you save, linked guardians of absent students receive a parent portal alert.",
+    "notify": {
+      "sms": "SMS notifications",
+      "portal": "Parent portal alert",
+      "email": "Email digest"
+    },
+    "notifyExternalPending": "SMS and email delivery will be added with the messaging integrations.",
+    "saved": "Attendance saved successfully.",
+    "saveError": "Attendance could not be saved: {{error}}",
+    "historyTitle": "Attendance history",
+    "historySub": "Select a saved day to review or edit it, or export the report as CSV.",
+    "history": { "date": "Date" },
+    "historyEmpty": "No saved attendance days yet."
+  },
+  "fees": {
+    "title": "Fees",
+    "sub": "May 2026 · 7-A tuition",
+    "searchPlaceholder": "Search by student or invoice",
+    "invoicesCount": "{{count}} invoices",
+    "empty": "No invoices yet",
+    "emptySub": "Invoices you raise for this class will appear here.",
+    "kpi": {
+      "collected": "Collected",
+      "outstanding": "Outstanding",
+      "overdue": "Overdue",
+      "totalBilled": "Total billed",
+      "overdueStudents": "{{count}} students",
+      "month": "May 2026"
+    },
+    "filter": { "all": "All", "paid": "Paid", "due": "Due", "partial": "Partial", "overdue": "Overdue" },
+    "table": {
+      "student": "Student",
+      "invoice": "Invoice",
+      "dueDate": "Due date",
+      "paidOn": "Paid on",
+      "status": "Status",
+      "amount": "Amount",
+      "outstanding": "Outstanding"
+    },
+    "view": "View",
+    "paid": "Paid",
+    "newInvoice": {
+      "title": "Create invoice",
+      "sub": "Choose an existing fee plan or create a new one with this invoice.",
+      "student": "Student",
+      "plan": "Fee plan",
+      "newPlan": "Create a new fee plan",
+      "planName": "Plan name",
+      "period": "Billing period",
+      "amount": "Amount (BDT)",
+      "dueDate": "Due date"
+    },
+    "payment": {
+      "amount": "Payment amount",
+      "method": "Method",
+      "reference": "Transaction reference",
+      "referenceHint": "A unique reference prevents duplicate reconciliation.",
+      "record": "Record payment",
+      "history": "Payment history",
+      "empty": "No successful payments recorded.",
+      "methods": { "cash": "Cash", "bank": "Bank", "bkash": "bKash", "nagad": "Nagad", "rocket": "Rocket", "upay": "Upay", "card": "Card" }
+    }
+  },
+  "exams": {
+    "title": "Exams",
+    "sub": "Schedule exams and draft papers with AI. Marks are entered in Results.",
+    "empty": "No exams yet",
+    "emptySub": "Exams you schedule for this class will appear here.",
+    "tabs": { "list": "All exams", "ai": "✨ AI builder" },
+    "kpi": {
+      "upcoming": "Upcoming",
+      "upcomingFooter": "next 14 days",
+      "drafts": "Drafts",
+      "draftsFooter": "not yet scheduled",
+      "published": "Published",
+      "publishedDelta": "this term",
+      "classAvg": "Class avg.",
+      "classAvgDelta": "+2 vs last term"
+    },
+    "table": {
+      "exam": "Exam",
+      "class": "Class",
+      "date": "Date",
+      "students": "Students",
+      "average": "Average",
+      "status": "Status"
+    },
+    "schedule": {
+      "newTitle": "Schedule exam",
+      "editTitle": "Edit exam schedule",
+      "sub": "Set the class, subject, date, marks, and schedule state.",
+      "name": "Exam name",
+      "deleteTitle": "Delete this exam?",
+      "deleteBody": "Draft or scheduled exams without results can be deleted. Published exams and exams with marks are protected."
+    },
+    "ai": {
+      "settingsTitle": "Exam settings",
+      "subject": "Subject",
+      "grade": "Grade",
+      "topics": "Topics",
+      "topicsHint": "Comma-separated. EduOS will spread questions across them.",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "questionCount": "Question count",
+      "draftTitle": "Draft · Mid-term Mathematics",
+      "draftSub": "Grade {{grade}} · {{difficulty}} · {{count}} questions",
+      "estimated": "Estimated · 45 min",
+      "marks": "{{count}} marks",
+      "types": {
+        "short": "Short answer",
+        "mcq": "Multiple choice",
+        "long": "Long answer"
+      }
+    }
+  },
+  "results": {
+    "title": "Results",
+    "sub": "Enter marks, see the gradebook, and share report cards with parents.",
+    "tabs": { "gradebook": "Gradebook", "marks": "Enter marks", "reports": "Report cards" },
+    "kpi": {
+      "classAverage": "Class average",
+      "classAverageDelta": "+2 vs last term",
+      "topPerformer": "Top performer",
+      "topPerformerFooter": "{{pct}}% average",
+      "below70": "Below 70%",
+      "below70Value": "1 student",
+      "below70Delta": "needs support",
+      "reportsDrafted": "Reports drafted",
+      "reportsDraftedFooter": "of 12 students"
+    },
+    "table": {
+      "student": "Student",
+      "math": "Math",
+      "science": "Science",
+      "english": "English",
+      "history": "History",
+      "average": "Average",
+      "grade": "Grade",
+      "roll": "Roll",
+      "marksOf": "Marks (of {{total}})",
+      "exam": "Exam",
+      "class": "Class",
+      "totalMarks": "Total marks"
+    },
+    "gradebookEmpty": "No published results yet",
+    "gradebookEmptySub": "Publish marks from the Enter marks tab and they'll appear here.",
+    "reportsEmptyTitle": "No report cards yet",
+    "reportsEmptySub": "Once you've published exams for the term, EduOS will compile report cards you can share with parents.",
+    "generateReport": "Generate term 1 report",
+    "invalidMarks": "Enter marks between zero and the exam total.",
+    "publishIncomplete": "Every active student needs valid marks before publication.",
+    "publishTitle": "Publish these results?",
+    "publishBody": "All completed marks will become visible to students and guardians.",
+    "publishWarning": "Publication is atomic: if any roster record is missing or invalid, nothing will be published.",
+    "gpa": "GPA",
+    "downloadPdf": "Download PDF report card"
+  },
+  "timetable": {
+    "title": "Timetable",
+    "sub": "Your weekly schedule · Term 2, 2025 – 26",
+    "kpi": {
+      "teachingToday": "Teaching today",
+      "teachingTodayValue": "{{count}} periods",
+      "teachingTodayFooter": "Mon, 25 May",
+      "weeklyLoad": "Weekly load",
+      "weeklyLoadFooter": "of available slots",
+      "classes": "Classes",
+      "subjects": "Subjects",
+      "subjectsValue": "Mathematics",
+      "subjectsFooter": "primary subject"
+    },
+    "weekOf": "Week of 25 – 30 May 2026",
+    "today": "TODAY",
+    "free": "Free",
+    "break": "Break",
+    "lunch": "Lunch",
+    "subjectsLegend": "Subjects",
+    "form": {
+      "addTitle": "Add timetable slot",
+      "editTitle": "Edit timetable slot",
+      "class": "Class",
+      "subject": "Subject",
+      "teacher": "Teacher",
+      "day": "Day",
+      "period": "Period",
+      "room": "Room",
+      "start": "Start time",
+      "end": "End time",
+      "invalid": "Select a class and subject, and enter a valid time range.",
+      "clash": "This class, teacher, or room already has an overlapping slot.",
+      "deleteConfirm": "Delete this timetable slot?"
+    }
+  },
+  "assignments": {
+    "title": "Assignments",
+    "sub": "Create work, publish to your class, and track submissions.",
+    "searchPlaceholder": "Search assignments",
+    "count": "{{count}} assignments",
+    "empty": "No assignments yet",
+    "emptySub": "Create your first assignment and publish it to the class.",
+    "filter": { "all": "All", "open": "Open", "closed": "Closed", "draft": "Drafts" },
+    "kpi": {
+      "open": "Open assignments",
+      "openFooter": "across 4 classes",
+      "toGrade": "To grade",
+      "toGradeDelta": "awaiting review",
+      "drafts": "Drafts",
+      "draftsFooter": "not yet published",
+      "onTime": "On-time rate",
+      "onTimeDelta": "last 30 days"
+    },
+    "table": {
+      "assignment": "Assignment",
+      "class": "Class",
+      "due": "Due",
+      "submissions": "Submissions",
+      "toGrade": "To grade",
+      "points": "Points",
+      "status": "Status"
+    },
+    "detail": {
+      "graded": "Graded",
+      "gradedFooter": "of {{total}}",
+      "toGrade": "To grade",
+      "toGradeDelta": "ready to review",
+      "inProgress": "In progress",
+      "inProgressFooter": "not submitted yet",
+      "missing": "Missing",
+      "missingDelta": "past due soon",
+      "submissionsTitle": "Submissions",
+      "submissionsSub": "Click a student to view their work.",
+      "filterAll": "All",
+      "filterToGrade": "To grade",
+      "filterGraded": "Graded",
+      "filterMissing": "Missing",
+      "grade": "Grade",
+      "privateFeedback": "Private feedback",
+      "feedbackPlaceholder": "Notes only the student will see…",
+      "noSubmissionTitle": "No submission yet",
+      "noSubmissionSub": "{{name}} hasn't uploaded anything for this assignment.",
+      "uploaded": "Uploaded {{when}}",
+      "noSubmissionYet": "no submission yet",
+      "submitWork": "Submit work"
+    },
+    "modal": {
+      "title": "New assignment",
+      "sub": "Publish to send to all students in the class.",
+      "titleField": "Title",
+      "titlePlaceholder": "e.g. Algebra · Worksheet 5",
+      "subject": "Subject",
+      "class": "Class",
+      "dueDate": "Due date",
+      "points": "Points",
+      "instructions": "Instructions",
+      "instructionsPlaceholder": "What students need to do, format, etc.",
+      "attachments": "Attachments",
+      "uploadCta": "Click to upload",
+      "uploadHint": "or drag files here",
+      "uploadTypes": "PDF, DOCX, images — up to 25 MB each",
+      "fileError": "Use PDF, DOCX, PNG, or JPEG files up to 25 MB.",
+      "notifyParents": "Notify parents when published"
+    }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "sub": "Exams, PTMs, holidays, and school events — all in one view.",
+    "month": "Month",
+    "week": "Week",
+    "filterTitle": "Filter by type",
+    "nothingScheduled": "Nothing scheduled.",
+    "eventsCount": "{{count}} events",
+    "eventCount_one": "{{count}} event",
+    "upNext": "Up next",
+    "form": {
+      "addTitle": "New calendar event",
+      "editTitle": "Edit calendar event",
+      "title": "Title",
+      "type": "Type",
+      "class": "Class",
+      "allSchool": "Whole school",
+      "date": "Date",
+      "time": "Time",
+      "location": "Location",
+      "description": "Description",
+      "invalid": "Enter an event title and date.",
+      "deleteConfirm": "Delete this calendar event?"
+    },
+    "types": {
+      "Exam": "Exam",
+      "PTM": "PTM",
+      "Assignment": "Assignment",
+      "Event": "Event",
+      "Holiday": "Holiday",
+      "Meeting": "Meeting",
+      "Class": "Class"
+    }
+  },
+  "parent": {
+    "title": "Parent messages",
+    "sub": "Conversations with parents. They see and reply to these in the Parent portal.",
+    "searchPlaceholder": "Search parents",
+    "empty": "No conversations yet",
+    "emptySub": "Threads with parents will appear here once messaging starts.",
+    "parentOf": "{{child}}'s parent",
+    "parentOfClass": "Parent of {{child}} · 7-A",
+    "replyPlaceholder": "Write a reply…",
+    "unreadCount": "{{count}} unread",
+    "newThread": {
+      "title": "New parent conversation",
+      "sub": "Choose a guardian and their linked student.",
+      "recipient": "Guardian and student",
+      "required": "Select a recipient.",
+      "start": "Start conversation"
+    },
+    "sidebar": {
+      "classRoll": "Class 7-A · Roll 7A-01",
+      "attendance": "Attendance",
+      "avgScore": "Avg. score",
+      "fees": "Fees",
+      "lastExam": "Last exam",
+      "sharedWithParent": "Shared with parent"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "sub": "Manage your school, classes, billing, and integrations.",
+    "nav": {
+      "profile": "User profile",
+      "school": "School",
+      "classes": "Classes",
+      "notifications": "Notifications",
+      "billing": "Billing & plan",
+      "integrations": "Integrations",
+      "security": "Security"
+    },
+    "profile": {
+      "title": "User profile",
+      "sub": "This information is shown across EduOS.",
+      "role": "Class teacher · 7-A · Mathematics",
+      "fullName": "Full name",
+      "email": "Email",
+      "mobile": "Mobile",
+      "subject": "Subject"
+    },
+    "school": {
+      "title": "School details",
+      "name": "School name",
+      "affiliation": "Affiliation",
+      "address": "Address",
+      "academicYear": "Academic year",
+      "currency": "Currency",
+      "currencyValue": "৳ Bangladeshi Taka"
+    },
+    "classes": {
+      "title": "Classes",
+      "studentsCount": "{{count}} students",
+      "addTitle": "Add class",
+      "editTitle": "Edit class",
+      "name": "Class name",
+      "grade": "Grade",
+      "teacher": "Class teacher",
+      "unassigned": "Unassigned",
+      "assignedTeacher": "Assigned teacher",
+      "invalid": "Enter a class name.",
+      "duplicate": "A class with this name already exists."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "sub": "When EduOS should notify you, and how.",
+      "channels": "Channels",
+      "items": {
+        "absentTitle": "Absent student",
+        "absentSub": "When a student is marked absent.",
+        "feesTitle": "Pending fees",
+        "feesSub": "When a fee crosses its due date.",
+        "replyTitle": "Parent reply",
+        "replySub": "When a parent replies in the portal.",
+        "aiTitle": "AI exam ready",
+        "aiSub": "When an AI-drafted exam finishes generating."
+      },
+      "deliverySummary": "Delivery queue: {{pending}} pending · {{sent}} sent · {{failed}} failed",
+      "channelItems": {
+        "smsTitle": "SMS",
+        "smsSub": "To registered mobile",
+        "emailTitle": "Email",
+        "emailSub": "Daily 7 PM digest",
+        "whatsappTitle": "WhatsApp",
+        "whatsappSub": "Beta · Bangladesh only"
+      }
+    },
+    "billing": {
+      "title": "Billing & plan",
+      "manageTitle": "Manage subscription",
+      "manageSub": "Choose a plan and keep the billing contact current.",
+      "plans": { "starter": "Starter", "growth": "Growth", "school": "School" },
+      "planPrices": { "starter": "৳29 / student / month", "growth": "৳49 / student / month", "school": "৳79 / student / month" },
+      "status": { "trialing": "Trial", "active": "Active", "past_due": "Past due", "cancelled": "Cancelled" },
+      "usage": "{{students}} students · ৳{{price}} each · ৳{{total}}/month",
+      "renews": "Current period ends {{date}}",
+      "email": "Billing email",
+      "cancelTitle": "Cancel at period end",
+      "cancelSub": "Keep access until the current period ends.",
+      "invalid": "Enter a valid billing email.",
+      "planName": "EduOS · Schools",
+      "planDesc": "৳49 / student / month · 142 active students",
+      "manage": "Manage"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "manage": "Manage",
+      "setupSub": "Store the account label and setup state for this school.",
+      "accountLabel": "Account or merchant label",
+      "accountPlaceholder": "School account name",
+      "accountRequired": "Enter the account or merchant label.",
+      "secretNotice": "API keys and OAuth secrets must be configured server-side; EduOS never stores them in this form.",
+      "disconnect": "Disconnect",
+      "saveSetup": "Save setup",
+      "items": {
+        "classroomTitle": "Google Classroom",
+        "classroomSub": "Sync rosters and assignments",
+        "sslcommerzTitle": "SSLCommerz",
+        "sslcommerzSub": "Collect fees online (bKash, Nagad, cards)",
+        "whatsappTitle": "WhatsApp Business",
+        "whatsappSub": "Parent messaging",
+        "zoomTitle": "Zoom",
+        "zoomSub": "Schedule online classes"
+      }
+    },
+    "security": {
+      "title": "Security",
+      "passwordTitle": "Change password",
+      "passwordSub": "Update your account password with at least 8 characters.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "passwordMinLength": "Password must be at least 8 characters.",
+      "passwordMismatch": "Passwords do not match.",
+      "updatePassword": "Update password",
+      "passwordUpdated": "Password updated.",
+      "signOutEverywhereTitle": "Active sessions",
+      "signOutEverywhereSub": "Sign out of all other browsers and devices.",
+      "signOutConfirmTitle": "Sign out of all other devices?",
+      "signOutConfirmDesc": "You will remain signed in on this device, but all other active sessions will be terminated immediately.",
+      "signedOutEverywhere": "Signed out of other devices.",
+      "mfaTitle": "Two-factor authentication",
+      "mfaSub": "Protect your account with an authenticator app (TOTP).",
+      "mfaStatusActive": "Enabled",
+      "mfaStatusInactive": "Disabled",
+      "setupMfa": "Enable 2FA",
+      "disableMfa": "Disable 2FA",
+      "mfaModalTitle": "Set up two-factor authentication",
+      "mfaModalSub": "Scan the QR code or enter the secret key into your authenticator app (such as Google Authenticator).",
+      "mfaSecretKey": "Secret key",
+      "mfaVerificationCode": "Verification code",
+      "mfaCodePlaceholder": "6-digit code",
+      "verifyAndEnable": "Verify and enable",
+      "mfaEnabledSuccess": "Two-factor authentication enabled.",
+      "mfaDisabledSuccess": "Two-factor authentication disabled.",
+      "mfaInvalidCode": "Invalid verification code. Please check and try again.",
+      "sessionTimeoutUpdated": "Session timeout preference saved.",
+      "signInAlertsUpdated": "Sign-in alerts preference saved.",
+      "items": {
+        "twoFaTitle": "Two-factor authentication",
+        "twoFaSub": "Use an authenticator app on sign-in.",
+        "alertsTitle": "Sign-in alerts",
+        "alertsSub": "Email me on new device sign-ins.",
+        "timeoutTitle": "Session timeout",
+        "timeoutSub": "Sign me out after 30 min inactive."
+      }
+    }
+  },
+  "notif": {
+    "fee_paid": "{{name}} paid {{amount}}.",
+    "attendance_saved": "Attendance saved for {{date}} — {{present}} present, {{absent}} absent.",
+    "attendance_absent": "{{name}} was marked absent on {{date}}.",
+    "assignment_published": "Assignment “{{title}}” was published to the class.",
+    "results_published": "Results for {{exam}} were published.",
+    "student_added": "{{name}} was added to the school."
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your EduOS account.",
+    "signupTitle": "Create your account",
+    "signupSubtitle": "Start managing your school with EduOS.",
+    "fullName": "Full name",
+    "fullNamePlaceholder": "e.g. Priya Rahman",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signingIn": "Signing in…",
+    "signingUp": "Creating account…",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "toSignup": "Sign up",
+    "toLogin": "Sign in",
+    "checkEmail": "Account created. If email confirmation is on, confirm via the link we sent, then sign in.",
+    "error": "Something went wrong. Please check your details and try again.",
+    "signOut": "Sign out"
+  },
+  "onboarding": {
+    "title": "Set up your school",
+    "subtitle": "Join the demo school to explore, or create your own.",
+    "joinDemoTitle": "Explore the demo school",
+    "joinDemoDesc": "Join “Riverside Public School” with realistic sample data — students, fees, exams and more.",
+    "joinDemoBtn": "Join demo school",
+    "createTitle": "Create your school",
+    "createDesc": "Start fresh with an empty school that you own.",
+    "schoolName": "School name",
+    "schoolNamePlaceholder": "e.g. Sunrise Academy",
+    "createBtn": "Create school",
+    "working": "Setting up…",
+    "or": "or",
+    "signedInAs": "Signed in as {{email}}"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Type to search students, invoices, exams, or jump to a page…",
+    "shortcutHint": "Esc to close",
+    "noResults": "No results found for “{{query}}”.",
+    "navigation": "Navigation",
+    "students": "Students",
+    "invoices": "Invoices",
+    "exams": "Exams"
+  },
+  "help": {
+    "title": "Help & documentation",
+    "subtitle": "Guides, shortcuts, and support for EduOS.",
+    "guidesTitle": "Quick operational guides",
+    "guideAttendance": "Taking daily attendance",
+    "guideAttendanceDesc": "Filter by class and date, mark statuses, and notify parents on absence.",
+    "guideResults": "Publishing exam results",
+    "guideResultsDesc": "Enter marks by subject, calculate GPA automatically, and export A4 report cards.",
+    "guideFees": "Collecting tuition fees",
+    "guideFeesDesc": "Issue fee invoices, reconcile partial or full payments, and download HTML receipts.",
+    "shortcutsTitle": "Keyboard shortcuts",
+    "shortcutSearch": "Open search & command palette",
+    "shortcutClose": "Close modals & dialogs",
+    "supportTitle": "Dhaka support & contact",
+    "supportDesc": "Need assistance onboarding your school or configuring permissions?",
+    "supportPhone": "+880 1700-000000",
+    "supportEmail": "support@eduos.com.bd",
+    "supportHours": "Sunday – Thursday, 9:00 AM – 6:00 PM BST"
+  },
+  "demo": {
+    "bannerTitle": "Demo mode: Riverside Public School",
+    "bannerDesc": "You are currently previewing sample school records.",
+    "createOwnSchool": "Create your school",
+    "dismiss": "Dismiss"
+  }
+}

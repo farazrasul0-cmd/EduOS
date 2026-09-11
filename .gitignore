@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build outputs
+dist/
+dist-ssr/
+build/
+output/
+
+# Logs & debug traces
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment and secrets (NEVER commit credentials)
+.env
+.env.*
+!.env.example
+
+# Supabase local artifacts
+supabase/.temp/
+supabase/.branches/
+
+# Testing & coverage
+coverage/
+test-results/
+playwright-report/
+blob-report/
+
+# Agent scratch and cache
+.agents/
+.cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories and configurations
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

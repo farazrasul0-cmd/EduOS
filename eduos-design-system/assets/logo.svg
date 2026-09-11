@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" width="220" height="56">
+  <defs>
+    <clipPath id="clip-e">
+      <rect x="0" y="0" width="56" height="56" rx="14"></rect>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#clip-e)">
+    <rect width="56" height="56" rx="14" fill="#2F6FED"></rect>
+    <g fill="#FFFFFF">
+      <rect x="14" y="14" width="28" height="6" rx="3"></rect>
+      <rect x="14" y="25" width="20" height="6" rx="3"></rect>
+      <rect x="14" y="36" width="28" height="6" rx="3"></rect>
+    </g>
+  </g>
+  <g fill="#0F172A" font-family="Inter, -apple-system, system-ui, sans-serif" font-weight="700">
+    <text x="70" y="35" font-size="24" letter-spacing="-0.5">EduOS</text>
+  </g>
+  <text x="70" y="49" fill="#6B7280" font-family="Inter, system-ui, sans-serif" font-size="10" font-weight="500" letter-spacing="1.5">SCHOOL MANAGEMENT OS</text>
+</svg>

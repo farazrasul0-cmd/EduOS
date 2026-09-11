@@ -1,0 +1,359 @@
+===============================================================================
+ EduOS — School Management OS
+ PRODUCTION ROADMAP : from prototype to production-grade SaaS
+===============================================================================
+ Last updated : 2026-06-04
+ Owner        : (you)
+ Target market: BANGLADESH  (currency: Bangladeshi Taka, BDT, symbol ৳)
+ Status key   : [ ] todo   [~] in progress   [x] done   [!] blocked
+
+ LOCALE LOCK (Bangladesh) — applies everywhere below
+ -------------------------------------------------------------------------------
+ - Currency .... Bangladeshi Taka. Code BDT, symbol ৳. Format ৳4,500.
+                 (Optionally support the South-Asian lakh/crore grouping,
+                 e.g. ৳1,00,000 = 1 lakh — confirm with first school.)
+ - Language .... BILINGUAL from day one: English + Bangla (বাংলা), both fully
+                 supported at launch (not English-first). Per-user language
+                 toggle, persisted. Every user-facing string goes through i18n
+                 — no hardcoded text. Applies to UI, emails, SMS, and PDFs.
+ - Payments .... Mobile Financial Services: bKash, Nagad, Rocket, Upay, plus
+                 cards/banks via an aggregator (SSLCommerz / aamarPay /
+                 ShurjoPay). NOT Stripe/Razorpay (limited/again unavailable in BD).
+ - SMS ......... Local gateways via aggregators (SSL Wireless, MIMSMS, bulksmsbd,
+                 Banglalink/GP/Robi masking). Twilio works but is pricier.
+ - Hosting ..... Pick a low-latency region for BD users (AWS ap-south-1 Mumbai
+                 or ap-southeast-1 Singapore). Consider data-residency wishes.
+ NOTE: the prototype currently shows Indian Rupee (₹). All ₹ -> ৳ in production
+ (in seed data, KPI tiles, fees, invoices, formatting helpers).
+
+ WHAT WE HAVE TODAY
+ -------------------------------------------------------------------------------
+ - A clickable design prototype (this folder, eduos-design-system/):
+     * Design tokens .................. colors_and_type.css
+     * Component primitives ........... ui_kits/teacher-dashboard/components.jsx
+     * 11 page mockups ................ ui_kits/teacher-dashboard/pages/*.jsx
+     * App shell + nav ................ ui_kits/teacher-dashboard/app.jsx
+     * Brand/voice/visual rules ....... README.md, SKILL.md
+   It runs in the browser via React + Babel-standalone from a CDN. There is
+   NO build step, NO backend, and ALL data is mock/hardcoded.
+ - A separate Vite + React + Tailwind scaffold at  Desktop\eduos\  (the intended
+   real app shell; currently mostly empty / phase-2 notes).
+
+ THE GAP TO PRODUCTION (in one line)
+ -------------------------------------------------------------------------------
+ Turn 11 static, mock-data mockups into a real multi-user, multi-school SaaS:
+ a typed frontend with a build pipeline, a backend + database, authentication &
+ roles, real CRUD for every feature, payments, messaging, file uploads, the AI
+ exam builder, testing, security, hosting, monitoring, and a launch plan.
+
+ HOW TO READ THIS FILE
+ -------------------------------------------------------------------------------
+ Phases are roughly sequential, but several run in parallel once the foundation
+ (Phase 0-2) is in place. Each phase lists: GOAL, TASKS, and DONE-WHEN. Don't
+ skip Phase 0 — most pain later comes from decisions not made up front.
+
+
+===============================================================================
+ PHASE 0 — DECISIONS & FOUNDATION  (week 1)
+===============================================================================
+ GOAL: Lock the stack and ground rules so we never re-litigate them mid-build.
+
+ [ ] Pick the frontend stack
+       - React 18 + TypeScript + Vite (reuse Desktop\eduos scaffold).
+       - Routing: React Router (or TanStack Router).
+       - Styling: Tailwind, seeded from colors_and_type.css tokens.
+       - Data fetching/cache: TanStack Query.
+       - Forms + validation: React Hook Form + Zod.
+ [ ] Pick the backend stack (choose ONE, write down why)
+       - Option A: Node + TypeScript (NestJS or Fastify) — shares language w/ FE.
+       - Option B: Python (FastAPI/Django) — strong if team knows Python.
+       - Option C: Supabase / Firebase — fastest MVP, less control.
+ [ ] Pick the database
+       - PostgreSQL (recommended: relational data, multi-tenant friendly).
+       - ORM: Prisma (Node) or SQLAlchemy/Django ORM (Python).
+ [ ] Pick hosting / infra targets
+       - Frontend: Vercel / Netlify / Cloudflare Pages.
+       - Backend + DB: Railway / Render / Fly.io / AWS (RDS + ECS) / Supabase.
+       - File storage: S3 / Cloudflare R2 / Supabase Storage.
+ [ ] Pick supporting services  (Bangladesh defaults in brackets)
+       - Auth: Clerk / Auth0 / Supabase Auth / self-rolled (JWT + bcrypt).
+       - Email: Resend / Postmark / SES.
+       - SMS: [SSL Wireless / MIMSMS / bulksmsbd via masking gateway];
+              Twilio as fallback. Many BD schools rely on SMS over email.
+       - Payments: [SSLCommerz or aamarPay/ShurjoPay aggregator] to accept
+              bKash, Nagad, Rocket, Upay + cards/bank. (No Stripe/Razorpay.)
+       - AI: Anthropic Claude API (for the AI exam builder).
+ [ ] Repository & workflow
+       - Monorepo (apps/web, apps/api, packages/ui, packages/types) via pnpm
+         workspaces or Turborepo — recommended so types are shared.
+       - Git: trunk-based or GitHub flow; protected main; PR reviews required.
+       - Conventions: ESLint + Prettier, commit lint, .editorconfig.
+ [ ] Environments
+       - local / staging / production. One .env per env; NEVER commit secrets.
+       - Secrets manager (Doppler / Vault / platform env vars).
+
+ DONE-WHEN: every bullet above has a written decision in /docs/decisions
+ (ADRs), the monorepo is initialised, and `pnpm install` works clean.
+
+
+===============================================================================
+ PHASE 1 — PROJECT SCAFFOLD & DESIGN TOKENS  (week 1-2)
+===============================================================================
+ GOAL: A typed, buildable frontend that boots to an empty shell with the brand.
+
+ [ ] Initialise web app (Vite + React + TS) in apps/web.
+ [ ] Port colors_and_type.css tokens into Tailwind theme (colors, radius,
+     shadows, spacing, font scale, Inter font). Keep the CSS-var names so the
+     design system stays the single source of truth.
+ [ ] Set up Lucide-react (replace the CDN <i data-lucide> usage).
+ [ ] Wire React Router with the 11 routes from the prototype hash-nav:
+     /dashboard /students /attendance /timetable /assignments /exams /results
+     /fees /calendar /messages /settings
+ [ ] Build the app shell as real components: Sidebar, Topbar, Notifications
+     dropdown, page layout — ported from app.jsx but typed + responsive.
+ [ ] Add global error boundary + 404 + loading skeleton states.
+ [ ] Set up i18n NOW (react-i18next) with en + bn locale files and a language
+     toggle in the topbar — so every component added from here on uses
+     translation keys instead of hardcoded strings. (See Phase 5 for the full
+     i18n scope; this step just makes bilingual the default habit early.)
+
+ DONE-WHEN: app builds, lints, deploys to staging, renders the empty shell
+ with working nav, and the language toggle flips UI text between EN and BN.
+
+
+===============================================================================
+ PHASE 2 — DESIGN SYSTEM AS A REAL COMPONENT LIBRARY  (week 2-3)
+===============================================================================
+ GOAL: Reusable, accessible, tested UI primitives in packages/ui.
+
+ [ ] Port each primitive from components.jsx to typed components:
+       Button, Badge, Avatar, Card, KPI, Segmented, Toggle, Modal, Empty,
+       Sparkline, BarChart, Donut, Table, Field/Input/Select/Textarea,
+       Toast (NEW — spec wants "Saved"/"Deleted" toasts).
+ [ ] Add Storybook; one story per component + state (hover/disabled/focus).
+ [ ] Accessibility pass: focus rings, aria-labels on icon buttons, keyboard
+     nav, color-contrast, reduced-motion. (README already specifies these.)
+ [ ] Unit tests for interactive components (Vitest + Testing Library).
+
+ DONE-WHEN: Storybook published, components consumed by apps/web, a11y lint
+ (axe) passes on every story.
+
+
+===============================================================================
+ PHASE 3 — DATA MODEL, BACKEND & AUTH  (week 3-6)  [core backend]
+===============================================================================
+ GOAL: A secure API with a real schema and role-based access.
+
+ [ ] Model the domain (Postgres schema + ERD). Core entities:
+       School (tenant), User, Role (teacher/admin/parent/student),
+       Class/Section, Student, Guardian/Parent, Subject,
+       AttendanceRecord, Assignment, Submission,
+       Exam, Question, Result/Mark, GradeScale,
+       FeePlan, Invoice, Payment,
+       TimetableSlot, CalendarEvent, Message/Thread, Notification,
+       AuditLog.
+ [ ] Multi-tenancy strategy: row-level school_id on every table (+ RLS if
+     using Postgres/Supabase). Decide shared-DB vs DB-per-tenant.
+ [ ] Migrations tooling (Prisma migrate / Alembic). Seed script with the
+     prototype's mock data so the FE has realistic content.
+ [ ] Authentication: signup/login/logout, password reset, email verify,
+     session/JWT, refresh tokens. MFA optional for admins.
+ [ ] Authorization: RBAC + per-resource checks (a teacher only sees their
+     classes; a parent only their child; admin sees the whole school).
+ [ ] API layer: REST or tRPC/GraphQL. Generate/share types with FE.
+ [ ] Validation on every endpoint (Zod/Pydantic). Consistent error envelope.
+ [ ] Rate limiting, request logging, CORS, helmet/security headers.
+
+ DONE-WHEN: a user can sign up, get a role, and the API enforces that role;
+ schema migrations run on staging; seed data loads.
+
+
+===============================================================================
+ PHASE 4 — FEATURE BUILD-OUT (page by page)  (week 6-14)
+===============================================================================
+ GOAL: Replace every mock page with real CRUD wired to the API.
+ For EACH feature: API endpoints -> FE data hooks -> wire UI -> validation ->
+ empty/loading/error states -> tests.
+
+ [ ] Dashboard ...... real KPIs (student count, attendance %, pending fees,
+                       upcoming exams), live charts, recent-activity feed.
+ [ ] Students ....... roster CRUD, filter by class, add-student modal with
+                       PROFILE PHOTO UPLOAD (already in prototype), student
+                       detail/profile page (attendance/fees/marks history).
+ [ ] Attendance ..... pick class+date, mark present/absent/late, bulk save,
+                       live counts, notify-parent on absence.
+ [ ] Timetable ...... weekly grid CRUD, per-class schedule, clash detection.
+ [ ] Assignments .... teacher create/publish, student submission upload,
+                       teacher grading + feedback, submission tracker,
+                       notify parents toggle.
+ [ ] Exams .......... exam list/CRUD, schedule, + AI builder (see Phase 5).
+ [ ] Results ........ gradebook, enter marks, grade/GPA calc, publish,
+                       report cards, PDF export.
+ [ ] Fees ........... fee plans, invoices, status filter, mark-paid,
+                       payment history, online payment (see Phase 5).
+ [ ] Calendar ....... month view, event CRUD (PTM/holiday/exam/event),
+                       filters, "up next".
+ [ ] Parent messages  threaded teacher<->parent messaging (real-time, Phase 5).
+ [ ] Settings ....... profile, school info, classes, notification prefs,
+                       billing, integrations, security (password/MFA).
+
+ DONE-WHEN: every page reads/writes real data, no mock arrays remain, all
+ CRUD paths have happy + error + empty states.
+
+
+===============================================================================
+ PHASE 5 — CROSS-CUTTING / HARD FEATURES  (parallel w/ Phase 4)
+===============================================================================
+ [ ] File uploads & storage
+       - Profile photos, assignment attachments, report-card PDFs.
+       - Pre-signed S3/R2 URLs, size/type validation, virus scan, thumbnails.
+ [ ] Notifications system
+       - In-app (the bell dropdown) backed by a Notification table.
+       - Email + SMS fan-out on key events (absence, fee due, results out).
+       - Per-user preference center.
+ [ ] Toasts / optimistic UI for Saved/Deleted/Published confirmations.
+ [ ] Real-time (messaging + live attendance counts)
+       - WebSockets (Socket.IO / Pusher / Supabase Realtime).
+ [ ] Payments (Fees) — Bangladesh
+       - Integrate an aggregator (SSLCommerz / aamarPay / ShurjoPay) so a
+         parent can pay via bKash / Nagad / Rocket / Upay / card / bank.
+       - Webhooks/IPN -> mark invoice paid, generate ৳ receipt, handle
+         pending/failed/refund states, reconciliation, settlement reports.
+       - Store amounts in integer poisha/Taka minor units; format as ৳4,500.
+ [ ] AI Exam Builder (Anthropic Claude API)
+       - Inputs: class, subject, chapter, difficulty, #questions, marks.
+       - Generate MCQ/short/long questions with answer keys; let teacher edit,
+         regenerate, save to an exam, export PDF.
+       - Add prompt caching; guard against prompt injection; rate-limit;
+         track token cost per school. Human review before publish.
+ [ ] Search + command palette (Cmd-K) — students/fees/exams global search.
+ [ ] PDF generation — report cards, invoices, question papers.
+ [ ] Internationalisation — BILINGUAL English + Bangla (বাংলা), required at
+       launch. Wire react-i18next from the very first screen; extract ALL
+       strings to en/bn locale files (no hardcoded text); per-user language
+       toggle, persisted. ৳ currency + BD date/number formatting via Intl.
+       Bangla-capable web font for UI AND a Bangla-embedding font for PDFs
+       (report cards, invoices, question papers). Translate emails + SMS too.
+       Add a CI check / lint that fails on missing translation keys.
+
+ DONE-WHEN: each feature works end-to-end on staging with real services in
+ test mode (test Stripe keys, sandbox SMS, etc.).
+
+
+===============================================================================
+ PHASE 6 — QUALITY: TESTING, PERF, ACCESSIBILITY, RESPONSIVE  (ongoing)
+===============================================================================
+ [ ] Testing pyramid
+       - Unit (Vitest), integration (API + DB with test containers),
+         e2e (Playwright) for critical flows: login, take attendance,
+         create+publish assignment, pay a fee, generate results.
+       - Target: critical paths covered; CI gate on coverage.
+ [ ] Performance
+       - Code-splitting per route, lazy charts, image optimisation,
+         DB indexes + query review, caching, bundle-size budget.
+ [ ] Accessibility — full WCAG 2.1 AA pass (axe + manual keyboard/screenreader).
+ [ ] Responsive — verify the mobile/tablet layouts from the prototype on real
+       devices; sidebar drawer, table horizontal scroll, stacked grids.
+ [ ] Cross-browser smoke (Chrome, Safari, Firefox, Edge).
+
+ DONE-WHEN: CI runs lint+typecheck+unit+e2e green on every PR; Lighthouse
+ perf+a11y >= 90 on key pages.
+
+
+===============================================================================
+ PHASE 7 — SECURITY & COMPLIANCE  (before public launch — NON-NEGOTIABLE)
+===============================================================================
+ NOTE: This product stores CHILDREN'S personal data. Compliance is mandatory.
+ [ ] Data privacy law review (Bangladesh): track the BD Data Protection Act
+       (draft/forthcoming) and the Digital Security / Cyber Security Act.
+       Until BD law is final, adopt GDPR-style good practice as the baseline.
+       - Parental consent flows, data-retention policy, right-to-delete.
+       - If hosting data outside BD, confirm any data-localization expectations
+         with schools and document it.
+ [ ] Encryption: TLS everywhere; encrypt sensitive fields + backups at rest.
+ [ ] Secrets hygiene; rotate keys; no secrets in client bundle.
+ [ ] Authz audit — verify no cross-tenant / cross-role data leakage (write
+       tests for "teacher A cannot read teacher B's class").
+ [ ] OWASP Top 10 pass: injection, XSS, CSRF, IDOR, SSRF, auth flaws.
+ [ ] Audit logging for sensitive actions (mark changes, fee edits, deletes).
+ [ ] Dependency scanning (Dependabot/Snyk) + SAST in CI.
+ [ ] Backups + tested restore; disaster-recovery runbook.
+ [ ] Penetration test / security review before launch.
+ [ ] Privacy policy + terms of service published.
+
+ DONE-WHEN: security review signed off; backups restore verified; legal docs live.
+
+
+===============================================================================
+ PHASE 8 — DEVOPS / CI-CD / OBSERVABILITY  (parallel from Phase 1)
+===============================================================================
+ [ ] CI: install -> lint -> typecheck -> test -> build on every PR.
+ [ ] CD: auto-deploy main -> staging; manual promote -> production.
+ [ ] Infra as code (Terraform / platform config) — reproducible environments.
+ [ ] DB migration step in deploy pipeline (safe, reversible).
+ [ ] Monitoring: uptime, error tracking (Sentry), logs (aggregated),
+       metrics/dashboards, alerting (PagerDuty/Slack).
+ [ ] Feature flags for risky rollouts. Blue-green / canary if needed.
+ [ ] Cost monitoring (esp. AI token spend + storage).
+
+ DONE-WHEN: a commit to main reaches staging automatically with monitoring +
+ rollback in place.
+
+
+===============================================================================
+ PHASE 9 — PRE-LAUNCH, BETA & DOCS  (week ~14-16)
+===============================================================================
+ [ ] Onboarding flow: school signup -> create classes -> import students
+       (CSV import!) -> invite teachers/parents.
+ [ ] Seed/demo mode for sales + a guided first-run.
+ [ ] User docs / help center; in-app help; support contact.
+ [ ] Closed beta with 1-2 real schools; collect feedback; fix top issues.
+ [ ] Load test for expected peak (e.g. whole school taking attendance at 9am).
+ [ ] Analytics + product metrics (privacy-respecting) wired in.
+
+ DONE-WHEN: a brand-new school can self-onboard and run a full day unaided.
+
+
+===============================================================================
+ PHASE 10 — LAUNCH & POST-LAUNCH  (ongoing)
+===============================================================================
+ [ ] Production launch + status page + incident process.
+ [ ] Roadmap for the SEPARATE apps the prototype reserves names for:
+       - Parent portal (parent login: child progress, fees, chat, uploads).
+       - Student portal (see/submit assignments, view results).
+       - Admin / Principal console (multi-class, multi-teacher oversight —
+         the "Stripe-style power dashboard" from the original brief).
+ [ ] Iterate from analytics + support tickets; prioritise; repeat.
+ [ ] Scale: read replicas, caching, queue workers, sharding by school if needed.
+
+
+===============================================================================
+ OPEN QUESTIONS TO RESOLVE EARLY (carried from the design README)
+===============================================================================
+ [ ] Replace the PLACEHOLDER logo (assets/logo*.svg) with a real brand mark.
+ [ ] Confirm Lucide as the icon set or commission a custom set.
+ [x] Target market: BANGLADESH — currency ৳ (BDT), bKash/Nagad payments,
+       local SMS gateways, English+Bangla UI. (Resolved — see LOCALE LOCK.)
+ [x] Languages: BILINGUAL English + Bangla, both at launch. (Resolved.)
+ [ ] Who supplies the Bangla translations — in-house, professional translator,
+       or machine-translate then human-review? (Affects launch timeline.)
+ [ ] Which payment aggregator: SSLCommerz vs aamarPay vs ShurjoPay? (fees,
+       settlement time, bKash/Nagad coverage drive the choice.)
+ [ ] Single school first, or multi-tenant SaaS from day one? (Recommend
+       multi-tenant schema even if selling to one school first.)
+ [ ] Which features are MVP vs fast-follow? (Suggested MVP below.)
+
+
+===============================================================================
+ SUGGESTED MVP CUT (ship this first, defer the rest)
+===============================================================================
+ MVP (get one school live):
+   Auth + roles, Students CRUD, Attendance, Fees (manual mark-paid first),
+   Results/gradebook, Dashboard, basic Settings, email notifications.
+ FAST-FOLLOW:
+   Assignments + submissions, Timetable, Calendar, online payments,
+   parent messaging, AI exam builder, parent/student portals.
+
+===============================================================================
+ END OF ROADMAP
+===============================================================================
