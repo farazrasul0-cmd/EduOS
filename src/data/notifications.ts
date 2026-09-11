@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
 import type { AppNotificationRow } from '@/types/models'
@@ -20,6 +21,19 @@ export interface AppNotification extends AppNotificationRow {
 }
 
 export function useNotifications() {
+  const qc = useQueryClient()
+  useEffect(() => {
+    const channel = supabase
+      .channel('notifications-feed')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications' }, () => {
+        void qc.invalidateQueries({ queryKey: ['notifications'] })
+      })
+      .subscribe()
+    return () => {
+      void supabase.removeChannel(channel)
+    }
+  }, [qc])
+
   return useQuery({
     queryKey: ['notifications'],
     queryFn: async (): Promise<AppNotification[]> => {

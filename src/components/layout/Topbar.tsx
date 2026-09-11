@@ -57,7 +57,7 @@ export function Topbar({ crumbKey, onMenu }: TopbarProps) {
       <button
         onClick={onMenu}
         className="grid h-9 w-9 place-items-center rounded-sm text-fg-2 hover:bg-neutral-100 lg:hidden"
-        aria-label={t('topbar.help')}
+        aria-label={t('topbar.menu')}
       >
         <Menu size={20} />
       </button>
@@ -69,6 +69,15 @@ export function Topbar({ crumbKey, onMenu }: TopbarProps) {
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setSearchOpen(true)}
+          className="grid h-9 w-9 place-items-center rounded-sm text-fg-2 hover:bg-neutral-100 sm:hidden transition-colors"
+          aria-label={t('topbar.searchPlaceholder')}
+        >
+          <Search size={18} />
+        </button>
+
         <button
           type="button"
           onClick={() => setSearchOpen(true)}
