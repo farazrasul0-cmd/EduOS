@@ -1,6 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Download, Send, TrendingUp, Award, CircleAlert, FileText, Save, Loader2 } from 'lucide-react'
+import {
+  Download, Send, TrendingUp, Award, CircleAlert, FileText, Save, Loader2,
+  CheckCircle2, XCircle,
+} from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { KPI } from '@/components/ui/KPI'
@@ -17,8 +20,13 @@ import { useStudents } from '@/data/students'
 import { useResults, useSaveResults, gradeFromPct, type SaveResultRow } from '@/data/results'
 import type { AppLanguage } from '@/i18n'
 import { useAuth } from '@/auth/context'
-import { averageGpa, gradeForPercentage, validMarks } from '@/lib/grading'
-import { createReportCardPdf } from '@/lib/report-card-pdf'
+import {
+  gradeForPercentage,
+  validMarks,
+  calculateNctbStudentResult,
+  calculateMeritPositions,
+} from '@/lib/grading'
+import { createReportCardPdf, createBatchReportCardsPdf, type ReportCardPdfInput } from '@/lib/report-card-pdf'
 
 const gradeColors: Record<string, [string, string]> = {
   'A+': ['#16A34A', '#DCFCE7'],
@@ -45,6 +53,10 @@ interface GradebookRow {
   roll: string | null
   bySubject: Record<string, number>
   avg: number
+  meritPosition?: number
+  gpa?: number
+  isPassed?: boolean
+  overallGrade?: string
 }
 
 function EnterMarksTab() {
@@ -103,7 +115,18 @@ function EnterMarksTab() {
         }
       })
       .filter((r): r is SaveResultRow => r !== null)
-    if (rows.length) saveResults.mutate({ rows, examName: exam.name }, { onSuccess: () => { setEdits({}); setValidationError(''); setPublishConfirm(false) } })
+    if (rows.length) {
+      saveResults.mutate(
+        { rows, examName: exam.name },
+        {
+          onSuccess: () => {
+            setEdits({})
+            setValidationError('')
+            setPublishConfirm(false)
+          },
+        },
+      )
+    }
   }
 
   const loading = examsQuery.isPending || studentsQuery.isPending || resultsQuery.isPending
@@ -213,7 +236,24 @@ function EnterMarksTab() {
           {saveResults.isPending ? t('common.saving') : t('actions.publishResults')}
         </Button>
       </div>
-      <Modal open={publishConfirm} onClose={() => setPublishConfirm(false)} title={t('results.publishTitle')} sub={t('results.publishBody')} footer={<><Button variant="secondary" onClick={() => setPublishConfirm(false)}>{t('actions.cancel')}</Button><Button variant="primary" onClick={() => commit(true)} disabled={saveResults.isPending}>{t('actions.publishResults')}</Button></>}><p className="text-sm text-fg-2">{t('results.publishWarning')}</p></Modal>
+      <Modal
+        open={publishConfirm}
+        onClose={() => setPublishConfirm(false)}
+        title={t('results.publishTitle')}
+        sub={t('results.publishBody')}
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setPublishConfirm(false)}>
+              {t('actions.cancel')}
+            </Button>
+            <Button variant="primary" onClick={() => commit(true)} disabled={saveResults.isPending}>
+              {t('actions.publishResults')}
+            </Button>
+          </>
+        }
+      >
+        <p className="text-sm text-fg-2">{t('results.publishWarning')}</p>
+      </Modal>
     </>
   )
 }
@@ -229,51 +269,216 @@ export default function Results() {
   const results = resultsQuery.data ?? []
   const published = results.filter((r) => r.published && r.marks_obtained != null)
 
+  // Track highest marks per subject across cohort
+  const highestBySubject = useMemo(() => {
+    const map = new Map<string, number>()
+    for (const r of published) {
+      const subject = r.subject_name ?? r.exam_name ?? '—'
+      const marks = r.marks_obtained ?? 0
+      const cur = map.get(subject) ?? 0
+      if (marks > cur) map.set(subject, marks)
+    }
+    return map
+  }, [published])
+
+  // Compute evaluated NCTB report cards with merit positions
+  const reportCards = useMemo(() => {
+    const grouped = new Map<string, typeof published>()
+    for (const result of published) {
+      grouped.set(result.student_id, [...(grouped.get(result.student_id) ?? []), result])
+    }
+
+    const unranked = [...grouped.entries()].map(([studentId, items]) => {
+      const subjectInputs = items.map((item) => ({
+        subject: item.subject_name ?? item.exam_name ?? '—',
+        marks: item.marks_obtained ?? 0,
+        total: item.exam_total,
+        highestMarks: highestBySubject.get(item.subject_name ?? item.exam_name ?? '—'),
+      }))
+
+      const evaluation = calculateNctbStudentResult(subjectInputs)
+      const first = items[0]
+
+      return {
+        studentId,
+        name: first?.student_name ?? '—',
+        roll: first?.student_roll ?? '',
+        items,
+        evaluation,
+        isPassed: evaluation.isPassed,
+        gpa: evaluation.gpa,
+        totalMarks: evaluation.totalMarks,
+        average: evaluation.averagePercentage,
+        overallGrade: evaluation.overallGrade,
+      }
+    })
+
+    return calculateMeritPositions(unranked)
+  }, [published, highestBySubject])
+
+  // Map student ID to merit ranking and NCTB pass status
+  const meritByStudent = useMemo(() => {
+    return new Map(
+      reportCards.map((c) => [
+        c.studentId,
+        {
+          merit: c.meritPosition,
+          isPassed: c.isPassed,
+          gpa: c.gpa,
+          overallGrade: c.overallGrade,
+        },
+      ]),
+    )
+  }, [reportCards])
+
   // Pivot: rows = students, columns = subjects that have published marks.
   const { rows, subjects } = useMemo(() => {
     const subjects = [...new Set(published.map((r) => r.subject_name ?? r.exam_name ?? '—'))]
     const byStudent = new Map<string, GradebookRow>()
+
     for (const r of published) {
       const key = r.student_id
       const subject = r.subject_name ?? r.exam_name ?? '—'
       const pct = Math.round(((r.marks_obtained as number) / r.exam_total) * 100)
       const row =
         byStudent.get(key) ??
-        ({ student_id: key, name: r.student_name ?? '—', roll: r.student_roll, bySubject: {}, avg: 0 } as GradebookRow)
+        ({
+          student_id: key,
+          name: r.student_name ?? '—',
+          roll: r.student_roll,
+          bySubject: {},
+          avg: 0,
+        } as GradebookRow)
       row.bySubject[subject] = pct
       byStudent.set(key, row)
     }
+
     const rows = [...byStudent.values()].map((row) => {
       const vals = Object.values(row.bySubject)
       row.avg = vals.length ? Math.round(vals.reduce((s, v) => s + v, 0) / vals.length) : 0
+      const meritInfo = meritByStudent.get(row.student_id)
+      row.meritPosition = meritInfo?.merit
+      row.gpa = meritInfo?.gpa
+      row.isPassed = meritInfo?.isPassed
+      row.overallGrade = meritInfo?.overallGrade
       return row
     })
-    rows.sort((a, b) => (a.roll ?? '').localeCompare(b.roll ?? ''))
+
+    rows.sort((a, b) => {
+      if (a.meritPosition && b.meritPosition) return a.meritPosition - b.meritPosition
+      return (a.roll ?? '').localeCompare(b.roll ?? '')
+    })
     return { rows, subjects }
-  }, [published])
+  }, [published, meritByStudent])
 
   const classAvg = rows.length ? Math.round(rows.reduce((s, r) => s + r.avg, 0) / rows.length) : null
   const top = rows.reduce<GradebookRow | null>((a, r) => (a == null || r.avg > a.avg ? r : a), null)
   const below70 = rows.filter((r) => r.avg < 70).length
-  const reportCards = useMemo(() => {
-    const grouped = new Map<string, typeof published>()
-    for (const result of published) grouped.set(result.student_id, [...(grouped.get(result.student_id) ?? []), result])
-    return [...grouped.entries()].map(([studentId, items]) => {
-      const percentages = items.map((item) => ((item.marks_obtained ?? 0) / item.exam_total) * 100)
-      return { studentId, name: items[0]?.student_name ?? '—', roll: items[0]?.student_roll ?? '', items, average: percentages.reduce((sum, value) => sum + value, 0) / percentages.length, gpa: averageGpa(percentages) }
-    })
-  }, [published])
 
   function downloadReportCard(studentId: string) {
     const card = reportCards.find((item) => item.studentId === studentId)
     if (!card) return
-    const bytes = createReportCardPdf({ school: t('app.school'), student: card.name, roll: card.roll, average: card.average, gpa: card.gpa, rows: card.items.map((item) => { const pct = ((item.marks_obtained ?? 0) / item.exam_total) * 100; const grade = gradeForPercentage(pct); return { subject: item.subject_name ?? '—', exam: item.exam_name ?? '—', marks: item.marks_obtained ?? 0, total: item.exam_total, grade: grade.letter, gpa: grade.gpa } }) })
+    const bytes = createReportCardPdf({
+      school: t('app.school'),
+      schoolAddress: 'Dhaka, Bangladesh',
+      eiin: '134201',
+      examTerm: 'Annual Examination 2026',
+      academicYear: '2026',
+      student: card.name,
+      roll: card.roll,
+      className: 'Class 7',
+      sectionName: 'A',
+      meritPosition: card.meritPosition,
+      totalStudents: reportCards.length,
+      average: card.average,
+      gpa: card.gpa,
+      overallGrade: card.overallGrade,
+      isPassed: card.isPassed,
+      rows: card.items.map((item) => {
+        const pct = ((item.marks_obtained ?? 0) / item.exam_total) * 100
+        const grade = gradeForPercentage(pct)
+        return {
+          subject: item.subject_name ?? '—',
+          exam: item.exam_name ?? '—',
+          marks: item.marks_obtained ?? 0,
+          total: item.exam_total,
+          grade: grade.letter,
+          gpa: grade.gpa,
+          highestMarks: highestBySubject.get(item.subject_name ?? item.exam_name ?? '—'),
+        }
+      }),
+    })
+
     const url = URL.createObjectURL(new Blob([bytes as BlobPart], { type: 'application/pdf' }))
-    const anchor = document.createElement('a'); anchor.href = url; anchor.download = `report-card-${card.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.pdf`; anchor.click(); URL.revokeObjectURL(url)
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = `report-card-${card.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.pdf`
+    anchor.click()
+    URL.revokeObjectURL(url)
   }
+
+  function downloadAllReportCards() {
+    if (!reportCards.length) return
+    const cardInputs: ReportCardPdfInput[] = reportCards.map((card) => ({
+      school: t('app.school'),
+      schoolAddress: 'Dhaka, Bangladesh',
+      eiin: '134201',
+      examTerm: 'Annual Examination 2026',
+      academicYear: '2026',
+      student: card.name,
+      roll: card.roll,
+      className: 'Class 7',
+      sectionName: 'A',
+      average: card.average,
+      gpa: card.gpa,
+      overallGrade: card.overallGrade,
+      isPassed: card.isPassed,
+      meritPosition: card.meritPosition,
+      totalStudents: reportCards.length,
+      rows: card.items.map((item) => {
+        const pct = ((item.marks_obtained ?? 0) / item.exam_total) * 100
+        const grade = gradeForPercentage(pct)
+        return {
+          subject: item.subject_name ?? '—',
+          exam: item.exam_name ?? '—',
+          marks: item.marks_obtained ?? 0,
+          total: item.exam_total,
+          grade: grade.letter,
+          gpa: grade.gpa,
+          highestMarks: highestBySubject.get(item.subject_name ?? item.exam_name ?? '—'),
+        }
+      }),
+    }))
+
+    const bytes = createBatchReportCardsPdf(cardInputs)
+    const url = URL.createObjectURL(new Blob([bytes as BlobPart], { type: 'application/pdf' }))
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = `all-report-cards-class-7.pdf`
+    anchor.click()
+    URL.revokeObjectURL(url)
+  }
+
   function exportGradebook() {
-    const csv = ['student,roll,average,grade,gpa', ...rows.map((row) => [JSON.stringify(row.name), row.roll ?? '', row.avg, gradeForPercentage(row.avg).letter, gradeForPercentage(row.avg).gpa].join(','))].join('\n')
-    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' })); const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'gradebook.csv'; anchor.click(); URL.revokeObjectURL(url)
+    const csv = [
+      'student,roll,merit_rank,average,grade,gpa,status',
+      ...rows.map((row) => [
+        JSON.stringify(row.name),
+        row.roll ?? '',
+        row.meritPosition ?? '',
+        row.avg,
+        row.overallGrade ?? gradeForPercentage(row.avg).letter,
+        row.gpa != null ? row.gpa.toFixed(2) : gradeForPercentage(row.avg).gpa.toFixed(2),
+        row.isPassed ? 'Passed' : 'Failed',
+      ].join(',')),
+    ].join('\n')
+
+    const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }))
+    const anchor = document.createElement('a')
+    anchor.href = url
+    anchor.download = 'gradebook.csv'
+    anchor.click()
+    URL.revokeObjectURL(url)
   }
 
   return (
@@ -281,13 +486,20 @@ export default function Results() {
       <PageHeader
         title={t('results.title')}
         sub={t('results.sub')}
-        actions={canManage ? (
-          <>
-            <Button variant="secondary" icon={<Download size={16} />} onClick={exportGradebook}>
-              {t('actions.export')}
-            </Button>
-          </>
-        ) : undefined}
+        actions={
+          canManage ? (
+            <div className="flex items-center gap-2">
+              {tab === 'reports' && reportCards.length > 0 && (
+                <Button variant="primary" icon={<Download size={16} />} onClick={downloadAllReportCards}>
+                  {t('results.downloadAll')}
+                </Button>
+              )}
+              <Button variant="secondary" icon={<Download size={16} />} onClick={exportGradebook}>
+                {t('actions.export')}
+              </Button>
+            </div>
+          ) : undefined
+        }
       />
 
       <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -311,7 +523,12 @@ export default function Results() {
           delta={below70 > 0 ? t('results.kpi.below70Delta') : undefined}
           deltaTone="down"
         />
-        <KPI icon={FileText} label={t('results.kpi.reportsDrafted')} value={formatNumber(reportCards.length, lang)} footer={t('results.kpi.reportsDraftedFooter')} />
+        <KPI
+          icon={FileText}
+          label={t('results.kpi.reportsDrafted')}
+          value={formatNumber(reportCards.length, lang)}
+          footer={t('results.kpi.reportsDraftedFooter')}
+        />
       </div>
 
       <div className="mb-4">
@@ -330,9 +547,10 @@ export default function Results() {
 
       {tab === 'gradebook' && (
         <TableWrap>
-          <Table className="min-w-[720px]">
+          <Table className="min-w-[760px]">
             <THead>
               <TR>
+                <TH className="w-16">#</TH>
                 <TH>{t('results.table.student')}</TH>
                 {subjects.map((s) => (
                   <TH key={s} num>
@@ -346,28 +564,36 @@ export default function Results() {
             <TBody>
               {resultsQuery.isPending ? (
                 <TR>
-                  <TD className="py-10 text-center" colSpan={subjects.length + 3}>
+                  <TD className="py-10 text-center" colSpan={subjects.length + 4}>
                     <Loader2 className="mx-auto animate-spin text-primary" size={22} />
                   </TD>
                 </TR>
               ) : resultsQuery.isError ? (
                 <TR>
-                  <TD className="py-10 text-center" colSpan={subjects.length + 3}>
+                  <TD className="py-10 text-center" colSpan={subjects.length + 4}>
                     <div className="text-sm text-danger">{t('common.error')}</div>
-                    <Button variant="secondary" size="sm" className="mx-auto mt-3" onClick={() => void resultsQuery.refetch()}>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="mx-auto mt-3"
+                      onClick={() => void resultsQuery.refetch()}
+                    >
                       {t('common.retry')}
                     </Button>
                   </TD>
                 </TR>
               ) : rows.length === 0 ? (
                 <TR>
-                  <TD className="py-4" colSpan={subjects.length + 3}>
+                  <TD className="py-4" colSpan={subjects.length + 4}>
                     <Empty icon={FileText} title={t('results.gradebookEmpty')} sub={t('results.gradebookEmptySub')} />
                   </TD>
                 </TR>
               ) : (
                 rows.map((g) => (
                   <TR key={g.student_id}>
+                    <TD className="text-xs font-bold text-fg-3">
+                      {g.meritPosition ? `#${g.meritPosition}` : '—'}
+                    </TD>
                     <TD>
                       <div className="flex items-center gap-2.5">
                         <Avatar name={g.name} />
@@ -380,16 +606,28 @@ export default function Results() {
                     {subjects.map((s) => {
                       const m = g.bySubject[s]
                       return (
-                        <TD key={s} num className={cn(m != null && m < 70 && 'text-danger')}>
+                        <TD
+                          key={s}
+                          num
+                          className={cn(m != null && m < 33 ? 'font-bold text-danger' : m != null && m < 70 ? 'text-warning' : '')}
+                        >
                           {m != null ? formatNumber(m, lang) : '—'}
                         </TD>
                       )
                     })}
                     <TD num className="font-bold">
-                      {formatNumber(g.avg, lang)}
+                      {formatNumber(g.avg, lang)}%
                     </TD>
                     <TD>
-                      <GradePill g={gradeFromPct(g.avg)} />
+                      <div className="flex items-center gap-1.5">
+                        <GradePill g={g.overallGrade ?? gradeFromPct(g.avg)} />
+                        {g.isPassed === false && (
+                          <XCircle size={14} className="text-danger" />
+                        )}
+                        {g.isPassed === true && g.gpa === 5.0 && (
+                          <CheckCircle2 size={14} className="text-success" />
+                        )}
+                      </div>
                     </TD>
                   </TR>
                 ))
@@ -400,7 +638,62 @@ export default function Results() {
       )}
 
       {tab === 'reports' && (
-        reportCards.length === 0 ? <Card><Empty icon={FileText} title={t('results.reportsEmptyTitle')} sub={t('results.reportsEmptySub')} /></Card> : <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{reportCards.map((card) => <Card key={card.studentId}><div className="flex items-center gap-3"><Avatar name={card.name} /><div><div className="font-semibold">{card.name}</div><div className="text-xs text-fg-3">{card.roll || '—'}</div></div></div><div className="my-4 grid grid-cols-2 gap-3 rounded-sm bg-app p-3 text-sm"><div><span className="block text-xs text-fg-3">{t('results.table.average')}</span><b>{formatNumber(Math.round(card.average), lang)}%</b></div><div><span className="block text-xs text-fg-3">{t('results.gpa')}</span><b>{formatNumber(card.gpa, lang)} / 5</b></div></div><Button variant="secondary" icon={<Download size={15} />} className="w-full" onClick={() => downloadReportCard(card.studentId)}>{t('results.downloadPdf')}</Button></Card>)}</div>
+        reportCards.length === 0 ? (
+          <Card>
+            <Empty icon={FileText} title={t('results.reportsEmptyTitle')} sub={t('results.reportsEmptySub')} />
+          </Card>
+        ) : (
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {reportCards.map((card) => (
+              <Card key={card.studentId}>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <Avatar name={card.name} />
+                    <div className="min-w-0">
+                      <div className="truncate font-semibold">{card.name}</div>
+                      <div className="text-xs text-fg-3">{card.roll || '—'}</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end gap-1 shrink-0">
+                    <span className="rounded-sm bg-primary-tint px-2 py-0.5 text-xs font-bold text-primary">
+                      {t('results.meritRank', { rank: card.meritPosition })}
+                    </span>
+                    <span
+                      className={cn(
+                        'text-[11px] font-semibold',
+                        card.isPassed ? 'text-success' : 'text-danger',
+                      )}
+                    >
+                      {card.isPassed ? t('results.passed') : t('results.failed')}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="my-4 grid grid-cols-2 gap-3 rounded-sm bg-app p-3 text-sm">
+                  <div>
+                    <span className="block text-xs text-fg-3">{t('results.table.average')}</span>
+                    <b>{formatNumber(Math.round(card.average), lang)}%</b>
+                  </div>
+                  <div>
+                    <span className="block text-xs text-fg-3">{t('results.gpa')}</span>
+                    <b className={cn(!card.isPassed && 'text-danger')}>
+                      {formatNumber(card.gpa, lang)} / 5.00 ({card.overallGrade})
+                    </b>
+                  </div>
+                </div>
+
+                <Button
+                  variant="secondary"
+                  icon={<Download size={15} />}
+                  className="w-full"
+                  onClick={() => downloadReportCard(card.studentId)}
+                >
+                  {t('results.downloadPdf')}
+                </Button>
+              </Card>
+            ))}
+          </div>
+        )
       )}
     </div>
   )

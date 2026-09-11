@@ -471,7 +471,14 @@
     "publishBody": "All completed marks will become visible to students and guardians.",
     "publishWarning": "Publication is atomic: if any roster record is missing or invalid, nothing will be published.",
     "gpa": "GPA",
-    "downloadPdf": "Download PDF report card"
+    "downloadPdf": "Download PDF report card",
+    "meritPosition": "Merit position",
+    "meritRank": "Merit #{{rank}}",
+    "downloadAll": "Download all report cards",
+    "passed": "Passed",
+    "failed": "Failed",
+    "highestInClass": "Highest in class",
+    "nctbGradingScale": "NCTB grading scale"
   },
   "timetable": {
     "title": "Timetable",
