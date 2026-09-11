@@ -311,7 +311,33 @@
     "historyTitle": "Attendance history",
     "historySub": "Select a saved day to review or edit it, or export the report as CSV.",
     "history": { "date": "Date" },
-    "historyEmpty": "No saved attendance days yet."
+    "historyEmpty": "No saved attendance days yet.",
+    "tabs": {
+      "daily": "Daily roll call",
+      "monthly": "Monthly register",
+      "defaulters": "Attendance risk (<75%)"
+    },
+    "collegiate": {
+      "collegiate": "Collegiate (>=75%)",
+      "nonCollegiate": "Non-collegiate (60-74%)",
+      "disCollegiate": "Dis-collegiate (<60%)"
+    },
+    "smsModal": {
+      "title": "Send absence SMS alerts",
+      "sub": "Alert guardians of {{count}} absent students via Bangladesh SMS Gateway.",
+      "recipients": "Recipients (Guardians of absent students)",
+      "preview": "BTRC-compliant SMS preview",
+      "send": "Send {{count}} SMS alerts",
+      "sending": "Sending SMS alerts…",
+      "sentSuccess": "Absence SMS alerts dispatched successfully."
+    },
+    "downloadMonthlyPdf": "Download monthly register (PDF)",
+    "exportMonthlyCsv": "Export monthly register (CSV)",
+    "monthlyRegister": "Monthly Attendance Register",
+    "workingDays": "Working days",
+    "totalPresent": "Total present",
+    "totalAbsent": "Total absent",
+    "attendanceRate": "Attendance rate"
   },
   "fees": {
     "title": "Fees",
