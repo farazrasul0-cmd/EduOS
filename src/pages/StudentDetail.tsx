@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowLeft, CalendarCheck, Banknote, Award, FileText, Loader2, UserRound, Pencil, Archive, UserPlus, Mail, Phone } from 'lucide-react'
+import { ArrowLeft, CalendarCheck, Banknote, Award, FileText, Loader2, UserRound, Pencil, Archive, UserPlus, Mail, Phone, CreditCard } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { ReactNode } from 'react'
@@ -17,6 +17,8 @@ import { useAuth } from '@/auth/context'
 import { formatDate, formatNumber, formatTaka } from '@/lib/utils'
 import type { AppLanguage } from '@/i18n'
 import { guardianFormSchema, studentFormSchema } from '@/lib/student-validation'
+import { StudentIdCardModal } from '@/components/StudentIdCardModal'
+import { generateStudentId, type StudentIdCardData } from '@/lib/student-id-card'
 
 export default function StudentDetail() {
   const { studentId } = useParams()
@@ -35,6 +37,7 @@ export default function StudentDetail() {
   const [guardianOpen, setGuardianOpen] = useState(false)
   const [guardian, setGuardian] = useState({ name: '', email: '', phone: '', relationship: '', primary: false })
   const [invitedEmail, setInvitedEmail] = useState<string | null>(null)
+  const [idCardOpen, setIdCardOpen] = useState(false)
 
   if (detail.isPending) return <div className="grid min-h-[50vh] place-items-center"><Loader2 className="animate-spin text-primary" size={28} /></div>
   if (detail.isError || !detail.data) {
@@ -135,6 +138,27 @@ export default function StudentDetail() {
   const attendanceBadgeKey: Record<string, string> = { present: 'attendance.status.present', absent: 'attendance.status.absent', late: 'attendance.status.late', leave: 'badge.leave' }
   const submissionBadgeKey: Record<string, string> = { in_progress: 'badge.inProgress', submitted: 'badge.submitted', graded: 'badge.graded', missing: 'badge.missing' }
 
+  const primaryGuardian = guardians.find((g) => g.is_primary) ?? guardians[0]
+  const idCardData: StudentIdCardData[] = [
+    {
+      id: student.id,
+      studentId: generateStudentId(student.roll_no, '2026', student.id),
+      studentName: student.full_name,
+      rollNo: student.roll_no,
+      className: student.class_name,
+      bloodGroup: 'O+',
+      dob: student.dob,
+      guardianName: primaryGuardian?.full_name,
+      guardianPhone: primaryGuardian?.phone,
+      schoolName: t('app.school'),
+      eiin: '108234',
+      academicYear: '2026',
+      validUntil: '31-12-2026',
+      avatarUrl: student.avatar_url,
+      verificationUrl: `https://eduos.app/verify/${student.id}`,
+    },
+  ]
+
   return (
     <div>
       <Link to="/students" className="mb-4 inline-flex items-center gap-2 text-sm font-medium text-fg-3 hover:text-primary">
@@ -155,7 +179,14 @@ export default function StudentDetail() {
             </div>
           </div>
           {canManage && (
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="secondary"
+                icon={<CreditCard size={16} />}
+                onClick={() => setIdCardOpen(true)}
+              >
+                {t('students.idCard.singleAction')}
+              </Button>
               <Button variant="secondary" icon={<Pencil size={16} />} onClick={openEdit}>{t('actions.edit')}</Button>
               {student.status === 'active' && <Button variant="danger" icon={<Archive size={16} />} onClick={() => { setMutationError(null); setArchiveOpen(true) }}>{t('students.detail.archive')}</Button>}
             </div>
@@ -239,6 +270,13 @@ export default function StudentDetail() {
       >
         {mutationError && <div className="rounded-sm bg-danger-tint px-3 py-2 text-sm text-danger">{mutationError}</div>}
       </Modal>
+
+      <StudentIdCardModal
+        open={idCardOpen}
+        onClose={() => setIdCardOpen(false)}
+        students={idCardData}
+        schoolName={t('app.school')}
+      />
     </div>
   )
 }
