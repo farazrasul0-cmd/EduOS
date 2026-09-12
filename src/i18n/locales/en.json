@@ -438,8 +438,32 @@
     "title": "Exams",
     "sub": "Schedule exams and draft papers with AI. Marks are entered in Results.",
     "empty": "No exams yet",
-    "emptySub": "Exams you schedule for this class will appear here.",
-    "tabs": { "list": "All exams", "ai": "✨ AI builder" },
+    "tabs": { "list": "All exams", "routine": "Exam routine & schedule", "ai": "✨ AI builder" },
+    "routine": {
+      "title": "Examination Schedule & Routine",
+      "sub": "Official examination timetable with date, time, rooms, and assigned invigilators.",
+      "classFilter": "Filter by class",
+      "allClasses": "All classes",
+      "downloadPdf": "Download exam routine (PDF)",
+      "exportCsv": "Export routine (CSV)",
+      "empty": "No exams scheduled",
+      "emptySub": "Exams you schedule will appear in this routine matrix.",
+      "table": {
+        "dateDay": "Date & day",
+        "time": "Time slot",
+        "class": "Class",
+        "subject": "Subject & code",
+        "room": "Room / Hall",
+        "invigilator": "Hall invigilator",
+        "marks": "Marks"
+      },
+      "kpi": {
+        "totalExams": "Scheduled exams",
+        "examDays": "Exam days",
+        "halls": "Exam halls",
+        "status": "Schedule status"
+      }
+    },
     "kpi": {
       "upcoming": "Upcoming",
       "upcomingFooter": "next 14 days",
@@ -556,6 +580,12 @@
     "free": "Free",
     "break": "Break",
     "lunch": "Lunch",
+    "classFilter": "Filter by class",
+    "allClasses": "All classes",
+    "downloadPdf": "Download routine (PDF)",
+    "exportCsv": "Export routine (CSV)",
+    "clashWarning": "Schedule clash detected",
+    "fridayHoliday": "Friday · Weekly Holiday",
     "subjectsLegend": "Subjects",
     "form": {
       "addTitle": "Add timetable slot",
