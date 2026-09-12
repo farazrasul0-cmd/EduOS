@@ -342,6 +342,37 @@
   "fees": {
     "title": "Fees",
     "sub": "May 2026 · 7-A tuition",
+    "tabs": {
+      "invoices": "Invoices",
+      "defaulters": "Fee defaulters & fine ledger"
+    },
+    "defaulters": {
+      "title": "Fee Defaulters & Late Fine Ledger",
+      "sub": "Track students with overdue fees, calculate automatic late fines, and broadcast BTRC SMS payment reminders.",
+      "empty": "No fee defaulters",
+      "emptySub": "All students have paid their dues or are within current payment terms.",
+      "totalOverdue": "Total arrears",
+      "totalFines": "Total late fines",
+      "defaulterCount": "{{count}} overdue students",
+      "downloadPdf": "Download defaulters notice (PDF)",
+      "exportCsv": "Export defaulters (CSV)",
+      "bulkSms": "Send reminder SMS ({{count}})",
+      "sendSingleSms": "Send reminder SMS",
+      "daysLate": "{{count}} days late",
+      "gracePeriod": "In grace period",
+      "principal": "Principal",
+      "fine": "Late fine",
+      "totalDue": "Total due",
+      "smsModal": {
+        "title": "Confirm Payment Reminder SMS",
+        "sub": "Dispatch BTRC-compliant payment reminder to guardians of {{count}} defaulters.",
+        "recipients": "Recipients (Guardians of overdue students)",
+        "preview": "BTRC-compliant SMS preview",
+        "send": "Send {{count}} SMS reminders",
+        "sending": "Sending reminders…",
+        "sentSuccess": "Fee reminder SMS dispatched successfully."
+      }
+    },
     "searchPlaceholder": "Search by student or invoice",
     "invoicesCount": "{{count}} invoices",
     "empty": "No invoices yet",
