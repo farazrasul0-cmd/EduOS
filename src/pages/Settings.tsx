@@ -18,6 +18,7 @@ import { supabase } from '@/lib/supabase'
 import { cn, initials, formatNumber } from '@/lib/utils'
 import { calculateSmsParts, sendSms } from '@/lib/sms-gateway'
 import { validateBdMobile } from '@/lib/mfs-validation'
+import { BANGLADESH_BOARDS } from '@/lib/school-onboarding'
 import { useAuth } from '@/auth/context'
 import { useSchool, useUpdateSchool, useUpdateProfile } from '@/data/school'
 import { useClasses, useClassTeachers, useSaveClass, useStudents } from '@/data/students'
@@ -131,7 +132,7 @@ export default function Settings() {
   const [edits, setEdits] = useState<Record<string, string>>({})
   useEffect(() => { const p=preferencesQuery.data; if(!p)return; const timer=setTimeout(()=>{setNotif({absent:p.absent,fees:p.fees,reply:p.reply,ai:p.ai});setChannels({sms:p.sms,email:p.email,whatsapp:p.whatsapp})},0);return()=>clearTimeout(timer) }, [preferencesQuery.data])
   const val = (key: string, fallback: string | null | undefined) => edits[key] ?? fallback ?? ''
-  const set = (key: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+  const set = (key: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setEdits((p) => ({ ...p, [key]: e.target.value }))
 
   useEffect(() => {
@@ -390,7 +391,17 @@ export default function Settings() {
                     <Input value={val('schoolName', school?.name)} onChange={set('schoolName')} />
                   </Field>
                   <Field label={t('settings.school.affiliation')}>
-                    <Input value={val('affiliation', school?.affiliation)} onChange={set('affiliation')} />
+                    <Select
+                      value={val('affiliation', school?.affiliation)}
+                      onChange={set('affiliation')}
+                    >
+                      <option value="">Select Education Board</option>
+                      {BANGLADESH_BOARDS.map((b) => (
+                        <option key={b.id} value={b.nameEn}>
+                          {lang === 'bn' ? b.nameBn : b.nameEn}
+                        </option>
+                      ))}
+                    </Select>
                   </Field>
                   <Field className="sm:col-span-2" label={t('settings.school.address')}>
                     <Textarea value={val('address', school?.address)} onChange={set('address')} />

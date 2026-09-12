@@ -700,6 +700,10 @@
       "title": "School details",
       "name": "School name",
       "affiliation": "Affiliation",
+      "eiin": "BANBEIS EIIN",
+      "board": "Education Board",
+      "shift": "Operational Shift",
+      "medium": "Curriculum Medium",
       "address": "Address",
       "academicYear": "Academic year",
       "currency": "Currency",
@@ -876,7 +880,48 @@
     "createBtn": "Create school",
     "working": "Setting up…",
     "or": "or",
-    "signedInAs": "Signed in as {{email}}"
+    "signedInAs": "Signed in as {{email}}",
+    "wizard": {
+      "step1Title": "Institute Identity",
+      "step1Sub": "Basic information, BANBEIS EIIN, and Education Board affiliation",
+      "step2Title": "Shifts & Medium",
+      "step2Sub": "Operational shifts, language medium, and academic session",
+      "step3Title": "Academic Structure & Fees",
+      "step3Sub": "Initial classes, sections, and default fee heads",
+      "step4Title": "Review & Launch",
+      "step4Sub": "Verify your institution configuration and launch EduOS"
+    },
+    "fields": {
+      "eiin": "BANBEIS EIIN",
+      "eiinPlaceholder": "e.g. 108234",
+      "eiinHint": "6-digit institution identifier issued by BANBEIS",
+      "board": "Education Board",
+      "instituteType": "Institute Type",
+      "shift": "Operational Shift",
+      "medium": "Curriculum Medium",
+      "academicYear": "Academic Session / Year",
+      "academicYearPlaceholder": "e.g. 2026",
+      "address": "Campus Address & District",
+      "addressPlaceholder": "e.g. House 12, Road 4, Dhanmondi, Dhaka-1205",
+      "classes": "Initial Classes",
+      "sections": "Sections",
+      "feeHeads": "Default Fee Heads (BDT)",
+      "reviewAccreditation": "Official Accreditation",
+      "reviewStructure": "Operations & Structure",
+      "reviewClasses": "Classes & Fee Structure"
+    },
+    "errors": {
+      "eiinRequired": "EIIN is required",
+      "eiinFormat": "EIIN must be exactly 6 numeric digits",
+      "nameRequired": "School name is required",
+      "classRequired": "Select at least one class"
+    },
+    "actions": {
+      "next": "Next step",
+      "prev": "Back",
+      "launch": "Launch Institution Dashboard",
+      "launching": "Setting up institution…"
+    }
   },
   "search": {
     "title": "Search",
