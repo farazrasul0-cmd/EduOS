@@ -25,6 +25,7 @@ const Payroll = lazy(() => import('@/pages/Payroll'))
 const Certificates = lazy(() => import('@/pages/Certificates'))
 const Hostel = lazy(() => import('@/pages/Hostel'))
 const AdmitCards = lazy(() => import('@/pages/AdmitCards'))
+const Leave = lazy(() => import('@/pages/Leave'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function PageFallback() {
@@ -86,6 +87,7 @@ export default function App() {
               <Route path="/hostel" element={<Hostel />} />
               <Route path="/admit-cards" element={<AdmitCards />} />
             </Route>
+            <Route path="/leave" element={<Leave />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Route>
