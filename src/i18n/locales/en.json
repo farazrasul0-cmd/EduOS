@@ -27,7 +27,8 @@
     "settings": "Settings",
     "collapse": "Collapse",
     "library": "Library",
-    "payroll": "Payroll & Salary"
+    "payroll": "Payroll & Salary",
+    "certificates": "Certificates"
   },
   "topbar": {
     "menu": "Menu",
@@ -1445,6 +1446,90 @@
     "empty": {
       "title": "No Salary Records Found",
       "desc": "Generate payroll for the selected month to view staff salary sheets."
+    }
+  },
+  "certificates": {
+    "title": "Certificate & Document Center",
+    "subtitle": "Official institutional Transfer Certificates (TC), SSC/HSC Testimonials, and Bonafide study certificates with security serials",
+    "kpis": {
+      "total": "Total Issued",
+      "tc": "Transfer Certificates (TC)",
+      "testimonials": "SSC/HSC Testimonials",
+      "bonafide": "Bonafide Certificates"
+    },
+    "tabs": {
+      "all": "All Certificates",
+      "tc": "Transfer Certificate (TC)",
+      "testimonial": "Testimonials",
+      "bonafide": "Bonafide Certificates"
+    },
+    "actions": {
+      "issue": "Issue Certificate",
+      "download": "Download PDF",
+      "preview": "View Certificate",
+      "revoke": "Revoke"
+    },
+    "table": {
+      "serial": "Serial No",
+      "student": "Student Name",
+      "type": "Certificate Type",
+      "class": "Class & Roll",
+      "issueDate": "Issue Date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "types": {
+      "tc": "Transfer Certificate (TC)",
+      "testimonial": "Academic Testimonial",
+      "bonafide": "Bonafide Certificate"
+    },
+    "status": {
+      "issued": "Issued",
+      "pending": "Pending Approval",
+      "revoked": "Revoked"
+    },
+    "modal": {
+      "issueTitle": "Issue Official Certificate",
+      "selectType": "Certificate Type",
+      "studentInfo": "Student Information",
+      "studentName": "Student Full Name",
+      "studentNameBn": "Student Name (Bangla)",
+      "fatherName": "Father's Full Name",
+      "motherName": "Mother's Full Name",
+      "birthRegNo": "Digital Birth Reg No (17 Digits)",
+      "dob": "Date of Birth",
+      "class": "Class / Grade",
+      "section": "Section",
+      "roll": "Roll Number",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "tcDetails": "Transfer Certificate Details",
+      "reasonForLeaving": "Reason for Leaving",
+      "conduct": "Conduct & Character",
+      "promotedTo": "Promoted / Eligible Class",
+      "duesCleared": "Dues Cleared Up To",
+      "testimonialDetails": "Testimonial Academic Credentials",
+      "board": "Education Board",
+      "boardRoll": "Board Roll No",
+      "boardReg": "Board Registration No",
+      "passingYear": "Passing Year",
+      "gpa": "GPA Achieved",
+      "grade": "Letter Grade",
+      "activities": "Co-Curricular Activities",
+      "bonafideDetails": "Bonafide Certificate Details",
+      "purpose": "Official Purpose of Certificate",
+      "validUntil": "Validity Date",
+      "submitBtn": "Generate & Issue Certificate",
+      "previewTitle": "Certificate Document Preview"
+    },
+    "messages": {
+      "issued": "Certificate issued successfully with verification serial!",
+      "revoked": "Certificate revoked successfully."
+    },
+    "empty": {
+      "title": "No Certificates Found",
+      "desc": "Issue a new Transfer Certificate, Testimonial, or Bonafide Certificate to view records here."
     }
   }
 }
