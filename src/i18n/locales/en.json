@@ -25,7 +25,8 @@
     "parent": "Parent messages",
     "admissions": "Admissions",
     "settings": "Settings",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "library": "Library"
   },
   "topbar": {
     "menu": "Menu",
@@ -102,20 +103,52 @@
       "title": "Recent activity",
       "viewAll": "View all",
       "items": [
-        { "who": "Tahmid Rahman", "what": "submitted Algebra worksheet", "when": "2m ago" },
-        { "who": "Nusrat Jahan's parent", "what": "paid term-2 tuition fee", "when": "18m ago" },
-        { "who": "You", "what": "published Mid-term results to 7-A", "when": "1h ago" },
-        { "who": "Rafiq Islam", "what": "marked absent", "when": "today, 9:05 AM" },
-        { "who": "Maya Karim", "what": "joined Class 7-A", "when": "yesterday" }
+        {
+          "who": "Tahmid Rahman",
+          "what": "submitted Algebra worksheet",
+          "when": "2m ago"
+        },
+        {
+          "who": "Nusrat Jahan's parent",
+          "what": "paid term-2 tuition fee",
+          "when": "18m ago"
+        },
+        {
+          "who": "You",
+          "what": "published Mid-term results to 7-A",
+          "when": "1h ago"
+        },
+        {
+          "who": "Rafiq Islam",
+          "what": "marked absent",
+          "when": "today, 9:05 AM"
+        },
+        {
+          "who": "Maya Karim",
+          "what": "joined Class 7-A",
+          "when": "yesterday"
+        }
       ]
     },
     "next": {
       "title": "What's next",
       "add": "Add",
       "items": [
-        { "name": "Mid-term · Mathematics", "date": "Mon, 27 May", "state": "Scheduled" },
-        { "name": "Algebra · Worksheet 4", "date": "Due Wed, 27 May", "state": "12 / 12 submitted" },
-        { "name": "Science · Lab report", "date": "Due Fri, 30 May", "state": "8 / 12 submitted" }
+        {
+          "name": "Mid-term · Mathematics",
+          "date": "Mon, 27 May",
+          "state": "Scheduled"
+        },
+        {
+          "name": "Algebra · Worksheet 4",
+          "date": "Due Wed, 27 May",
+          "state": "12 / 12 submitted"
+        },
+        {
+          "name": "Science · Lab report",
+          "date": "Due Fri, 30 May",
+          "state": "8 / 12 submitted"
+        }
       ]
     }
   },
@@ -241,25 +274,25 @@
       "feeHistory": "Fee history",
       "noFees": "No invoices for this student",
       "assignmentHistory": "Assignment history",
-      "resultHistory": "Result history"
-      ,"editTitle": "Edit student"
-      ,"archive": "Archive"
-      ,"archiveTitle": "Archive student?"
-      ,"archiveBody": "{{name}} will become inactive and remain available in school records."
-      ,"guardians": "Guardians"
-      ,"addGuardian": "Add guardian"
-      ,"noGuardians": "No guardians linked"
-      ,"primary": "Primary"
-      ,"guardianSub": "Create or reuse a guardian record and link it to this student."
-      ,"guardianName": "Guardian name"
-      ,"relationship": "Relationship"
-      ,"guardianEmail": "Email"
-      ,"guardianPhone": "Phone"
-      ,"makePrimary": "Make this the primary guardian"
-      ,"linkGuardian": "Link guardian"
-      ,"sendInvite": "Send invite"
-      ,"inviteSent": "Invitation sent to {{email}}."
-      ,"portalLinked": "Portal linked"
+      "resultHistory": "Result history",
+      "editTitle": "Edit student",
+      "archive": "Archive",
+      "archiveTitle": "Archive student?",
+      "archiveBody": "{{name}} will become inactive and remain available in school records.",
+      "guardians": "Guardians",
+      "addGuardian": "Add guardian",
+      "noGuardians": "No guardians linked",
+      "primary": "Primary",
+      "guardianSub": "Create or reuse a guardian record and link it to this student.",
+      "guardianName": "Guardian name",
+      "relationship": "Relationship",
+      "guardianEmail": "Email",
+      "guardianPhone": "Phone",
+      "makePrimary": "Make this the primary guardian",
+      "linkGuardian": "Link guardian",
+      "sendInvite": "Send invite",
+      "inviteSent": "Invitation sent to {{email}}.",
+      "portalLinked": "Portal linked"
     },
     "validation": {
       "invalid": "Check the student's name, roll number, class, and date of birth. Dates cannot be in the future.",
@@ -322,7 +355,12 @@
       "late": "Late",
       "needsAttention": "needs attention"
     },
-    "status": { "present": "Present", "absent": "Absent", "late": "Late", "leave": "Leave" },
+    "status": {
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "leave": "Leave"
+    },
     "markTitle": "Mark attendance",
     "markSub": "Tap a status for each student.",
     "day": "Day",
@@ -341,7 +379,9 @@
     "saveError": "Attendance could not be saved: {{error}}",
     "historyTitle": "Attendance history",
     "historySub": "Select a saved day to review or edit it, or export the report as CSV.",
-    "history": { "date": "Date" },
+    "history": {
+      "date": "Date"
+    },
     "historyEmpty": "No saved attendance days yet.",
     "tabs": {
       "daily": "Daily roll call",
@@ -416,7 +456,13 @@
       "overdueStudents": "{{count}} students",
       "month": "May 2026"
     },
-    "filter": { "all": "All", "paid": "Paid", "due": "Due", "partial": "Partial", "overdue": "Overdue" },
+    "filter": {
+      "all": "All",
+      "paid": "Paid",
+      "due": "Due",
+      "partial": "Partial",
+      "overdue": "Overdue"
+    },
     "table": {
       "student": "Student",
       "invoice": "Invoice",
@@ -447,7 +493,15 @@
       "record": "Record payment",
       "history": "Payment history",
       "empty": "No successful payments recorded.",
-      "methods": { "cash": "Cash", "bank": "Bank", "bkash": "bKash", "nagad": "Nagad", "rocket": "Rocket", "upay": "Upay", "card": "Card" }
+      "methods": {
+        "cash": "Cash",
+        "bank": "Bank",
+        "bkash": "bKash",
+        "nagad": "Nagad",
+        "rocket": "Rocket",
+        "upay": "Upay",
+        "card": "Card"
+      }
     },
     "validation": {
       "trxIdRequired": "Transaction reference is required.",
@@ -469,7 +523,11 @@
     "title": "Exams",
     "sub": "Schedule exams and draft papers with AI. Marks are entered in Results.",
     "empty": "No exams yet",
-    "tabs": { "list": "All exams", "routine": "Exam routine & schedule", "ai": "✨ AI builder" },
+    "tabs": {
+      "list": "All exams",
+      "routine": "Exam routine & schedule",
+      "ai": "✨ AI builder"
+    },
     "routine": {
       "title": "Examination Schedule & Routine",
       "sub": "Official examination timetable with date, time, rooms, and assigned invigilators.",
@@ -546,7 +604,11 @@
   "results": {
     "title": "Results",
     "sub": "Enter marks, see the gradebook, and share report cards with parents.",
-    "tabs": { "gradebook": "Gradebook", "marks": "Enter marks", "reports": "Report cards" },
+    "tabs": {
+      "gradebook": "Gradebook",
+      "marks": "Enter marks",
+      "reports": "Report cards"
+    },
     "kpi": {
       "classAverage": "Class average",
       "classAverageDelta": "+2 vs last term",
@@ -641,7 +703,12 @@
     "count": "{{count}} assignments",
     "empty": "No assignments yet",
     "emptySub": "Create your first assignment and publish it to the class.",
-    "filter": { "all": "All", "open": "Open", "closed": "Closed", "draft": "Drafts" },
+    "filter": {
+      "all": "All",
+      "open": "Open",
+      "closed": "Closed",
+      "draft": "Drafts"
+    },
     "kpi": {
       "open": "Open assignments",
       "openFooter": "across 4 classes",
@@ -842,9 +909,22 @@
       "title": "Billing & plan",
       "manageTitle": "Manage subscription",
       "manageSub": "Choose a plan and keep the billing contact current.",
-      "plans": { "starter": "Starter", "growth": "Growth", "school": "School" },
-      "planPrices": { "starter": "৳29 / student / month", "growth": "৳49 / student / month", "school": "৳79 / student / month" },
-      "status": { "trialing": "Trial", "active": "Active", "past_due": "Past due", "cancelled": "Cancelled" },
+      "plans": {
+        "starter": "Starter",
+        "growth": "Growth",
+        "school": "School"
+      },
+      "planPrices": {
+        "starter": "৳29 / student / month",
+        "growth": "৳49 / student / month",
+        "school": "৳79 / student / month"
+      },
+      "status": {
+        "trialing": "Trial",
+        "active": "Active",
+        "past_due": "Past due",
+        "cancelled": "Cancelled"
+      },
       "usage": "{{students}} students · ৳{{price}} each · ৳{{total}}/month",
       "renews": "Current period ends {{date}}",
       "email": "Billing email",
@@ -1152,6 +1232,118 @@
         "empty": "No admission applications found",
         "emptySub": "Prospective students can submit applications via the online portal."
       }
+    }
+  },
+  "library": {
+    "title": "Library & Textbooks",
+    "sub": "Manage book catalog, circulation loans, overdue fines, and NCTB textbook distribution.",
+    "kpis": {
+      "totalBooks": "Total Books",
+      "activeLoans": "Active Loans",
+      "overdueCount": "Overdue Books",
+      "totalFines": "Accrued Fines",
+      "nctbDistributed": "NCTB Distributed"
+    },
+    "tabs": {
+      "catalog": "Book Catalog",
+      "circulation": "Circulation Desk",
+      "nctb": "NCTB Textbook Register",
+      "overdue": "Overdue & Fines"
+    },
+    "catalog": {
+      "addBook": "Add New Book",
+      "searchPlaceholder": "Search by title, author, accession no…",
+      "allCategories": "All Categories",
+      "accessionNo": "Accession No",
+      "bookTitle": "Book Title",
+      "author": "Author",
+      "shelf": "Shelf / Location",
+      "copies": "Copies",
+      "available": "Available",
+      "status": "Status",
+      "actions": "Actions",
+      "issue": "Issue Book"
+    },
+    "circulation": {
+      "issueNew": "Issue Book",
+      "book": "Book",
+      "borrower": "Borrower",
+      "borrowerType": "Type",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "returnDate": "Return Date",
+      "fine": "Fine (BDT)",
+      "returnAction": "Return Book",
+      "renewAction": "Renew (14 Days)"
+    },
+    "modal": {
+      "addBookTitle": "Add Book to Catalog",
+      "issueTitle": "Issue Book Loan",
+      "returnTitle": "Return Book & Settle Fine",
+      "titleField": "Book Title (English)",
+      "titleBnField": "Book Title (Bangla)",
+      "authorField": "Author Name",
+      "authorBnField": "Author Name (Bangla)",
+      "categoryField": "Category",
+      "shelfField": "Shelf / Location",
+      "copiesField": "Total Copies",
+      "selectBook": "Select Book",
+      "selectBorrowerType": "Borrower Type",
+      "student": "Student",
+      "teacher": "Teacher / Staff",
+      "borrowerName": "Borrower Full Name",
+      "rollOrDesignation": "Class Roll or Designation",
+      "classField": "Class / Grade",
+      "phoneField": "Contact Phone",
+      "loanDuration": "Loan Duration (Days)",
+      "accruedFine": "Accrued Late Fine",
+      "waiveFine": "Waive Late Fine",
+      "markPaid": "Mark Fine as Paid",
+      "confirmReturn": "Confirm Book Return",
+      "confirmIssue": "Confirm Book Issue",
+      "confirmAdd": "Add Book to Catalog",
+      "close": "Close"
+    },
+    "nctb": {
+      "selectClass": "Select Class",
+      "distributeAll": "Distribute All to Class",
+      "downloadReport": "Download UEO Register (PDF)",
+      "studentRoster": "Student Roster & Textbook Checklist",
+      "roll": "Roll",
+      "studentName": "Student Name",
+      "distributedStatus": "Textbooks Received",
+      "signed": "Guardian Signed",
+      "allComplete": "All Complete",
+      "partially": "Partial",
+      "pending": "Pending"
+    },
+    "overdue": {
+      "downloadNotice": "Download Overdue Notice (PDF)",
+      "settleFine": "Settle Fine",
+      "waiveFine": "Waive Fine",
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "waived": "Waived"
+    },
+    "categories": {
+      "fiction": "Literature & Fiction",
+      "science": "Science & Tech",
+      "history": "History & Liberation War",
+      "biography": "Biography",
+      "religion": "Religious & Moral",
+      "reference": "Reference & Dictionary",
+      "olympiad": "Olympiad & Math",
+      "nctb": "NCTB Curriculum",
+      "other": "General / Other"
+    },
+    "notifications": {
+      "bookAdded": "New book successfully added to catalog",
+      "bookIssued": "Book successfully issued",
+      "bookReturned": "Book returned and inventory updated",
+      "bookRenewed": "Book loan renewed for 14 days",
+      "fineSettled": "Fine status updated",
+      "allDistributed": "All NCTB textbooks distributed to class",
+      "subjectToggled": "Textbook distribution status updated"
     }
   }
 }

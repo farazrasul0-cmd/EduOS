@@ -20,6 +20,7 @@ const ParentMessages = lazy(() => import('@/pages/ParentMessages'))
 const Settings = lazy(() => import('@/pages/Settings'))
 const Admissions = lazy(() => import('@/pages/Admissions'))
 const AdmissionPortal = lazy(() => import('@/pages/AdmissionPortal'))
+const Library = lazy(() => import('@/pages/Library'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function PageFallback() {
@@ -74,6 +75,7 @@ export default function App() {
             <Route element={<RequireRole roles={['owner', 'admin']} />}>
               <Route path="/admissions" element={<Admissions />} />
             </Route>
+            <Route path="/library" element={<Library />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Route>
