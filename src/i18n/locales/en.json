@@ -611,7 +611,8 @@
     "tabs": {
       "gradebook": "Gradebook",
       "marks": "Enter marks",
-      "reports": "Report cards"
+      "reports": "Report cards",
+      "tabulation": "Tabulation Sheet"
     },
     "kpi": {
       "classAverage": "Class average",
@@ -656,7 +657,24 @@
     "passed": "Passed",
     "failed": "Failed",
     "highestInClass": "Highest in class",
-    "nctbGradingScale": "NCTB grading scale"
+    "nctbGradingScale": "NCTB grading scale",
+    "tabulation": {
+      "title": "Class Tabulation Broadsheet",
+      "subtitle": "Official continuous assessment & term final evaluation broadsheet with merit ranking",
+      "downloadPdf": "Export Tabulation Broadsheet (PDF)",
+      "printAllReports": "Batch Print Report Cards (PDF)",
+      "passRate": "Pass Rate",
+      "gpa5Count": "GPA 5.0 (A+)",
+      "totalPassed": "Passed",
+      "totalFailed": "Failed",
+      "caMarks": "CA (20)",
+      "finalMarks": "Final (80)",
+      "totalMarks": "Total (100)",
+      "grandTotal": "Grand Total",
+      "meritRank": "Merit Rank",
+      "status": "Result Status",
+      "highest": "Highest in Class"
+    }
   },
   "timetable": {
     "title": "Timetable",

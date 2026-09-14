@@ -611,7 +611,8 @@
     "tabs": {
       "gradebook": "গ্রেডবুক",
       "marks": "নম্বর দিন",
-      "reports": "রিপোর্ট কার্ড"
+      "reports": "রিপোর্ট কার্ড",
+      "tabulation": "ট্যাবুলেশন শিট"
     },
     "kpi": {
       "classAverage": "ক্লাস গড়",
@@ -656,7 +657,24 @@
     "passed": "উত্তীর্ণ",
     "failed": "অকৃতকার্য",
     "highestInClass": "সর্বোচ্চ নম্বর",
-    "nctbGradingScale": "এনসিটিবি গ্রেডিং স্কেল"
+    "nctbGradingScale": "এনসিটিবি গ্রেডিং স্কেল",
+    "tabulation": {
+      "title": "শ্রেণির সার্বিক মূল্যায়ন ও ট্যাবুলেশন ব্রডশিট",
+      "subtitle": "ধারাবাহিক ও প্রান্তিক পরীক্ষার সার্বিক মূল্যায়ন সারণী এবং মেধা তালিকা",
+      "downloadPdf": "ট্যাবুলেশন ব্রডশিট (পিডিএফ)",
+      "printAllReports": "সকল মার্কশিট প্রিন্ট (পিডিএফ)",
+      "passRate": "পাসের হার",
+      "gpa5Count": "জিপিএ ৫.০ (এ+)",
+      "totalPassed": "উত্তীর্ণ",
+      "totalFailed": "অকৃতকার্য",
+      "caMarks": "ধারাবাহিক (২০)",
+      "finalMarks": "প্রান্তিক (৮০)",
+      "totalMarks": "মোট (১০০)",
+      "grandTotal": "সর্বমোট নম্বর",
+      "meritRank": "মেধাক্রম",
+      "status": "ফলাফল",
+      "highest": "শ্রেণি সর্বোচ্চ"
+    }
   },
   "timetable": {
     "title": "সময়সূচি",
