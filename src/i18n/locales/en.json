@@ -30,7 +30,8 @@
     "payroll": "Payroll & Salary",
     "certificates": "Certificates",
     "hostel": "Hostel & Dormitory",
-    "admitCards": "Admit Cards & Seating"
+    "admitCards": "Admit Cards & Seating",
+    "leave": "Leave Management"
   },
   "topbar": {
     "menu": "Menu",
@@ -1684,6 +1685,76 @@
     "empty": {
       "title": "No Examinees Found",
       "desc": "Select another class or exam session to view registered candidates."
+    }
+  },
+  "leave": {
+    "title": "Leave Management",
+    "subtitle": "Teacher leave ledgers, student leave applications, approval workflows & attendance integration",
+    "applyLeave": "Apply for Leave",
+    "exportSummary": "Export Leave Summary (PDF)",
+    "tabs": {
+      "students": "Student Leaves",
+      "teachers": "Teacher Leave Ledger",
+      "archive": "Applications Archive"
+    },
+    "kpis": {
+      "totalApps": "Total Applications",
+      "pendingReview": "Pending Approvals",
+      "onLeaveToday": "On Leave Today",
+      "quotaUsed": "Staff Quota Utilization"
+    },
+    "types": {
+      "casual": "Casual Leave (CL)",
+      "medical": "Medical Leave",
+      "maternity": "Maternity Leave",
+      "earned": "Earned Leave",
+      "duty": "Duty Leave",
+      "sick": "Sick Leave",
+      "urgent": "Urgent / Family",
+      "religious": "Religious / Pilgrimage",
+      "bereavement": "Bereavement"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "table": {
+      "appNo": "App No",
+      "applicant": "Applicant",
+      "category": "Category",
+      "type": "Leave Type",
+      "duration": "Duration",
+      "dates": "Leave Dates",
+      "reason": "Reason",
+      "status": "Status",
+      "actions": "Actions",
+      "substitute": "Substitute",
+      "guardianPhone": "Guardian Phone",
+      "clBalance": "CL (Casual)",
+      "medicalBalance": "Medical",
+      "earnedBalance": "Earned",
+      "totalUsed": "Total Used"
+    },
+    "modals": {
+      "applyTitle": "Submit Leave Application",
+      "reviewTitle": "Review Leave Application",
+      "approve": "Approve & Sanction",
+      "reject": "Reject Application",
+      "remarksPlaceholder": "Enter remarks or administrative directives...",
+      "attendanceSyncNote": "Approved student leaves are automatically recorded as 'Leave' ('L' - Excused) in daily attendance.",
+      "selectCategory": "Category",
+      "teacherCategory": "Teacher / Staff",
+      "studentCategory": "Student / Parent",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "calculatedDays": "Calculated Working Days (Excl. Friday)",
+      "reasonPlaceholder": "Explain reason for leave...",
+      "downloadAppPdf": "Download Application (PDF)",
+      "downloadOrderPdf": "Download Sanction Order (PDF)",
+      "successApplied": "Leave application submitted successfully.",
+      "successReviewed": "Leave application updated successfully."
     }
   }
 }

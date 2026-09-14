@@ -16,6 +16,7 @@ import {
   FileCheck,
   Building,
   Ticket,
+  CalendarClock,
   type LucideIcon,
 } from 'lucide-react'
 import type { UserRole } from '@/types/models'
@@ -62,6 +63,7 @@ export const NAV: NavGroup[] = [
       { id: 'certificates', labelKey: 'nav.certificates', icon: FileCheck, path: '/certificates', roles: ['owner', 'admin', 'teacher'] },
       { id: 'hostel', labelKey: 'nav.hostel', icon: Building, path: '/hostel', roles: ['owner', 'admin', 'teacher'] },
       { id: 'admit-cards', labelKey: 'nav.admitCards', icon: Ticket, path: '/admit-cards', roles: ['owner', 'admin', 'teacher'] },
+      { id: 'leave', labelKey: 'nav.leave', icon: CalendarClock, path: '/leave', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
       { id: 'settings', labelKey: 'nav.settings', icon: Settings, path: '/settings', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
     ],
   },
