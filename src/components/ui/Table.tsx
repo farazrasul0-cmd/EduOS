@@ -22,9 +22,14 @@ export function TableWrap({
 }
 
 /** Toolbar bar that sits directly above a TableWrap (joined corners). */
-export function Toolbar({ children }: { children: ReactNode }) {
+export function Toolbar({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="flex flex-wrap items-center gap-2.5 rounded-t-md border border-b-0 border-divider bg-surface p-3">
+    <div
+      className={cn(
+        'flex flex-wrap items-center gap-2.5 rounded-t-md border border-b-0 border-divider bg-surface p-3',
+        className,
+      )}
+    >
       {children}
     </div>
   )

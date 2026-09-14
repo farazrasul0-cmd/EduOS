@@ -23,6 +23,7 @@
     "fees": "Fees",
     "calendar": "Calendar",
     "parent": "Parent messages",
+    "admissions": "Admissions",
     "settings": "Settings",
     "collapse": "Collapse"
   },
@@ -1048,5 +1049,109 @@
     "bannerDesc": "You are currently previewing sample school records.",
     "createOwnSchool": "Create your school",
     "dismiss": "Dismiss"
+  },
+  "admissions": {
+    "portal": {
+      "title": "Online Admission Application",
+      "sub": "Apply for Academic Session 2026 at EduOS Model School",
+      "stepStudent": "Student Details",
+      "stepGuardian": "Guardian Details",
+      "stepAcademic": "Academic & Class",
+      "studentName": "Student Full Name (English)",
+      "studentNameBn": "Student Name (Bangla)",
+      "dob": "Date of Birth",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "religion": "Religion",
+      "religions": {
+        "islam": "Islam",
+        "hinduism": "Hinduism",
+        "buddhism": "Buddhism",
+        "christianity": "Christianity",
+        "other": "Other"
+      },
+      "bloodGroup": "Blood Group",
+      "birthCertificate": "17-Digit Digital Birth Certificate No",
+      "appliedClass": "Applying For Class",
+      "previousSchool": "Previous School / Institution",
+      "previousGpa": "Previous Marks / GPA",
+      "guardianName": "Guardian Full Name",
+      "guardianPhone": "Guardian Mobile Phone",
+      "guardianEmail": "Guardian Email",
+      "guardianOccupation": "Guardian Occupation",
+      "presentAddress": "Present Address",
+      "submit": "Submit Admission Application",
+      "submitting": "Submitting Application...",
+      "successTitle": "Application Submitted Successfully!",
+      "successSub": "Please save your Application Number for future reference and test schedules.",
+      "appNo": "Application No",
+      "printSlip": "Download Application Slip (PDF)",
+      "applyAnother": "Submit Another Application",
+      "backToLogin": "Return to School Portal",
+      "validation": {
+        "nameRequired": "Student full name is required.",
+        "birthCertInvalid": "Birth certificate must be exactly 17 digits.",
+        "phoneInvalid": "Enter a valid 11-digit Bangladeshi mobile number.",
+        "guardianRequired": "Guardian name and phone are required.",
+        "classRequired": "Please select a class."
+      }
+    },
+    "dashboard": {
+      "title": "Admissions & Applications",
+      "sub": "Manage applicant pipelines, admission tests, and student enrollment.",
+      "kpis": {
+        "total": "Total Applications",
+        "review": "Under Review",
+        "shortlisted": "Shortlisted for Test",
+        "admitted": "Admitted Students",
+        "rate": "Admission Rate"
+      },
+      "tabs": {
+        "all": "All Applications",
+        "submitted": "Submitted",
+        "under_review": "Under Review",
+        "shortlisted": "Shortlisted",
+        "admitted": "Admitted",
+        "rejected": "Rejected"
+      },
+      "table": {
+        "appNo": "App No",
+        "student": "Applicant Name",
+        "class": "Class",
+        "guardian": "Guardian & Phone",
+        "appliedDate": "Applied On",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "view": "Review Application",
+        "shortlist": "Shortlist for Test",
+        "admit": "Admit Student",
+        "reject": "Reject",
+        "enroll": "Enroll as Active Student",
+        "sendSms": "Send Status SMS",
+        "downloadAdmitCard": "Download Admit Card (PDF)",
+        "downloadVoucher": "Download Fee Voucher (PDF)",
+        "portalLink": "Open Public Application Portal"
+      },
+      "modal": {
+        "reviewTitle": "Admission Applicant Review",
+        "studentInfo": "Applicant Profile",
+        "guardianInfo": "Guardian Contact",
+        "academicInfo": "Academic Background",
+        "testDetails": "Admission Test Arrangement",
+        "examRoll": "Test Roll No",
+        "examDate": "Test Date",
+        "examVenue": "Venue / Hall",
+        "fee": "Admission Fee (BDT)",
+        "statusChanged": "Applicant status updated successfully.",
+        "smsSent": "BTRC SMS alert dispatched to guardian.",
+        "enrolled": "Applicant enrolled as active student in school roster.",
+        "empty": "No admission applications found",
+        "emptySub": "Prospective students can submit applications via the online portal."
+      }
+    }
   }
 }

@@ -36,15 +36,21 @@ interface FieldProps {
   label?: ReactNode
   hint?: ReactNode
   className?: string
+  required?: boolean
   children: ReactNode
 }
-export function Field({ label, hint, className, children }: FieldProps) {
+export function Field({ label, hint, className, required, children }: FieldProps) {
   return (
-    <div className={cn('flex flex-col gap-1.5', className)}>
-      {label && <label className="text-[13px] font-medium text-fg-2">{label}</label>}
+    <label className={cn('flex flex-col gap-1.5', className)}>
+      {label && (
+        <span className="text-[13px] font-medium text-fg-2">
+          {label}
+          {required && <span className="ml-1 text-rose-500">*</span>}
+        </span>
+      )}
       {children}
       {hint && <span className="text-xs text-fg-3">{hint}</span>}
-    </div>
+    </label>
   )
 }
 

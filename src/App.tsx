@@ -18,6 +18,8 @@ const Fees = lazy(() => import('@/pages/Fees'))
 const CalendarPage = lazy(() => import('@/pages/CalendarPage'))
 const ParentMessages = lazy(() => import('@/pages/ParentMessages'))
 const Settings = lazy(() => import('@/pages/Settings'))
+const Admissions = lazy(() => import('@/pages/Admissions'))
+const AdmissionPortal = lazy(() => import('@/pages/AdmissionPortal'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function PageFallback() {
@@ -48,6 +50,7 @@ export default function App() {
             </RequireOnboarding>
           }
         />
+        <Route path="/apply" element={<AdmissionPortal />} />
 
         <Route element={<RequireAuth />}>
           <Route element={<AppLayout />}>
@@ -67,6 +70,9 @@ export default function App() {
             <Route path="/calendar" element={<CalendarPage />} />
             <Route element={<RequireRole roles={['owner', 'admin', 'teacher', 'parent']} />}>
               <Route path="/messages" element={<ParentMessages />} />
+            </Route>
+            <Route element={<RequireRole roles={['owner', 'admin']} />}>
+              <Route path="/admissions" element={<Admissions />} />
             </Route>
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
