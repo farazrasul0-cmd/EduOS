@@ -29,7 +29,8 @@
     "library": "Library",
     "payroll": "Payroll & Salary",
     "certificates": "Certificates",
-    "hostel": "Hostel & Dormitory"
+    "hostel": "Hostel & Dormitory",
+    "admitCards": "Admit Cards & Seating"
   },
   "topbar": {
     "menu": "Menu",
@@ -1615,6 +1616,56 @@
     "empty": {
       "title": "No Hostel Records",
       "desc": "Allocate student seats or issue gate passes to see active records."
+    }
+  },
+  "admitCards": {
+    "title": "Exam Admit Cards & Hall Seat Planner",
+    "subtitle": "Fee clearance verification, student admit card issuance, and anti-cheating exam hall seat planning",
+    "kpis": {
+      "totalCandidates": "Total Examinees",
+      "cleared": "Admit Cards Ready",
+      "withheld": "Dues Pending (Withheld)",
+      "halls": "Active Exam Halls"
+    },
+    "tabs": {
+      "admitCards": "Admit Card Desk",
+      "seatPlan": "Hall Seat Planner",
+      "invigilation": "Invigilation Schedule"
+    },
+    "actions": {
+      "batchPrint": "Print Class Admit Cards (PDF)",
+      "downloadAdmitCard": "Download Admit Card",
+      "doorNotice": "Hall Door Notice (PDF)",
+      "benchStickers": "Bench Stickers (PDF)",
+      "recalculateSeatPlan": "Auto-Allocate Seating (Zigzag)",
+      "overrideFee": "Authorize Clearance"
+    },
+    "table": {
+      "candidate": "Examinee Name",
+      "classRoll": "Class & Roll",
+      "admitNo": "Admit Card No",
+      "feeStatus": "Fee Clearance",
+      "bench": "Bench No",
+      "seat": "Assigned Seat",
+      "hall": "Exam Hall",
+      "invigilator": "Duty Invigilator",
+      "actions": "Actions"
+    },
+    "status": {
+      "cleared": "Cleared",
+      "withheld": "Dues Withheld",
+      "overridden": "Special Clearance"
+    },
+    "modal": {
+      "overrideTitle": "Authorize Special Examination Clearance",
+      "overrideSub": "Grant provisional exam permission despite unpaid fees with recorded remarks",
+      "remarks": "Reason / Authority Notes",
+      "authorizedBy": "Authorized By",
+      "confirmOverride": "Confirm Clearance"
+    },
+    "empty": {
+      "title": "No Examinees Found",
+      "desc": "Select another class or exam session to view registered candidates."
     }
   }
 }
