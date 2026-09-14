@@ -212,4 +212,35 @@ describe('Results Page & NCTB Academic Reporting', () => {
     await user.click(downloadAllBtn)
     expect(window.URL.createObjectURL).toHaveBeenCalled()
   })
+
+  it('switches to Tabulation Sheet tab and displays broadsheet matrix with CA and Final totals', async () => {
+    const user = userEvent.setup()
+    render(<Results />)
+
+    const tabBtn = screen.getByRole('button', { name: /tabulation sheet/i })
+    await user.click(tabBtn)
+
+    expect(screen.getByText('Class Tabulation Broadsheet')).toBeInTheDocument()
+    expect(screen.getByText('Class 7 (Section A)')).toBeInTheDocument()
+    expect(screen.getByText('Academic Session 2026 · Official Tabulation Broadsheet')).toBeInTheDocument()
+
+    // Pass and Fail indicators
+    expect(screen.getByText('Pass Rate:')).toBeInTheDocument()
+    expect(screen.getByText('GPA 5.0 (A+):')).toBeInTheDocument()
+  })
+
+  it('triggers Tabulation Broadsheet PDF download when download button is clicked', async () => {
+    const user = userEvent.setup()
+    render(<Results />)
+
+    const tabBtn = screen.getByRole('button', { name: /tabulation sheet/i })
+    await user.click(tabBtn)
+
+    const downloadButtons = screen.getAllByRole('button', { name: /export tabulation broadsheet \(pdf\)/i })
+    expect(downloadButtons.length).toBeGreaterThan(0)
+
+    await user.click(downloadButtons[0])
+    expect(window.URL.createObjectURL).toHaveBeenCalled()
+  })
 })
+
