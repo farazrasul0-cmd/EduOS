@@ -26,7 +26,8 @@
     "admissions": "Admissions",
     "settings": "Settings",
     "collapse": "Collapse",
-    "library": "Library"
+    "library": "Library",
+    "payroll": "Payroll & Salary"
   },
   "topbar": {
     "menu": "Menu",
@@ -1344,6 +1345,106 @@
       "fineSettled": "Fine status updated",
       "allDistributed": "All NCTB textbooks distributed to class",
       "subjectToggled": "Textbook distribution status updated"
+    }
+  },
+  "payroll": {
+    "title": "Payroll & Staff Compensation",
+    "subtitle": "Monthly salary sheet, MPO & institutional scale allowances, statutory deductions, bank disbursement & payslip generator",
+    "kpis": {
+      "totalExpense": "Total Monthly Payroll",
+      "disbursed": "Disbursed Amount",
+      "pending": "Pending Disbursement",
+      "totalStaff": "Staff on Payroll"
+    },
+    "tabs": {
+      "salarySheet": "Monthly Salary Sheet",
+      "disbursements": "Disbursement Ledger",
+      "profiles": "Salary Structure & Profiles"
+    },
+    "actions": {
+      "generatePayroll": "Generate Monthly Sheet",
+      "downloadBankSheet": "Bank Statement (PDF)",
+      "downloadPayslip": "Payslip (PDF)",
+      "disburse": "Disburse Salary",
+      "bulkDisburse": "Bulk Disburse Selected",
+      "editProfile": "Edit Structure",
+      "previewPayslip": "View Payslip"
+    },
+    "table": {
+      "staffId": "Staff ID",
+      "employee": "Employee Name",
+      "designation": "Designation & Type",
+      "gross": "Gross Salary",
+      "deductions": "Deductions",
+      "netPay": "Net Payable",
+      "status": "Status",
+      "paymentChannel": "Payment Channel",
+      "actions": "Actions"
+    },
+    "status": {
+      "draft": "Draft",
+      "approved": "Approved",
+      "disbursed": "Disbursed",
+      "void": "Void"
+    },
+    "channels": {
+      "bank_transfer": "Bank Transfer (BEFTN)",
+      "bkash": "bKash Corporate",
+      "nagad": "Nagad Corporate",
+      "cash": "Cash"
+    },
+    "types": {
+      "mpo": "Govt MPO Scale",
+      "non_mpo": "Institutional Private",
+      "contractual": "Contractual"
+    },
+    "earnings": {
+      "basic": "Basic Pay",
+      "houseRent": "House Rent Allowance",
+      "medical": "Medical Allowance",
+      "conveyance": "Conveyance Allowance",
+      "festivalBonus": "Festival Bonus",
+      "special": "Special Allowance"
+    },
+    "deductions": {
+      "pf": "Provident Fund (GPF)",
+      "welfare": "Welfare Trust (4%)",
+      "retirement": "Retirement Fund (6%)",
+      "tax": "Income Tax (TDS)",
+      "unpaidLeave": "Unpaid Leave Deduction",
+      "advance": "Advance / Loan Deduction"
+    },
+    "modal": {
+      "generateTitle": "Generate Monthly Salary Sheet",
+      "selectMonth": "Billing Month",
+      "selectYear": "Billing Year",
+      "festivalBonusPercent": "Festival Bonus (% of Basic)",
+      "none": "None (0%)",
+      "eidTeachers": "Eid/Puja Bonus (Teachers - 25%)",
+      "eidStaff": "Eid/Puja Bonus (Staff - 50%)",
+      "fullBonus": "Full Basic Bonus (100%)",
+      "generateBtn": "Compute & Generate",
+      "disburseTitle": "Disburse Salary Payment",
+      "disbursementDate": "Payment Date",
+      "reference": "Transaction Ref / Cheque No",
+      "confirmDisburse": "Confirm Disbursement",
+      "editProfileTitle": "Edit Staff Salary Structure",
+      "saveStructure": "Save Salary Structure",
+      "payslipPreviewTitle": "Staff Pay Slip Preview"
+    },
+    "filter": {
+      "allChannels": "All Channels",
+      "allStatuses": "All Statuses"
+    },
+    "messages": {
+      "generated": "Monthly salary sheet generated successfully!",
+      "disbursed": "Salary marked as disbursed successfully!",
+      "profileUpdated": "Salary structure updated successfully!",
+      "bulkDisbursed": "Selected salaries disbursed successfully!"
+    },
+    "empty": {
+      "title": "No Salary Records Found",
+      "desc": "Generate payroll for the selected month to view staff salary sheets."
     }
   }
 }
