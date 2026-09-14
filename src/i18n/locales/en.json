@@ -28,7 +28,8 @@
     "collapse": "Collapse",
     "library": "Library",
     "payroll": "Payroll & Salary",
-    "certificates": "Certificates"
+    "certificates": "Certificates",
+    "hostel": "Hostel & Dormitory"
   },
   "topbar": {
     "menu": "Menu",
@@ -1530,6 +1531,90 @@
     "empty": {
       "title": "No Certificates Found",
       "desc": "Issue a new Transfer Certificate, Testimonial, or Bonafide Certificate to view records here."
+    }
+  },
+  "hostel": {
+    "title": "Hostel & Dormitory Management",
+    "subtitle": "Residential halls, room & bed allocation, student out-pass curfew tracking, and monthly mess ledger",
+    "kpis": {
+      "capacity": "Total Capacity (Beds)",
+      "boarders": "Current Boarders",
+      "vacant": "Vacant Beds",
+      "occupancyRate": "Occupancy Rate"
+    },
+    "tabs": {
+      "rooms": "Rooms & Capacity",
+      "boarders": "Boarder Roster",
+      "gatepass": "Gate Pass & Curfew"
+    },
+    "actions": {
+      "allocate": "Allocate Seat",
+      "issuePass": "Issue Gate Pass",
+      "downloadRegister": "Occupancy Register (PDF)",
+      "downloadPass": "Gate Pass Slip (PDF)",
+      "markReturned": "Mark Returned",
+      "vacate": "Vacate Seat"
+    },
+    "table": {
+      "roomNo": "Room No",
+      "building": "Hostel Building",
+      "type": "Type & Gender",
+      "capacity": "Capacity / Occupied",
+      "seatRent": "Monthly Rent",
+      "status": "Status",
+      "student": "Boarder Name",
+      "class": "Class & Roll",
+      "bed": "Bed No",
+      "guardianPhone": "Guardian Contact",
+      "messFee": "Mess Fee",
+      "passNo": "Pass Number",
+      "destination": "Destination & Reason",
+      "departure": "Departure",
+      "expectedReturn": "Expected Return",
+      "actions": "Actions"
+    },
+    "status": {
+      "paid": "Paid",
+      "due": "Due",
+      "overdue": "Overdue",
+      "approved": "Approved",
+      "active": "Active (Out)",
+      "returned": "Returned",
+      "overdueCurfew": "Curfew Delayed"
+    },
+    "modal": {
+      "allocateTitle": "Allocate Hostel Seat to Student",
+      "studentInfo": "Student Information",
+      "studentName": "Student Full Name",
+      "studentNameBn": "Student Name (Bangla)",
+      "class": "Class",
+      "roll": "Roll No",
+      "building": "Hostel Building",
+      "room": "Room Number",
+      "bed": "Bed Identifier (e.g. Bed-A)",
+      "guardianName": "Guardian Name",
+      "guardianPhone": "Guardian Phone",
+      "seatRent": "Monthly Seat Rent (BDT)",
+      "messFee": "Monthly Mess Fee (BDT)",
+      "confirmAllocate": "Confirm Seat Allocation",
+      "gatePassTitle": "Issue Student Hostel Gate Pass / Out-Pass",
+      "destination": "Destination Address",
+      "reason": "Reason for Leave",
+      "departureDate": "Departure Date",
+      "departureTime": "Departure Time",
+      "expectedReturnDate": "Expected Return Date",
+      "expectedReturnTime": "Curfew Return Time",
+      "confirmPass": "Authorize & Issue Pass"
+    },
+    "messages": {
+      "allocated": "Student allocated to hostel seat successfully!",
+      "passIssued": "Gate pass issued successfully!",
+      "returned": "Student return logged successfully.",
+      "vacated": "Seat vacated successfully."
+    },
+    "empty": {
+      "title": "No Hostel Records",
+      "desc": "Allocate student seats or issue gate passes to see active records."
     }
   }
 }
