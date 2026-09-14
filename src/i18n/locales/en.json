@@ -31,7 +31,8 @@
     "certificates": "Certificates",
     "hostel": "Hostel & Dormitory",
     "admitCards": "Admit Cards & Seating",
-    "leave": "Leave Management"
+    "leave": "Leave Management",
+    "notices": "Notice Board"
   },
   "topbar": {
     "menu": "Menu",
@@ -1755,6 +1756,71 @@
       "downloadOrderPdf": "Download Sanction Order (PDF)",
       "successApplied": "Leave application submitted successfully.",
       "successReviewed": "Leave application updated successfully."
+    }
+  },
+  "notices": {
+    "title": "Digital Notice Board & Circulars",
+    "subtitle": "Publish institutional circulars, emergency weather closures, exam notifications, and broadcast SMS alerts",
+    "publishNotice": "Publish Notice",
+    "exportSummary": "Export Notice Register (PDF)",
+    "kpis": {
+      "activeNotices": "Active Notices",
+      "pinnedNotices": "Pinned Circulars",
+      "emergencyNotices": "Emergency Notices",
+      "smsDispatched": "SMS Alerts Sent"
+    },
+    "categories": {
+      "all": "All Notices",
+      "academic": "Academic",
+      "exam": "Examination",
+      "holiday": "Holiday & Vacation",
+      "emergency": "Emergency & Weather",
+      "administrative": "Administrative"
+    },
+    "audiences": {
+      "all": "All Concerned",
+      "students": "Students",
+      "teachers": "Teachers & Staff",
+      "parents": "Guardians & Parents"
+    },
+    "priorities": {
+      "normal": "Normal",
+      "important": "Important",
+      "urgent": "Urgent"
+    },
+    "badges": {
+      "pinned": "PINNED",
+      "smsSent": "SMS Sent"
+    },
+    "card": {
+      "memo": "Memo",
+      "published": "Published",
+      "expires": "Expires",
+      "audience": "Target",
+      "downloadPdf": "Download Circular (PDF)",
+      "pinToggle": "Pin / Unpin",
+      "readMore": "Read Full Circular"
+    },
+    "modals": {
+      "createTitle": "Publish Official Circular",
+      "viewTitle": "Official Circular Notice",
+      "titleLabel": "Notice Subject / Title",
+      "memoLabel": "Memo Number",
+      "categoryLabel": "Notice Category",
+      "priorityLabel": "Priority Level",
+      "audienceLabel": "Target Audience",
+      "publishDateLabel": "Publish Date",
+      "expiryDateLabel": "Expiry Date (Optional)",
+      "contentLabel": "Notice Content / Resolution",
+      "pinLabel": "Pin to Top of Notice Board",
+      "smsBroadcastLabel": "Broadcast Instant SMS Alert via EduOS Gateway",
+      "smsPreview": "SMS Text Preview",
+      "chars": "Characters",
+      "segments": "SMS Parts",
+      "signLabel": "Issuing Authority / Signatory",
+      "successPublished": "Notice published successfully.",
+      "successDeleted": "Notice removed.",
+      "close": "Close"
     }
   }
 }

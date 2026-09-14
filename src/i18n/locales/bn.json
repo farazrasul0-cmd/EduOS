@@ -31,7 +31,8 @@
     "certificates": "সনদ ও প্রশংসাপত্র",
     "hostel": "ছাত্রাবাস ও আবাসন",
     "admitCards": "প্রবেশপত্র ও আসন বিন্যাস",
-    "leave": "ছুটি ব্যবস্থাপনা"
+    "leave": "ছুটি ব্যবস্থাপনা",
+    "notices": "নোটিশ বোর্ড"
   },
   "topbar": {
     "menu": "মেনু",
@@ -1755,6 +1756,71 @@
       "downloadOrderPdf": "মঞ্জুরি আদেশ ডাউনলোড (PDF)",
       "successApplied": "ছুটির আবেদন সফলভাবে জমা হয়েছে।",
       "successReviewed": "ছুটির আবেদন সফলভাবে হালনাগাদ করা হয়েছে।"
+    }
+  },
+  "notices": {
+    "title": "ডিজিটাল নোটিশ বোর্ড ও সার্কুলার",
+    "subtitle": "প্রাতিষ্ঠানিক সার্কুলার, জরুরি ছুটি, পরীক্ষার বিজ্ঞপ্তি ও এসএমএস বার্তা সম্প্রচার",
+    "publishNotice": "নোটিশ প্রকাশ করুন",
+    "exportSummary": "নোটিশ রেজিস্টার এক্সপোর্ট (PDF)",
+    "kpis": {
+      "activeNotices": "চলতি নোটিশ",
+      "pinnedNotices": "পিনযুক্ত নোটিশ",
+      "emergencyNotices": "জরুরি নোটিশ",
+      "smsDispatched": "প্রেরিত এসএমএস বার্তা"
+    },
+    "categories": {
+      "all": "সকল নোটিশ",
+      "academic": "একাডেমিক",
+      "exam": "পরীক্ষা সংক্রান্ত",
+      "holiday": "ছুটি ও অবকাশ",
+      "emergency": "জরুরি ও আবহাওয়া",
+      "administrative": "প্রশাসনিক"
+    },
+    "audiences": {
+      "all": "সকলের জন্য",
+      "students": "শিক্ষার্থী",
+      "teachers": "শিক্ষক ও কর্মচারী",
+      "parents": "অভিভাবক"
+    },
+    "priorities": {
+      "normal": "সাধারণ",
+      "important": "জরুরি",
+      "urgent": "অতীব জরুরি"
+    },
+    "badges": {
+      "pinned": "পিনযুক্ত",
+      "smsSent": "এসএমএস প্রেরিত"
+    },
+    "card": {
+      "memo": "স্মারক নং",
+      "published": "প্রকাশিত",
+      "expires": "মেয়াদ উত্তীর্ণ",
+      "audience": "উদ্দিষ্ট",
+      "downloadPdf": "সার্কুলার ডাউনলোড (PDF)",
+      "pinToggle": "পিন / আনপিন",
+      "readMore": "সম্পূর্ণ নোটিশ পড়ুন"
+    },
+    "modals": {
+      "createTitle": "অফিসিয়াল সার্কুলার প্রকাশ",
+      "viewTitle": "অফিসিয়াল সার্কুলার নোটিশ",
+      "titleLabel": "বিজ্ঞপ্তির বিষয় বা শিরোনাম",
+      "memoLabel": "স্মারক নম্বর",
+      "categoryLabel": "বিজ্ঞপ্তির ধরণ",
+      "priorityLabel": "গুরুত্বের স্তর",
+      "audienceLabel": "উদ্দিষ্ট প্রাপক",
+      "publishDateLabel": "প্রকাশের তারিখ",
+      "expiryDateLabel": "মেয়াদ শেষের তারিখ (ঐচ্ছিক)",
+      "contentLabel": "বিজ্ঞপ্তির মূল বক্তব্য",
+      "pinLabel": "নোটিশ বোর্ডের শীর্ষে পিন করুন",
+      "smsBroadcastLabel": "এডুওএস গেটওয়ে দিয়ে তাত্ক্ষণিক এসএমএস সতর্কতা পাঠান",
+      "smsPreview": "এসএমএস প্রিভিউ",
+      "chars": "অক্ষর",
+      "segments": "টি এসএমএস",
+      "signLabel": "স্বাক্ষরকারী কর্তৃপক্ষ",
+      "successPublished": "বিজ্ঞপ্তি সফলভাবে প্রকাশিত হয়েছে।",
+      "successDeleted": "বিজ্ঞপ্তি মুছে ফেলা হয়েছে।",
+      "close": "বন্ধ করুন"
     }
   }
 }
