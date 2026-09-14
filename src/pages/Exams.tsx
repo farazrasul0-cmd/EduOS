@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FileDown, Plus, Calendar, FileEdit, CheckCircle, BarChart3, Pencil, Sparkles, RotateCw, ClipboardList, Loader2, Trash2 } from 'lucide-react'
+import { FileDown, Plus, Calendar, FileEdit, CheckCircle, BarChart3, Pencil, Sparkles, RotateCw, ClipboardList, Loader2, Trash2, Ticket } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -503,6 +503,7 @@ function ExamRoutineTab({
 export default function Exams() {
   const { t } = useTranslation()
   const { profile } = useAuth()
+  const navigate = useNavigate()
   const canManage = profile?.role === 'owner' || profile?.role === 'admin' || profile?.role === 'teacher'
   const [tab, setTab] = useState<'list' | 'routine' | 'ai'>('list')
   const classesQuery = useClasses()
@@ -535,11 +536,14 @@ export default function Exams() {
         title={t('exams.title')}
         sub={t('exams.sub')}
         actions={canManage ? (
-          <>
+          <div className="flex items-center gap-2">
+            <Button variant="secondary" icon={<Ticket size={16} />} onClick={() => navigate('/admit-cards')}>
+              {t('nav.admitCards')}
+            </Button>
             <Button variant="primary" icon={<Plus size={16} />} onClick={openNew}>
               {t('actions.newExam')}
             </Button>
-          </>
+          </div>
         ) : undefined}
       />
       <div className="mb-4">

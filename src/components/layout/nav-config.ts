@@ -15,6 +15,7 @@ import {
   Wallet,
   FileCheck,
   Building,
+  Ticket,
   type LucideIcon,
 } from 'lucide-react'
 import type { UserRole } from '@/types/models'
@@ -60,6 +61,7 @@ export const NAV: NavGroup[] = [
       { id: 'payroll', labelKey: 'nav.payroll', icon: Wallet, path: '/payroll', roles: ['owner', 'admin', 'teacher'] },
       { id: 'certificates', labelKey: 'nav.certificates', icon: FileCheck, path: '/certificates', roles: ['owner', 'admin', 'teacher'] },
       { id: 'hostel', labelKey: 'nav.hostel', icon: Building, path: '/hostel', roles: ['owner', 'admin', 'teacher'] },
+      { id: 'admit-cards', labelKey: 'nav.admitCards', icon: Ticket, path: '/admit-cards', roles: ['owner', 'admin', 'teacher'] },
       { id: 'settings', labelKey: 'nav.settings', icon: Settings, path: '/settings', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
     ],
   },
