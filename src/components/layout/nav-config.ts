@@ -11,6 +11,7 @@ import {
   MessagesSquare,
   Settings,
   GraduationCap,
+  BookOpen,
   type LucideIcon,
 } from 'lucide-react'
 import type { UserRole } from '@/types/models'
@@ -52,6 +53,7 @@ export const NAV: NavGroup[] = [
       { id: 'calendar', labelKey: 'nav.calendar', icon: Calendar, path: '/calendar', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
       { id: 'parent', labelKey: 'nav.parent', icon: MessagesSquare, path: '/messages', roles: ['owner', 'admin', 'teacher', 'parent'] },
       { id: 'admissions', labelKey: 'nav.admissions', icon: GraduationCap, path: '/admissions', roles: ['owner', 'admin'] },
+      { id: 'library', labelKey: 'nav.library', icon: BookOpen, path: '/library', roles: ['owner', 'admin', 'teacher', 'student'] },
       { id: 'settings', labelKey: 'nav.settings', icon: Settings, path: '/settings', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
     ],
   },
