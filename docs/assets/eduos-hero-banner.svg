@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="accentGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#bgGrad)" />
+
+  <!-- Grid overlay -->
+  <g opacity="0.07" stroke="#94a3b8" stroke-width="1">
+    <path d="M0,60 H1200 M0,120 H1200 M0,180 H1200 M0,240 H1200 M0,300 H1200 M0,360 H1200" />
+    <path d="M100,0 V420 M200,0 V420 M300,0 V420 M400,0 V420 M500,0 V420 M600,0 V420 M700,0 V420 M800,0 V420 M900,0 V420 M1000,0 V420 M1100,0 V420" />
+  </g>
+
+  <!-- Ambient Glows -->
+  <circle cx="150" cy="80" r="140" fill="url(#accentGlow)" filter="url(#glow)" />
+  <circle cx="1080" cy="340" r="180" fill="#047857" opacity="0.2" filter="url(#glow)" />
+  <circle cx="950" cy="80" r="100" fill="#2563eb" opacity="0.15" filter="url(#glow)" />
+
+  <rect x="0" y="0" width="1200" height="4" fill="url(#primaryGrad)" />
+
+  <!-- Left Content -->
+  <g transform="translate(80, 55)">
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="56" height="56" rx="14" fill="#0f172a" stroke="#10b981" stroke-width="2" filter="url(#shadow)" />
+      <path d="M28 14 L44 22 L28 30 L12 22 Z" fill="#10b981" />
+      <path d="M18 25.5 V35 C18 38 23 41 28 41 C33 41 38 38 38 35 V25.5" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" />
+      <path d="M41 23.5 V33" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" />
+      <circle cx="41" cy="34.5" r="2" fill="#f59e0b" />
+
+      <text x="72" y="40" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-0.03em">
+        Edu<tspan fill="#10b981">OS</tspan>
+      </text>
+      <rect x="225" y="16" width="96" height="26" rx="13" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+      <text x="273" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#a7f3d0" text-anchor="middle">v1.0.0 MVP</text>
+
+      <rect x="330" y="16" width="115" height="26" rx="13" fill="#1e1b4b" stroke="#6366f1" stroke-width="1" />
+      <text x="387" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c7d2fe" text-anchor="middle">PRODUCTION</text>
+    </g>
+
+    <text x="0" y="105" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="#f8fafc" letter-spacing="-0.02em">
+      The Next-Gen Bilingual School Management SaaS
+    </text>
+
+    <text x="0" y="142" font-family="'SolaimanLipi', 'Noto Sans Bengali', system-ui, sans-serif" font-size="20" font-weight="600" fill="#94a3b8">
+      বাংলাদেশের বিদ্যালয়, কলেজ ও মাদ্রাসার জন্য পূর্ণাঙ্গ ডিজিটাল শিক্ষা প্রশাসন প্ল্যাটফর্ম
+    </text>
+
+    <text x="0" y="176" font-family="system-ui, -apple-system, sans-serif" font-size="14" fill="#64748b" font-weight="500">
+      Built for Bangladesh Education Boards • NCTB GPA 5.0 Continuous Assessment • bKash/Nagad MFS • 17-digit BRN
+    </text>
+
+    <!-- Badges Row -->
+    <g transform="translate(0, 212)">
+      <g transform="translate(0, 0)">
+        <rect width="138" height="42" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.2" />
+        <circle cx="22" cy="21" r="10" fill="#065f46" />
+        <path d="M18 21 L21 24 L26 18" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" />
+        <text x="38" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">21 Modules</text>
+      </g>
+
+      <g transform="translate(150, 0)">
+        <rect width="170" height="42" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.2" />
+        <circle cx="22" cy="21" r="10" fill="#1e3a8a" />
+        <text x="22" y="25" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#93c5fd" text-anchor="middle">অ/A</text>
+        <text x="40" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">English &amp; বাংলা</text>
+      </g>
+
+      <g transform="translate(332, 0)">
+        <rect width="168" height="42" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.2" />
+        <circle cx="22" cy="21" r="10" fill="#064e3b" />
+        <path d="M17 21 L21 25 L27 17" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+        <text x="38" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">311 Tests Passed</text>
+      </g>
+
+      <g transform="translate(512, 0)">
+        <rect width="144" height="42" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.2" />
+        <circle cx="22" cy="21" r="10" fill="#4c1d95" />
+        <path d="M22 15 V23 M22 26 V27" stroke="#c084fc" stroke-width="2" stroke-linecap="round" />
+        <text x="38" y="26" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">Zero Lint Err</text>
+      </g>
+    </g>
+
+    <g transform="translate(0, 276)">
+      <text x="0" y="14" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#64748b" letter-spacing="0.05em">ENGINEERING STACK:</text>
+      <text x="145" y="14" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#94a3b8">
+        React 19 • TypeScript • Vite 8 • Tailwind CSS v4 • Supabase • PostgreSQL RLS • Vitest
+      </text>
+    </g>
+  </g>
+
+  <!-- Right Dashboard Card Preview -->
+  <g transform="translate(770, 48)">
+    <rect x="0" y="0" width="370" height="315" rx="16" fill="url(#cardGrad)" stroke="#334155" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="0" y="0" width="370" height="42" rx="16" fill="#1e293b" />
+    <circle cx="24" cy="21" r="5" fill="#ef4444" />
+    <circle cx="40" cy="21" r="5" fill="#f59e0b" />
+    <circle cx="56" cy="21" r="5" fill="#10b981" />
+    <rect x="80" y="12" width="180" height="18" rx="6" fill="#0f172a" />
+    <text x="170" y="25" font-family="monospace" font-size="10" fill="#64748b" text-anchor="middle">app.eduos.bd/dashboard</text>
+    <rect x="305" y="11" width="46" height="20" rx="4" fill="#065f46" />
+    <text x="328" y="24" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#6ee7b7" text-anchor="middle">ONLINE</text>
+
+    <g transform="translate(18, 56)">
+      <rect width="334" height="52" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <rect x="10" y="10" width="32" height="32" rx="8" fill="#10b981" opacity="0.2" />
+      <text x="26" y="31" font-family="system-ui, sans-serif" font-size="16" font-weight="900" fill="#10b981" text-anchor="middle">🏫</text>
+      <text x="52" y="25" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Dhaka Ideal Collegiate School</text>
+      <text x="52" y="39" font-family="monospace" font-size="10" fill="#64748b">EIIN: 108421 • Dhaka Board • Day Shift</text>
+    </g>
+
+    <g transform="translate(18, 120)">
+      <rect width="160" height="64" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <text x="14" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#64748b">TOTAL ENROLLED</text>
+      <text x="14" y="46" font-family="system-ui, sans-serif" font-size="20" font-weight="800" fill="#ffffff">1,482</text>
+      <rect x="94" y="30" width="54" height="18" rx="4" fill="#064e3b" />
+      <text x="121" y="42" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#34d399" text-anchor="middle">+98.2%</text>
+
+      <g transform="translate(174, 0)">
+        <rect width="160" height="64" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+        <text x="14" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#64748b">MFS TUITION FEES</text>
+        <text x="14" y="46" font-family="system-ui, sans-serif" font-size="19" font-weight="800" fill="#10b981">৳ 18.4L</text>
+        <rect x="106" y="30" width="42" height="18" rx="4" fill="#831843" />
+        <text x="127" y="42" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f472b6" text-anchor="middle">bKash</text>
+      </g>
+    </g>
+
+    <g transform="translate(18, 196)">
+      <rect width="334" height="48" rx="10" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <text x="14" y="20" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#94a3b8">DAILY ATTENDANCE RATE (BIO / RFID)</text>
+      <text x="320" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#34d399" text-anchor="end">94.8%</text>
+      <rect x="14" y="29" width="306" height="7" rx="3.5" fill="#1e293b" />
+      <rect x="14" y="29" width="290" height="7" rx="3.5" fill="url(#primaryGrad)" />
+    </g>
+
+    <g transform="translate(18, 256)">
+      <rect width="105" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="52" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">📄 Admit Cards</text>
+
+      <rect x="115" y="0" width="105" height="34" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="167" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8" text-anchor="middle">📊 Broadsheet</text>
+
+      <rect x="229" y="0" width="105" height="34" rx="8" fill="#065f46" stroke="#10b981" stroke-width="1" />
+      <text x="281" y="22" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#a7f3d0" text-anchor="middle">⚡ Parent App</text>
+    </g>
+  </g>
+</svg>

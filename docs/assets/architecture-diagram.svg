@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 680" width="100%" height="100%">
+  <defs>
+    <linearGradient id="archBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120" />
+      <stop offset="100%" stop-color="#041f1a" />
+    </linearGradient>
+    <linearGradient id="layerGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="boxShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <rect width="1100" height="680" rx="16" fill="url(#archBg)" stroke="#1e293b" stroke-width="2" />
+
+  <!-- Header -->
+  <g transform="translate(50, 40)">
+    <rect x="0" y="0" width="40" height="40" rx="10" fill="#065f46" />
+    <text x="20" y="26" font-family="system-ui, sans-serif" font-size="20" fill="#34d399" text-anchor="middle">🏛️</text>
+    <text x="56" y="22" font-family="system-ui, sans-serif" font-size="22" font-weight="900" fill="#f8fafc">EduOS Multi-Tenant Architecture</text>
+    <text x="56" y="38" font-family="system-ui, sans-serif" font-size="13" font-weight="500" fill="#94a3b8">Bilingual SaaS Architecture, Security Isolation, and Distributed Service Layers</text>
+  </g>
+
+  <!-- TIER 1: Presentation & Clients -->
+  <g transform="translate(50, 100)">
+    <rect width="1000" height="100" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" filter="url(#boxShadow)" />
+    <rect x="0" y="0" width="160" height="28" rx="6" fill="#1e293b" />
+    <text x="12" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#38bdf8">1. PRESENTATION TIER</text>
+
+    <!-- Client Cards -->
+    <g transform="translate(20, 36)">
+      <rect width="220" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      <text x="14" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">🏫 Admin &amp; Staff Web</text>
+      <text x="14" y="40" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Institutional Control Center</text>
+
+      <g transform="translate(245, 0)">
+        <rect width="220" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">👨‍👩‍👧 Parent &amp; Student Portal</text>
+        <text x="14" y="40" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Multi-child switcher &amp; fees</text>
+      </g>
+
+      <g transform="translate(490, 0)">
+        <rect width="220" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">📝 Public Admission Portal</text>
+        <text x="14" y="40" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">17-digit BRN self-service</text>
+      </g>
+
+      <g transform="translate(735, 0)">
+        <rect width="225" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#f1f5f9">📱 Responsive Mobile / PWA</text>
+        <text x="14" y="40" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Offline sync banner &amp; cache</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M550 200 V230" stroke="#10b981" stroke-width="2" stroke-dasharray="4" />
+
+  <!-- TIER 2: Application Framework & Client State -->
+  <g transform="translate(50, 230)">
+    <rect width="1000" height="110" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="1.5" filter="url(#boxShadow)" />
+    <rect x="0" y="0" width="220" height="28" rx="6" fill="#064e3b" />
+    <text x="12" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#a7f3d0">2. APPLICATION CORE &amp; I18N</text>
+
+    <g transform="translate(20, 38)">
+      <rect width="180" height="56" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="14" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">React 19 &amp; Vite 8</text>
+      <text x="14" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Component Tree &amp; Router 7</text>
+
+      <g transform="translate(195, 0)">
+        <rect width="180" height="56" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Bilingual Engine</text>
+        <text x="14" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">i18next (English &amp; বাংলা)</text>
+      </g>
+
+      <g transform="translate(390, 0)">
+        <rect width="180" height="56" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Tailwind CSS v4</text>
+        <text x="14" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Design tokens &amp; Dark mode</text>
+      </g>
+
+      <g transform="translate(585, 0)">
+        <rect width="180" height="56" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">TanStack Query</text>
+        <text x="14" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Optimistic Cache &amp; Revalidate</text>
+      </g>
+
+      <g transform="translate(780, 0)">
+        <rect width="180" height="56" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="24" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Vector PDF Engine</text>
+        <text x="14" y="44" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">CR80, A4 &amp; A3 Broadsheet</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M550 340 V370" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4" />
+
+  <!-- TIER 3: Security & Multi-Tenancy Layer -->
+  <g transform="translate(50, 370)">
+    <rect width="1000" height="100" rx="12" fill="#0f172a" stroke="#06b6d4" stroke-width="1.5" filter="url(#boxShadow)" />
+    <rect x="0" y="0" width="260" height="28" rx="6" fill="#0e7490" />
+    <text x="12" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#cffafe">3. TENANT ISOLATION &amp; SECURITY</text>
+
+    <g transform="translate(20, 36)">
+      <rect width="305" height="50" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">PostgreSQL Row-Level Security (RLS)</text>
+      <text x="14" y="39" font-family="monospace" font-size="10" fill="#38bdf8">USING (school_id = auth_school_id())</text>
+
+      <g transform="translate(325, 0)">
+        <rect width="310" height="50" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Role-Based Access Control (RBAC)</text>
+        <text x="14" y="39" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">SuperAdmin • Principal • Teacher • Accountant • Parent</text>
+      </g>
+
+      <g transform="translate(655, 0)">
+        <rect width="305" height="50" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">Append-Only Audit Logging</text>
+        <text x="14" y="39" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Immutable log on grades, fees &amp; attendance</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Connectors -->
+  <path d="M550 470 V500" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4" />
+
+  <!-- TIER 4: Database & External Gateways -->
+  <g transform="translate(50, 500)">
+    <rect width="1000" height="135" rx="12" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5" filter="url(#boxShadow)" />
+    <rect x="0" y="0" width="280" height="28" rx="6" fill="#1d4ed8" />
+    <text x="12" y="19" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#dbeafe">4. PERSISTENCE &amp; EXTERNAL SERVICES</text>
+
+    <g transform="translate(20, 36)">
+      <!-- Database Partition -->
+      <rect width="470" height="85" rx="8" fill="#1e293b" stroke="#334155" />
+      <text x="14" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#60a5fa">🐘 Supabase Managed PostgreSQL</text>
+      <text x="14" y="40" font-family="monospace" font-size="10" fill="#cbd5e1">23 Migrations • Foreign Key Cascades • Realtime Replication</text>
+      <text x="14" y="56" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Students • Attendance • Timetables • Exams • Fees • Payroll • Hostels • Library</text>
+      <text x="14" y="72" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">Quizzes • Leave Quotas • Circulars • Transfer Certificates</text>
+
+      <!-- External Integrations Partition -->
+      <g transform="translate(490, 0)">
+        <rect width="470" height="85" rx="8" fill="#1e293b" stroke="#334155" />
+        <text x="14" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#f43f5e">🔌 Bangladesh Ecosystem Integrations</text>
+        <text x="14" y="42" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#fb7185">bKash &amp; Nagad MFS:</text>
+        <text x="150" y="42" font-family="system-ui, sans-serif" font-size="10" fill="#cbd5e1">TrxID validation &amp; automated ledger settlement</text>
+        <text x="14" y="60" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#38bdf8">SMS Broadcast Gateway:</text>
+        <text x="165" y="60" font-family="system-ui, sans-serif" font-size="10" fill="#cbd5e1">Bangladeshi sender ID, attendance alerts &amp; notices</text>
+        <text x="14" y="76" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#a7f3d0">Storage Buckets:</text>
+        <text x="120" y="76" font-family="system-ui, sans-serif" font-size="10" fill="#cbd5e1">Private S3 bucket for student photos &amp; homework files</text>
+      </g>
+    </g>
+  </g>
+</svg>

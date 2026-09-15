@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="flowBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="flowStepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="360" rx="16" fill="url(#flowBg)" stroke="#1e293b" stroke-width="2" />
+
+  <!-- Header -->
+  <g transform="translate(40, 32)">
+    <text x="0" y="20" font-family="system-ui, sans-serif" font-size="20" font-weight="900" fill="#ffffff">Complete Institutional Academic Lifecycle in EduOS</text>
+    <text x="0" y="38" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">From public candidate admission to continuous NCTB assessment, examination broadsheets, and graduation certificates</text>
+  </g>
+
+  <!-- Row 1: 4 steps -->
+  <g transform="translate(40, 95)">
+    <!-- Step 1 -->
+    <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+    <circle cx="28" cy="28" r="14" fill="#065f46" />
+    <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#34d399" text-anchor="middle">1</text>
+    <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Online Admission</text>
+    <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">17-digit BRN validation</text>
+    <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Self-service candidate slip PDF</text>
+
+    <!-- Arrow 1->2 -->
+    <path d="M280 47 H300" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+    <path d="M295 42 L302 47 L295 52" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Step 2 -->
+    <g transform="translate(265, 0)">
+      <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <circle cx="28" cy="28" r="14" fill="#065f46" />
+      <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#34d399" text-anchor="middle">2</text>
+      <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Enrollment &amp; ID Card</text>
+      <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Roll allocation &amp; section sync</text>
+      <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">CR80 PVC ID Card with QR</text>
+    </g>
+
+    <!-- Arrow 2->3 -->
+    <path d="M545 47 H565" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+    <path d="M560 42 L567 47 L560 52" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Step 3 -->
+    <g transform="translate(530, 0)">
+      <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <circle cx="28" cy="28" r="14" fill="#065f46" />
+      <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#34d399" text-anchor="middle">3</text>
+      <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Routine &amp; Attendance</text>
+      <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Clash-free timetable periods</text>
+      <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">RFID/Biometric &amp; SMS alerts</text>
+    </g>
+
+    <!-- Arrow 3->4 -->
+    <path d="M810 47 H830" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+    <path d="M825 42 L832 47 L825 52" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Step 4 -->
+    <g transform="translate(795, 0)">
+      <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <circle cx="28" cy="28" r="14" fill="#065f46" />
+      <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#34d399" text-anchor="middle">4</text>
+      <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Homework &amp; MFS Fees</text>
+      <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Subject tasks &amp; submissions</text>
+      <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">bKash/Nagad fee clearance</text>
+    </g>
+  </g>
+
+  <!-- Flow connector from row 1 to row 2 -->
+  <path d="M912 195 V225 H157 V240" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4" />
+
+  <!-- Row 2: 4 steps -->
+  <g transform="translate(40, 235)">
+    <!-- Step 5 -->
+    <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+    <circle cx="28" cy="28" r="14" fill="#0e7490" />
+    <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#67e8f9" text-anchor="middle">5</text>
+    <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">CA Assessments &amp; Quizzes</text>
+    <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Continuous Assessment (20%)</text>
+    <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Timed online MCQ tests</text>
+
+    <!-- Arrow 5->6 -->
+    <path d="M280 47 H300" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+    <path d="M295 42 L302 47 L295 52" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Step 6 -->
+    <g transform="translate(265, 0)">
+      <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <circle cx="28" cy="28" r="14" fill="#0e7490" />
+      <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#67e8f9" text-anchor="middle">6</text>
+      <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Admit Cards &amp; Seating</text>
+      <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Fee dues blocker verification</text>
+      <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">Zigzag anti-cheating seat plan</text>
+    </g>
+
+    <!-- Arrow 6->7 -->
+    <path d="M545 47 H565" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+    <path d="M560 42 L567 47 L560 52" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Step 7 -->
+    <g transform="translate(530, 0)">
+      <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <circle cx="28" cy="28" r="14" fill="#0e7490" />
+      <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#67e8f9" text-anchor="middle">7</text>
+      <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Tabulation Broadsheet</text>
+      <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">CA 20% + Final 80% marks</text>
+      <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">NCTB GPA 5.0 A3 Broadsheet</text>
+    </g>
+
+    <!-- Arrow 7->8 -->
+    <path d="M810 47 H830" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+    <path d="M825 42 L832 47 L825 52" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Step 8 -->
+    <g transform="translate(795, 0)">
+      <rect width="235" height="95" rx="10" fill="#0f172a" stroke="#10b981" stroke-width="2" />
+      <circle cx="28" cy="28" r="14" fill="#065f46" />
+      <text x="28" y="33" font-family="system-ui, sans-serif" font-size="12" font-weight="900" fill="#34d399" text-anchor="middle">8</text>
+      <text x="52" y="33" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">Report Cards &amp; TC</text>
+      <text x="16" y="58" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">Progress cards with badges</text>
+      <text x="16" y="74" font-family="system-ui, sans-serif" font-size="11" fill="#34d399">Transfer Certificate (TC) PDF</text>
+    </g>
+  </g>
+</svg>
