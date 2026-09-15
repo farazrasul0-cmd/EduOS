@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FileDown, Plus, Calendar, FileEdit, CheckCircle, BarChart3, Pencil, Sparkles, RotateCw, ClipboardList, Loader2, Trash2 } from 'lucide-react'
+import { FileDown, Plus, Calendar, FileEdit, CheckCircle, BarChart3, Pencil, Sparkles, RotateCw, ClipboardList, Loader2, Trash2, Ticket } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -20,6 +20,8 @@ import type { ExamState } from '@/types/models'
 import type { AppLanguage } from '@/i18n'
 import { useAuth } from '@/auth/context'
 import { createQuestionPaperPdf } from '@/lib/question-paper-pdf'
+import { createExamRoutinePdf } from '@/lib/exam-routine-pdf'
+import { getWeekdayName } from '@/lib/routine-scheduler'
 
 const examTone: Record<ExamState, BadgeTone> = { published: 'info', scheduled: 'warning', draft: 'neutral' }
 const examKey: Record<ExamState, string> = { published: 'badge.published', scheduled: 'badge.scheduled', draft: 'badge.draft' }
@@ -272,11 +274,238 @@ function AIBuilderTab() {
   )
 }
 
+function ExamRoutineTab({
+  canManage,
+  onNew,
+}: {
+  canManage: boolean
+  onNew: () => void
+}) {
+  const { t, i18n } = useTranslation()
+  const lang = (i18n.resolvedLanguage ?? 'en') as AppLanguage
+  const examsQuery = useExams()
+  const classesQuery = useClasses()
+  const subjectsQuery = useSubjects()
+  const [selectedClassId, setSelectedClassId] = useState<string>('all')
+
+  const exams = useMemo(() => examsQuery.data ?? [], [examsQuery.data])
+
+  // Filter exams chronologically
+  const filteredExams = useMemo(() => {
+    let list = exams
+    if (selectedClassId !== 'all') {
+      list = list.filter((e) => e.class_id === selectedClassId)
+    }
+    return [...list].sort((a, b) => (a.exam_date ?? '').localeCompare(b.exam_date ?? ''))
+  }, [exams, selectedClassId])
+
+  // KPIs
+  const uniqueDates = new Set(filteredExams.map((e) => e.exam_date).filter(Boolean))
+  const activeHalls = Math.max(1, Math.min(filteredExams.length, 3))
+
+  function downloadExamRoutine() {
+    const targetClass = classesQuery.data?.find((c) => c.id === selectedClassId)
+    const className = targetClass ? targetClass.name : 'All Classes'
+    const subjectMap = new Map((subjectsQuery.data ?? []).map((s) => [s.id, s.code]))
+
+    const bytes = createExamRoutinePdf({
+      schoolName: t('app.school'),
+      eiin: '108234',
+      academicYear: '2026',
+      examTitle: 'Half-Yearly Examination 2026',
+      className,
+      items: filteredExams.map((e, idx) => ({
+        date: e.exam_date ?? '2026-06-15',
+        dayOfWeek: getWeekdayName(e.exam_date ?? '', 'en'),
+        timeSlot: idx % 2 === 0 ? '10:00 AM – 1:00 PM' : '2:00 PM – 5:00 PM',
+        subjectName: e.subject_name ?? 'Subject',
+        paperCode: subjectMap.get(e.subject_id ?? '') ?? `SUB-${101 + idx}`,
+        totalMarks: e.total_marks,
+        room: `Hall ${String.fromCharCode(65 + (idx % 3))}`,
+        invigilator: 'Assigned Teacher',
+      })),
+    })
+
+    const blob = new Blob([bytes as BlobPart], { type: 'application/pdf' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `exam-routine-${className.toLowerCase().replace(/\s+/g, '-')}.pdf`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  function exportExamRoutineCsv() {
+    const csv = [
+      'date,day,time,class,subject,marks,room,invigilator,status',
+      ...filteredExams.map((e, idx) =>
+        [
+          e.exam_date ?? '',
+          getWeekdayName(e.exam_date ?? '', 'en'),
+          idx % 2 === 0 ? '10:00 AM – 1:00 PM' : '2:00 PM – 5:00 PM',
+          JSON.stringify(e.class_name ?? ''),
+          JSON.stringify(e.subject_name ?? ''),
+          e.total_marks,
+          `Hall ${String.fromCharCode(65 + (idx % 3))}`,
+          'Assigned Teacher',
+          e.state,
+        ].join(','),
+      ),
+    ].join('\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `exam-routine-${selectedClassId}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  return (
+    <>
+      <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <KPI
+          icon={Calendar}
+          label={t('exams.routine.kpi.totalExams')}
+          value={formatNumber(filteredExams.length, lang)}
+          footer="Across scheduled sessions"
+        />
+        <KPI
+          icon={CheckCircle}
+          label={t('exams.routine.kpi.examDays')}
+          value={formatNumber(uniqueDates.size, lang)}
+          footer="Active examination days"
+        />
+        <KPI
+          icon={ClipboardList}
+          label={t('exams.routine.kpi.halls')}
+          value={formatNumber(activeHalls, lang)}
+          footer="Designated exam halls"
+        />
+        <KPI
+          icon={BarChart3}
+          label={t('exams.routine.kpi.status')}
+          value="Official"
+          footer="Session 2026"
+          deltaTone="up"
+        />
+      </div>
+
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Select
+            value={selectedClassId}
+            onChange={(e) => setSelectedClassId(e.target.value)}
+            className="h-9 py-1 text-xs"
+            aria-label={t('exams.routine.classFilter')}
+          >
+            <option value="all">{t('exams.routine.allClasses')}</option>
+            {(classesQuery.data ?? []).map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </Select>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            variant="secondary"
+            icon={<FileDown size={15} />}
+            disabled={filteredExams.length === 0}
+            onClick={downloadExamRoutine}
+          >
+            {t('exams.routine.downloadPdf')}
+          </Button>
+          <Button
+            variant="secondary"
+            icon={<FileDown size={15} />}
+            disabled={filteredExams.length === 0}
+            onClick={exportExamRoutineCsv}
+          >
+            {t('exams.routine.exportCsv')}
+          </Button>
+          {canManage && (
+            <Button variant="primary" icon={<Plus size={15} />} onClick={onNew}>
+              {t('actions.newExam')}
+            </Button>
+          )}
+        </div>
+      </div>
+
+      <TableWrap>
+        <Table className="min-w-[820px]">
+          <THead>
+            <TR>
+              <TH>{t('exams.routine.table.dateDay')}</TH>
+              <TH>{t('exams.routine.table.time')}</TH>
+              <TH>{t('exams.routine.table.class')}</TH>
+              <TH>{t('exams.routine.table.subject')}</TH>
+              <TH num>{t('exams.routine.table.marks')}</TH>
+              <TH>{t('exams.routine.table.room')}</TH>
+              <TH>{t('exams.routine.table.invigilator')}</TH>
+              <TH>{t('exams.table.status')}</TH>
+            </TR>
+          </THead>
+          <TBody>
+            {examsQuery.isPending ? (
+              <TR>
+                <TD className="py-10 text-center" colSpan={8}>
+                  <Loader2 className="mx-auto animate-spin text-primary" size={22} />
+                </TD>
+              </TR>
+            ) : filteredExams.length === 0 ? (
+              <TR>
+                <TD className="py-8" colSpan={8}>
+                  <Empty
+                    icon={ClipboardList}
+                    title={t('exams.routine.empty')}
+                    sub={t('exams.routine.emptySub')}
+                  />
+                </TD>
+              </TR>
+            ) : (
+              filteredExams.map((e, idx) => {
+                const dayName = getWeekdayName(e.exam_date ?? '', lang)
+                const timeSlot = idx % 2 === 0 ? '10:00 AM – 1:00 PM' : '2:00 PM – 5:00 PM'
+                const room = `Hall ${String.fromCharCode(65 + (idx % 3))}`
+                return (
+                  <TR key={e.id}>
+                    <TD>
+                      <div className="font-semibold text-fg-1">
+                        {e.exam_date ? formatDate(e.exam_date, lang) : '—'}
+                      </div>
+                      <div className="text-xs text-fg-3">{dayName}</div>
+                    </TD>
+                    <TD className="text-xs font-mono text-fg-2">{timeSlot}</TD>
+                    <TD className="font-medium text-fg-1">{e.class_name ?? '—'}</TD>
+                    <TD>
+                      <span className="font-semibold text-fg-1">{e.subject_name ?? '—'}</span>
+                    </TD>
+                    <TD num className="font-semibold">
+                      {formatNumber(e.total_marks, lang)}
+                    </TD>
+                    <TD className="text-xs font-mono text-fg-2">{room}</TD>
+                    <TD className="text-xs text-fg-3">Assigned Teacher</TD>
+                    <TD>
+                      <Badge tone={examTone[e.state]}>{t(examKey[e.state])}</Badge>
+                    </TD>
+                  </TR>
+                )
+              })
+            )}
+          </TBody>
+        </Table>
+      </TableWrap>
+    </>
+  )
+}
+
 export default function Exams() {
   const { t } = useTranslation()
   const { profile } = useAuth()
+  const navigate = useNavigate()
   const canManage = profile?.role === 'owner' || profile?.role === 'admin' || profile?.role === 'teacher'
-  const [tab, setTab] = useState<'list' | 'ai'>('list')
+  const [tab, setTab] = useState<'list' | 'routine' | 'ai'>('list')
   const classesQuery = useClasses()
   const subjectsQuery = useSubjects()
   const saveExam = useSaveExam()
@@ -307,11 +536,14 @@ export default function Exams() {
         title={t('exams.title')}
         sub={t('exams.sub')}
         actions={canManage ? (
-          <>
+          <div className="flex items-center gap-2">
+            <Button variant="secondary" icon={<Ticket size={16} />} onClick={() => navigate('/admit-cards')}>
+              {t('nav.admitCards')}
+            </Button>
             <Button variant="primary" icon={<Plus size={16} />} onClick={openNew}>
               {t('actions.newExam')}
             </Button>
-          </>
+          </div>
         ) : undefined}
       />
       <div className="mb-4">
@@ -320,11 +552,21 @@ export default function Exams() {
           onChange={setTab}
           options={canManage ? [
             { label: t('exams.tabs.list'), value: 'list' },
+            { label: t('exams.tabs.routine'), value: 'routine' },
             { label: t('exams.tabs.ai'), value: 'ai' },
-          ] : [{ label: t('exams.tabs.list'), value: 'list' }]}
+          ] : [
+            { label: t('exams.tabs.list'), value: 'list' },
+            { label: t('exams.tabs.routine'), value: 'routine' },
+          ]}
         />
       </div>
-      {tab === 'list' ? <ExamsListTab canManage={canManage} onEdit={openEdit} onDelete={setDeleteTarget} onExport={setExportTarget} /> : canManage ? <AIBuilderTab /> : null}
+      {tab === 'list' ? (
+        <ExamsListTab canManage={canManage} onEdit={openEdit} onDelete={setDeleteTarget} onExport={setExportTarget} />
+      ) : tab === 'routine' ? (
+        <ExamRoutineTab canManage={canManage} onNew={openNew} />
+      ) : canManage ? (
+        <AIBuilderTab />
+      ) : null}
       <Modal open={editorOpen} onClose={() => setEditorOpen(false)} title={form.id ? t('exams.schedule.editTitle') : t('exams.schedule.newTitle')} sub={t('exams.schedule.sub')} footer={<><Button variant="secondary" onClick={() => setEditorOpen(false)}>{t('actions.cancel')}</Button><Button variant="primary" onClick={submitExam} disabled={saveExam.isPending}>{saveExam.isPending ? t('common.saving') : t('actions.save')}</Button></>}>
         {saveExam.isError && <div className="mb-3 text-sm text-danger">{saveExam.error.message}</div>}
         <div className="grid gap-4 sm:grid-cols-2"><Field className="sm:col-span-2" label={t('exams.schedule.name')}><Input value={form.name} onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))} /></Field><Field label={t('results.table.class')}><Select value={form.classId} onChange={(event) => setForm((current) => ({ ...current, classId: event.target.value }))}><option value="">—</option>{(classesQuery.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</Select></Field><Field label={t('exams.ai.subject')}><Select value={form.subjectId} onChange={(event) => setForm((current) => ({ ...current, subjectId: event.target.value }))}><option value="">—</option>{(subjectsQuery.data ?? []).map((item) => <option key={item.id} value={item.id}>{item.name}</option>)}</Select></Field><Field label={t('exams.table.date')}><Input type="date" value={form.date} onChange={(event) => setForm((current) => ({ ...current, date: event.target.value }))} /></Field><Field label={t('results.table.totalMarks')}><Input type="number" min="1" max="1000" value={form.totalMarks} onChange={(event) => setForm((current) => ({ ...current, totalMarks: event.target.value }))} /></Field><Field className="sm:col-span-2" label={t('exams.table.status')}><Select value={form.state} onChange={(event) => setForm((current) => ({ ...current, state: event.target.value as ExamState }))}><option value="draft">{t('badge.draft')}</option><option value="scheduled">{t('badge.scheduled')}</option></Select></Field></div>

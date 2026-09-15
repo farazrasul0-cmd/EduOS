@@ -2,7 +2,7 @@ import { useRef, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
-  Upload, UserPlus, SlidersHorizontal, MoreHorizontal, User, Camera, Trash2, Loader2, FileSpreadsheet, Download,
+  Upload, UserPlus, SlidersHorizontal, MoreHorizontal, User, Camera, Trash2, Loader2, FileSpreadsheet, Download, CreditCard,
 } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
 import { Button } from '@/components/ui/Button'
@@ -15,10 +15,12 @@ import { Field, Input, Select, SearchInput } from '@/components/ui/form'
 import { Toolbar, TableWrap, Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
 import { avatarColor, initials, formatNumber } from '@/lib/utils'
 import { useAuth } from '@/auth/context'
-import { useStudents, useClasses, useAddStudent, useImportStudents, uploadAvatar } from '@/data/students'
+import { useStudents, useClasses, useAddStudent, useImportStudents, uploadAvatar, type StudentWithClass } from '@/data/students'
 import type { AppLanguage } from '@/i18n'
 import { studentFormSchema, validateAvatar } from '@/lib/student-validation'
 import { parseStudentCsv, csvErrorReport, type CsvPreview } from '@/lib/student-csv'
+import { StudentIdCardModal } from '@/components/StudentIdCardModal'
+import { generateStudentId, type StudentIdCardData } from '@/lib/student-id-card'
 
 interface Photo {
   url: string
@@ -50,6 +52,9 @@ export default function Students() {
   const [csvName, setCsvName] = useState('')
   const [csvPreview, setCsvPreview] = useState<CsvPreview | null>(null)
   const [importError, setImportError] = useState<string | null>(null)
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [idCardOpen, setIdCardOpen] = useState(false)
+  const [idCardStudents, setIdCardStudents] = useState<StudentIdCardData[]>([])
 
   const students = studentsQuery.data ?? []
   const classes = classesQuery.data ?? []
@@ -114,6 +119,60 @@ export default function Students() {
     ...classes.map((c) => ({ label: c.name, value: c.id })),
   ]
 
+  function mapToIdCard(s: StudentWithClass): StudentIdCardData {
+    return {
+      id: s.id,
+      studentId: generateStudentId(s.roll_no, '2026', s.id),
+      studentName: s.full_name,
+      rollNo: s.roll_no,
+      className: s.class_name,
+      bloodGroup: 'O+',
+      dob: s.dob,
+      schoolName: t('app.school'),
+      eiin: '108234',
+      academicYear: '2026',
+      validUntil: '31-12-2026',
+      avatarUrl: s.avatar_url,
+      verificationUrl: `https://eduos.app/verify/${s.id}`,
+    }
+  }
+
+  const allSelected = rows.length > 0 && rows.every((r) => selectedIds.has(r.id))
+  function toggleSelectAll() {
+    if (allSelected) {
+      setSelectedIds(new Set())
+    } else {
+      setSelectedIds(new Set(rows.map((r) => r.id)))
+    }
+  }
+
+  function toggleSelectOne(id: string) {
+    setSelectedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+
+  function openBatchIdCards() {
+    const selected = rows.filter((r) => selectedIds.has(r.id))
+    if (!selected.length) return
+    setIdCardStudents(selected.map(mapToIdCard))
+    setIdCardOpen(true)
+  }
+
+  function openClassIdCards() {
+    if (!rows.length) return
+    setIdCardStudents(rows.map(mapToIdCard))
+    setIdCardOpen(true)
+  }
+
+  function openSingleIdCard(student: StudentWithClass) {
+    setIdCardStudents([mapToIdCard(student)])
+    setIdCardOpen(true)
+  }
+
   async function onPickCsv(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
     if (!file || !profile?.school_id) return
@@ -163,6 +222,14 @@ export default function Students() {
         sub={t('students.sub')}
         actions={
           <>
+            <Button
+              variant="secondary"
+              icon={<CreditCard size={16} />}
+              onClick={openClassIdCards}
+              disabled={rows.length === 0}
+            >
+              {t('students.idCard.printClassCards')}
+            </Button>
             <Button variant="secondary" icon={<Upload size={16} />} onClick={() => setImportOpen(true)}>
               {t('actions.import')}
             </Button>
@@ -187,18 +254,46 @@ export default function Students() {
         </Button>
       </Toolbar>
 
+      {selectedIds.size > 0 && (
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-primary/20 bg-primary-tint/30 px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <Badge tone="info">
+              {t('students.idCard.selectedCount', { count: formatNumber(selectedIds.size, lang) })}
+            </Badge>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="primary"
+              size="sm"
+              icon={<CreditCard size={14} />}
+              onClick={openBatchIdCards}
+            >
+              {t('students.idCard.generateBatch', { count: formatNumber(selectedIds.size, lang) })}
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => setSelectedIds(new Set())}>
+              {t('actions.cancel')}
+            </Button>
+          </div>
+        </div>
+      )}
+
       <TableWrap className="rounded-t-none">
         <Table className="min-w-[700px]">
           <THead>
             <TR>
               <TH className="w-8">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  aria-label="Select all students"
+                  checked={allSelected}
+                  onChange={toggleSelectAll}
+                />
               </TH>
               <TH>{t('students.table.student')}</TH>
               <TH>{t('students.table.roll')}</TH>
               <TH>{t('students.table.class')}</TH>
               <TH>{t('students.table.status')}</TH>
-              <TH className="w-10" />
+              <TH className="w-16" />
             </TR>
           </THead>
           <TBody>
@@ -227,7 +322,12 @@ export default function Students() {
               rows.map((s) => (
                 <TR key={s.id}>
                   <TD>
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      aria-label={`Select ${s.full_name}`}
+                      checked={selectedIds.has(s.id)}
+                      onChange={() => toggleSelectOne(s.id)}
+                    />
                   </TD>
                   <TD>
                     <div className="flex items-center gap-2.5">
@@ -243,9 +343,20 @@ export default function Students() {
                     </Badge>
                   </TD>
                   <TD>
-                    <button className="grid h-7 w-7 place-items-center rounded-sm text-fg-2 hover:bg-neutral-100">
-                      <MoreHorizontal size={16} />
-                    </button>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => openSingleIdCard(s)}
+                        title={t('students.idCard.singleAction')}
+                        aria-label={`${t('students.idCard.singleAction')} ${s.full_name}`}
+                        className="grid h-7 w-7 place-items-center rounded-sm text-fg-3 hover:bg-neutral-100 hover:text-primary"
+                      >
+                        <CreditCard size={15} />
+                      </button>
+                      <button className="grid h-7 w-7 place-items-center rounded-sm text-fg-2 hover:bg-neutral-100">
+                        <MoreHorizontal size={16} />
+                      </button>
+                    </div>
                   </TD>
                 </TR>
               ))
@@ -391,6 +502,13 @@ export default function Students() {
           )}
         </form>
       </Modal>
+
+      <StudentIdCardModal
+        open={idCardOpen}
+        onClose={() => setIdCardOpen(false)}
+        students={idCardStudents}
+        schoolName={t('app.school')}
+      />
     </div>
   )
 }

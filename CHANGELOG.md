@@ -9,12 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned
-- Bangladesh MFS payment gateway integration (SSLCommerz / aamarPay / ShurjoPay).
-- Local SMS gateway integration with notification outbox worker.
-- Vitest and React Testing Library unit & component test coverage.
-- Playwright critical path end-to-end test suite.
-- SolaimanLipi / Noto Sans Bengali font embedding for PDF export.
+---
+
+## [1.0.0] - 2026-09-15
+
+### Added - MVP Commercial Production Release
+- **Institutional Onboarding & Multi-Tenancy (Phase 2)**: EIIN validation, Board selection, shifts, institutional branding.
+- **Student Directory & Profiling (Phase 3)**: Bangladeshi 17-digit birth certificates, guardian profiles, CSV batch import/export.
+- **Attendance Management (Phase 4)**: Biometric/RFID compatibility, daily rosters, absence notifications, defaulter warnings.
+- **Conflict-Free Timetable & Routine Scheduler (Phase 5)**: Automated slot allocation, teacher clash detection, printable A4 schedule.
+- **Homework & Digital Assignments (Phase 6)**: Subject submissions, teacher feedback loop, due-date reminders.
+- **Tuition Fees & MFS Payment Reconciliation (Phase 7)**: Monthly billing ledger, arrears tracking, bKash & Nagad reconciliation, vector PDF payment receipts.
+- **NCTB Grading & Academic Reporting (Phase 8)**: Continuous Assessment (20%), Summative Exam (80%), GPA 5.0 scale, single & batch PDF report cards.
+- **Exam Routine Scheduler (Phase 9)**: Chronological exam schedule matrix, room capacities, A4 exam routine PDF export.
+- **Student ID Card Generator (Phase 10)**: CR80 PVC format, dynamic QR codes, batch printing.
+- **Public Online Admission Portal (Phase 11)**: External candidate portal, 17-digit birth certificate check, printable admission slip.
+- **Library & Book Circulation (Phase 12)**: Dewey Decimal catalog, borrowing ledger, overdue fine calculator, library cards.
+- **Staff & Teacher Payroll (Phase 13)**: Gross salary, Provident Fund deductions, Tax TDS, disbursement ledger, payslip PDF.
+- **Transfer & Character Certificates (Phase 14)**: Verification tokens, A4 certificate PDF, principal signoff.
+- **Hostel & Residential Hall Management (Phase 15)**: Room & bed allocation, meal tokens, gate pass curfew tracking.
+- **Admit Cards & Hall Seat Planner (Phase 16)**: Anti-cheating zigzag seating, tuition fee clearance filter, printable admit cards with QR.
+- **Class Tabulation Broadsheet (Phase 17)**: CA 20% + Final 80% broadsheet, GPA calculation, A3 broadsheet export.
+- **Teacher & Student Leave Management (Phase 18)**: Quotas, multi-role approval workflow, attendance integration.
+- **Digital Notice Board & Circulars (Phase 19)**: Institutional circulars, SMS broadcasting, PDF export.
+- **Dedicated Parent & Student Portal (Phase 20)**: Child switcher, collegiate attendance status, direct 1-click bKash payment, homework submission, Progress Dossier.
+- **Online MCQ Quiz & Model Test Engine (Phase 21)**: Live timed exam runner, negative marking, NCTB question banks, auto-evaluation, Diagnostic Performance Analysis PDF.
+- **Localization**: 100% bilingual parity between English and Bengali (বাংলা).
+- **Test Coverage**: 53 test suites, 311 passing automated tests with 0 lint errors.
 
 ---
 

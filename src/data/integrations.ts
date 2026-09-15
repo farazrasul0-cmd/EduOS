@@ -1,6 +1,6 @@
 import { useMutation,useQuery,useQueryClient } from '@tanstack/react-query'
 import { supabase } from '@/lib/supabase'
-export type IntegrationProvider='classroom'|'sslcommerz'|'whatsapp'|'zoom'
+export type IntegrationProvider = 'classroom' | 'sslcommerz' | 'whatsapp' | 'zoom' | 'bulksmsbd'
 export interface SchoolIntegration{id:string;school_id:string;provider:IntegrationProvider;status:'disconnected'|'configured';account_label:string|null;configured_at:string|null}
 export function useSchoolIntegrations(schoolId?:string){return useQuery({queryKey:['school-integrations',schoolId],enabled:!!schoolId,queryFn:async():Promise<SchoolIntegration[]>=>{const{data,error}=await supabase.from('school_integrations').select('*').eq('school_id',schoolId!).order('provider');if(error)throw error;return(data??[]) as SchoolIntegration[]}})}
 export function useConfigureIntegration(){const qc=useQueryClient();return useMutation({mutationFn:async(x:{schoolId:string;provider:IntegrationProvider;label:string;enabled:boolean})=>{const{error}=await supabase.rpc('configure_school_integration',{target_provider:x.provider,target_account_label:x.label,target_enabled:x.enabled});if(error)throw error},onSuccess:(_d,x)=>{void qc.invalidateQueries({queryKey:['school-integrations',x.schoolId]})}})}

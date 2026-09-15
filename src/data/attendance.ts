@@ -94,7 +94,31 @@ export function useSaveAttendance() {
     onSuccess: (_data, variables) => {
       void qc.invalidateQueries({ queryKey: ['attendance', variables.rows[0]?.date] })
       void qc.invalidateQueries({ queryKey: ['attendance-overview'] })
+      void qc.invalidateQueries({ queryKey: ['attendance-monthly'] })
       void qc.invalidateQueries({ queryKey: ['notifications'] })
     },
   })
 }
+
+export interface StudentMonthlyAttendanceRecord {
+  student_id: string
+  date: string
+  status: AttendanceStatus
+}
+
+export function useMonthlyAttendance(monthPrefix: string) {
+  return useQuery({
+    queryKey: ['attendance-monthly', monthPrefix],
+    queryFn: async (): Promise<StudentMonthlyAttendanceRecord[]> => {
+      const { data, error } = await supabase
+        .from('attendance_records')
+        .select('student_id, date, status')
+        .gte('date', `${monthPrefix}-01`)
+        .lte('date', `${monthPrefix}-31`)
+        .order('date', { ascending: true })
+      if (error) throw error
+      return (data ?? []) as StudentMonthlyAttendanceRecord[]
+    },
+  })
+}
+

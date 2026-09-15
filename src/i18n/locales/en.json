@@ -23,14 +23,30 @@
     "fees": "Fees",
     "calendar": "Calendar",
     "parent": "Parent messages",
+    "admissions": "Admissions",
     "settings": "Settings",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "library": "Library",
+    "payroll": "Payroll & Salary",
+    "certificates": "Certificates",
+    "hostel": "Hostel & Dormitory",
+    "admitCards": "Admit Cards & Seating",
+    "leave": "Leave Management",
+    "notices": "Notice Board",
+    "portal": "Parent & Student Portal",
+    "quizzes": "Online Quizzes"
   },
   "topbar": {
+    "menu": "Menu",
     "class": "Class 7-A",
     "searchPlaceholder": "Search students, fees, exams…",
     "help": "Help",
     "notifications": "Notifications"
+  },
+  "offline": {
+    "title": "You are currently offline",
+    "description": "Changes will sync when your internet connection is restored.",
+    "restored": "Internet connection restored"
   },
   "notifications": {
     "title": "Notifications",
@@ -95,20 +111,52 @@
       "title": "Recent activity",
       "viewAll": "View all",
       "items": [
-        { "who": "Tahmid Rahman", "what": "submitted Algebra worksheet", "when": "2m ago" },
-        { "who": "Nusrat Jahan's parent", "what": "paid term-2 tuition fee", "when": "18m ago" },
-        { "who": "You", "what": "published Mid-term results to 7-A", "when": "1h ago" },
-        { "who": "Rafiq Islam", "what": "marked absent", "when": "today, 9:05 AM" },
-        { "who": "Maya Karim", "what": "joined Class 7-A", "when": "yesterday" }
+        {
+          "who": "Tahmid Rahman",
+          "what": "submitted Algebra worksheet",
+          "when": "2m ago"
+        },
+        {
+          "who": "Nusrat Jahan's parent",
+          "what": "paid term-2 tuition fee",
+          "when": "18m ago"
+        },
+        {
+          "who": "You",
+          "what": "published Mid-term results to 7-A",
+          "when": "1h ago"
+        },
+        {
+          "who": "Rafiq Islam",
+          "what": "marked absent",
+          "when": "today, 9:05 AM"
+        },
+        {
+          "who": "Maya Karim",
+          "what": "joined Class 7-A",
+          "when": "yesterday"
+        }
       ]
     },
     "next": {
       "title": "What's next",
       "add": "Add",
       "items": [
-        { "name": "Mid-term · Mathematics", "date": "Mon, 27 May", "state": "Scheduled" },
-        { "name": "Algebra · Worksheet 4", "date": "Due Wed, 27 May", "state": "12 / 12 submitted" },
-        { "name": "Science · Lab report", "date": "Due Fri, 30 May", "state": "8 / 12 submitted" }
+        {
+          "name": "Mid-term · Mathematics",
+          "date": "Mon, 27 May",
+          "state": "Scheduled"
+        },
+        {
+          "name": "Algebra · Worksheet 4",
+          "date": "Due Wed, 27 May",
+          "state": "12 / 12 submitted"
+        },
+        {
+          "name": "Science · Lab report",
+          "date": "Due Fri, 30 May",
+          "state": "8 / 12 submitted"
+        }
       ]
     }
   },
@@ -234,25 +282,25 @@
       "feeHistory": "Fee history",
       "noFees": "No invoices for this student",
       "assignmentHistory": "Assignment history",
-      "resultHistory": "Result history"
-      ,"editTitle": "Edit student"
-      ,"archive": "Archive"
-      ,"archiveTitle": "Archive student?"
-      ,"archiveBody": "{{name}} will become inactive and remain available in school records."
-      ,"guardians": "Guardians"
-      ,"addGuardian": "Add guardian"
-      ,"noGuardians": "No guardians linked"
-      ,"primary": "Primary"
-      ,"guardianSub": "Create or reuse a guardian record and link it to this student."
-      ,"guardianName": "Guardian name"
-      ,"relationship": "Relationship"
-      ,"guardianEmail": "Email"
-      ,"guardianPhone": "Phone"
-      ,"makePrimary": "Make this the primary guardian"
-      ,"linkGuardian": "Link guardian"
-      ,"sendInvite": "Send invite"
-      ,"inviteSent": "Invitation sent to {{email}}."
-      ,"portalLinked": "Portal linked"
+      "resultHistory": "Result history",
+      "editTitle": "Edit student",
+      "archive": "Archive",
+      "archiveTitle": "Archive student?",
+      "archiveBody": "{{name}} will become inactive and remain available in school records.",
+      "guardians": "Guardians",
+      "addGuardian": "Add guardian",
+      "noGuardians": "No guardians linked",
+      "primary": "Primary",
+      "guardianSub": "Create or reuse a guardian record and link it to this student.",
+      "guardianName": "Guardian name",
+      "relationship": "Relationship",
+      "guardianEmail": "Email",
+      "guardianPhone": "Phone",
+      "makePrimary": "Make this the primary guardian",
+      "linkGuardian": "Link guardian",
+      "sendInvite": "Send invite",
+      "inviteSent": "Invitation sent to {{email}}.",
+      "portalLinked": "Portal linked"
     },
     "validation": {
       "invalid": "Check the student's name, roll number, class, and date of birth. Dates cannot be in the future.",
@@ -273,6 +321,36 @@
       "importCount": "Import {{count}} students",
       "downloadErrors": "Download error report",
       "readError": "The CSV file could not be read."
+    },
+    "idCard": {
+      "title": "Student ID Card",
+      "batchTitle": "Batch Student ID Cards ({{count}})",
+      "sub": "Print-ready CR80 PVC card format with BANBEIS header and verification QR code.",
+      "viewFront": "View Front",
+      "viewBack": "View Back",
+      "clickToFlip": "Click card to flip between Front and Back",
+      "flipHint": "Click card or button above to flip between Front and Back.",
+      "headerBadge": "STUDENT IDENTITY CARD",
+      "session": "Session",
+      "bloodGroup": "Blood Group",
+      "validUntil": "Valid Until",
+      "emergencyHeader": "EMERGENCY INFORMATION & TERMS",
+      "guardian": "Guardian",
+      "emergencyContact": "Emergency Contact",
+      "address": "Address",
+      "termsNotice": "This identity card is non-transferable and must be displayed during school hours. If found, please return to the school administration.",
+      "principalSign": "Headmaster / Principal",
+      "customizeTitle": "Customize Card Details",
+      "downloadSingle": "Download ID Card (PDF)",
+      "downloadBatch": "Download A4 Sheet ({{count}})",
+      "batchPrintOptions": "Batch Sheet Layout Options",
+      "printFronts": "Front Sides Only",
+      "printBacks": "Back Sides Only",
+      "batchHint": "Generates 8 cards per A4 sheet with precision cutting guidelines for {{count}} students.",
+      "selectedCount": "{{count}} students selected",
+      "generateBatch": "Generate ID Cards ({{count}})",
+      "printClassCards": "Print Class ID Cards",
+      "singleAction": "Student ID Card"
     }
   },
   "attendance": {
@@ -285,7 +363,12 @@
       "late": "Late",
       "needsAttention": "needs attention"
     },
-    "status": { "present": "Present", "absent": "Absent", "late": "Late", "leave": "Leave" },
+    "status": {
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "leave": "Leave"
+    },
     "markTitle": "Mark attendance",
     "markSub": "Tap a status for each student.",
     "day": "Day",
@@ -304,12 +387,71 @@
     "saveError": "Attendance could not be saved: {{error}}",
     "historyTitle": "Attendance history",
     "historySub": "Select a saved day to review or edit it, or export the report as CSV.",
-    "history": { "date": "Date" },
-    "historyEmpty": "No saved attendance days yet."
+    "history": {
+      "date": "Date"
+    },
+    "historyEmpty": "No saved attendance days yet.",
+    "tabs": {
+      "daily": "Daily roll call",
+      "monthly": "Monthly register",
+      "defaulters": "Attendance risk (<75%)"
+    },
+    "collegiate": {
+      "collegiate": "Collegiate (>=75%)",
+      "nonCollegiate": "Non-collegiate (60-74%)",
+      "disCollegiate": "Dis-collegiate (<60%)"
+    },
+    "smsModal": {
+      "title": "Send absence SMS alerts",
+      "sub": "Alert guardians of {{count}} absent students via Bangladesh SMS Gateway.",
+      "recipients": "Recipients (Guardians of absent students)",
+      "preview": "BTRC-compliant SMS preview",
+      "send": "Send {{count}} SMS alerts",
+      "sending": "Sending SMS alerts…",
+      "sentSuccess": "Absence SMS alerts dispatched successfully."
+    },
+    "downloadMonthlyPdf": "Download monthly register (PDF)",
+    "exportMonthlyCsv": "Export monthly register (CSV)",
+    "monthlyRegister": "Monthly Attendance Register",
+    "workingDays": "Working days",
+    "totalPresent": "Total present",
+    "totalAbsent": "Total absent",
+    "attendanceRate": "Attendance rate"
   },
   "fees": {
     "title": "Fees",
     "sub": "May 2026 · 7-A tuition",
+    "tabs": {
+      "invoices": "Invoices",
+      "defaulters": "Fee defaulters & fine ledger"
+    },
+    "defaulters": {
+      "title": "Fee Defaulters & Late Fine Ledger",
+      "sub": "Track students with overdue fees, calculate automatic late fines, and broadcast BTRC SMS payment reminders.",
+      "empty": "No fee defaulters",
+      "emptySub": "All students have paid their dues or are within current payment terms.",
+      "totalOverdue": "Total arrears",
+      "totalFines": "Total late fines",
+      "defaulterCount": "{{count}} overdue students",
+      "downloadPdf": "Download defaulters notice (PDF)",
+      "exportCsv": "Export defaulters (CSV)",
+      "bulkSms": "Send reminder SMS ({{count}})",
+      "sendSingleSms": "Send reminder SMS",
+      "daysLate": "{{count}} days late",
+      "gracePeriod": "In grace period",
+      "principal": "Principal",
+      "fine": "Late fine",
+      "totalDue": "Total due",
+      "smsModal": {
+        "title": "Confirm Payment Reminder SMS",
+        "sub": "Dispatch BTRC-compliant payment reminder to guardians of {{count}} defaulters.",
+        "recipients": "Recipients (Guardians of overdue students)",
+        "preview": "BTRC-compliant SMS preview",
+        "send": "Send {{count}} SMS reminders",
+        "sending": "Sending reminders…",
+        "sentSuccess": "Fee reminder SMS dispatched successfully."
+      }
+    },
     "searchPlaceholder": "Search by student or invoice",
     "invoicesCount": "{{count}} invoices",
     "empty": "No invoices yet",
@@ -322,7 +464,13 @@
       "overdueStudents": "{{count}} students",
       "month": "May 2026"
     },
-    "filter": { "all": "All", "paid": "Paid", "due": "Due", "partial": "Partial", "overdue": "Overdue" },
+    "filter": {
+      "all": "All",
+      "paid": "Paid",
+      "due": "Due",
+      "partial": "Partial",
+      "overdue": "Overdue"
+    },
     "table": {
       "student": "Student",
       "invoice": "Invoice",
@@ -353,15 +501,66 @@
       "record": "Record payment",
       "history": "Payment history",
       "empty": "No successful payments recorded.",
-      "methods": { "cash": "Cash", "bank": "Bank", "bkash": "bKash", "nagad": "Nagad", "rocket": "Rocket", "upay": "Upay", "card": "Card" }
+      "methods": {
+        "cash": "Cash",
+        "bank": "Bank",
+        "bkash": "bKash",
+        "nagad": "Nagad",
+        "rocket": "Rocket",
+        "upay": "Upay",
+        "card": "Card"
+      }
+    },
+    "validation": {
+      "trxIdRequired": "Transaction reference is required.",
+      "trxIdInvalidBkash": "bKash TrxID must be a 10-character alphanumeric code (e.g. 9J82K39L2A).",
+      "trxIdInvalidNagad": "Nagad TrxID must be an 8 to 12 character alphanumeric code.",
+      "trxIdInvalid": "Enter a valid transaction reference."
+    },
+    "online": {
+      "payOnline": "Pay Online (bKash / Nagad / Cards)",
+      "payWith": "Pay with {{method}}",
+      "chooseMethod": "Select online payment method",
+      "simulate": "Simulate payment",
+      "processing": "Connecting to payment gateway...",
+      "successTitle": "Payment successful",
+      "successSub": "Transaction {{trxId}} verified and recorded."
     }
   },
   "exams": {
     "title": "Exams",
     "sub": "Schedule exams and draft papers with AI. Marks are entered in Results.",
     "empty": "No exams yet",
-    "emptySub": "Exams you schedule for this class will appear here.",
-    "tabs": { "list": "All exams", "ai": "✨ AI builder" },
+    "tabs": {
+      "list": "All exams",
+      "routine": "Exam routine & schedule",
+      "ai": "✨ AI builder"
+    },
+    "routine": {
+      "title": "Examination Schedule & Routine",
+      "sub": "Official examination timetable with date, time, rooms, and assigned invigilators.",
+      "classFilter": "Filter by class",
+      "allClasses": "All classes",
+      "downloadPdf": "Download exam routine (PDF)",
+      "exportCsv": "Export routine (CSV)",
+      "empty": "No exams scheduled",
+      "emptySub": "Exams you schedule will appear in this routine matrix.",
+      "table": {
+        "dateDay": "Date & day",
+        "time": "Time slot",
+        "class": "Class",
+        "subject": "Subject & code",
+        "room": "Room / Hall",
+        "invigilator": "Hall invigilator",
+        "marks": "Marks"
+      },
+      "kpi": {
+        "totalExams": "Scheduled exams",
+        "examDays": "Exam days",
+        "halls": "Exam halls",
+        "status": "Schedule status"
+      }
+    },
     "kpi": {
       "upcoming": "Upcoming",
       "upcomingFooter": "next 14 days",
@@ -413,7 +612,12 @@
   "results": {
     "title": "Results",
     "sub": "Enter marks, see the gradebook, and share report cards with parents.",
-    "tabs": { "gradebook": "Gradebook", "marks": "Enter marks", "reports": "Report cards" },
+    "tabs": {
+      "gradebook": "Gradebook",
+      "marks": "Enter marks",
+      "reports": "Report cards",
+      "tabulation": "Tabulation Sheet"
+    },
     "kpi": {
       "classAverage": "Class average",
       "classAverageDelta": "+2 vs last term",
@@ -450,7 +654,31 @@
     "publishBody": "All completed marks will become visible to students and guardians.",
     "publishWarning": "Publication is atomic: if any roster record is missing or invalid, nothing will be published.",
     "gpa": "GPA",
-    "downloadPdf": "Download PDF report card"
+    "downloadPdf": "Download PDF report card",
+    "meritPosition": "Merit position",
+    "meritRank": "Merit #{{rank}}",
+    "downloadAll": "Download all report cards",
+    "passed": "Passed",
+    "failed": "Failed",
+    "highestInClass": "Highest in class",
+    "nctbGradingScale": "NCTB grading scale",
+    "tabulation": {
+      "title": "Class Tabulation Broadsheet",
+      "subtitle": "Official continuous assessment & term final evaluation broadsheet with merit ranking",
+      "downloadPdf": "Export Tabulation Broadsheet (PDF)",
+      "printAllReports": "Batch Print Report Cards (PDF)",
+      "passRate": "Pass Rate",
+      "gpa5Count": "GPA 5.0 (A+)",
+      "totalPassed": "Passed",
+      "totalFailed": "Failed",
+      "caMarks": "CA (20)",
+      "finalMarks": "Final (80)",
+      "totalMarks": "Total (100)",
+      "grandTotal": "Grand Total",
+      "meritRank": "Merit Rank",
+      "status": "Result Status",
+      "highest": "Highest in Class"
+    }
   },
   "timetable": {
     "title": "Timetable",
@@ -471,6 +699,12 @@
     "free": "Free",
     "break": "Break",
     "lunch": "Lunch",
+    "classFilter": "Filter by class",
+    "allClasses": "All classes",
+    "downloadPdf": "Download routine (PDF)",
+    "exportCsv": "Export routine (CSV)",
+    "clashWarning": "Schedule clash detected",
+    "fridayHoliday": "Friday · Weekly Holiday",
     "subjectsLegend": "Subjects",
     "form": {
       "addTitle": "Add timetable slot",
@@ -495,7 +729,12 @@
     "count": "{{count}} assignments",
     "empty": "No assignments yet",
     "emptySub": "Create your first assignment and publish it to the class.",
-    "filter": { "all": "All", "open": "Open", "closed": "Closed", "draft": "Drafts" },
+    "filter": {
+      "all": "All",
+      "open": "Open",
+      "closed": "Closed",
+      "draft": "Drafts"
+    },
     "kpi": {
       "open": "Open assignments",
       "openFooter": "across 4 classes",
@@ -602,6 +841,9 @@
     "parentOfClass": "Parent of {{child}} · 7-A",
     "replyPlaceholder": "Write a reply…",
     "unreadCount": "{{count}} unread",
+    "back": "Back to conversations",
+    "studentInfo": "Student information",
+    "hideStudentInfo": "Hide student information",
     "newThread": {
       "title": "New parent conversation",
       "sub": "Choose a guardian and their linked student.",
@@ -643,6 +885,10 @@
       "title": "School details",
       "name": "School name",
       "affiliation": "Affiliation",
+      "eiin": "BANBEIS EIIN",
+      "board": "Education Board",
+      "shift": "Operational Shift",
+      "medium": "Curriculum Medium",
       "address": "Address",
       "academicYear": "Academic year",
       "currency": "Currency",
@@ -689,9 +935,22 @@
       "title": "Billing & plan",
       "manageTitle": "Manage subscription",
       "manageSub": "Choose a plan and keep the billing contact current.",
-      "plans": { "starter": "Starter", "growth": "Growth", "school": "School" },
-      "planPrices": { "starter": "৳29 / student / month", "growth": "৳49 / student / month", "school": "৳79 / student / month" },
-      "status": { "trialing": "Trial", "active": "Active", "past_due": "Past due", "cancelled": "Cancelled" },
+      "plans": {
+        "starter": "Starter",
+        "growth": "Growth",
+        "school": "School"
+      },
+      "planPrices": {
+        "starter": "৳29 / student / month",
+        "growth": "৳49 / student / month",
+        "school": "৳79 / student / month"
+      },
+      "status": {
+        "trialing": "Trial",
+        "active": "Active",
+        "past_due": "Past due",
+        "cancelled": "Cancelled"
+      },
       "usage": "{{students}} students · ৳{{price}} each · ৳{{total}}/month",
       "renews": "Current period ends {{date}}",
       "email": "Billing email",
@@ -720,8 +979,20 @@
         "whatsappTitle": "WhatsApp Business",
         "whatsappSub": "Parent messaging",
         "zoomTitle": "Zoom",
-        "zoomSub": "Schedule online classes"
-      }
+        "zoomSub": "Schedule online classes",
+        "bulksmsbdTitle": "BulkSMSBD",
+        "bulksmsbdSub": "Bangladesh SMS Gateway for parent alerts"
+      },
+      "testSms": "Send test SMS",
+      "testSmsModalTitle": "Send test SMS message",
+      "testSmsModalSub": "Verify your SMS gateway credentials with an immediate mobile delivery test.",
+      "testPhone": "Recipient mobile number",
+      "testPhonePlaceholder": "01711000000",
+      "testMessage": "Test message",
+      "testSending": "Sending SMS...",
+      "testSendBtn": "Send test SMS",
+      "testSuccess": "Test SMS sent successfully to {{phone}}.",
+      "testFailed": "Failed to send SMS: {{error}}"
     },
     "security": {
       "title": "Security",
@@ -807,7 +1078,48 @@
     "createBtn": "Create school",
     "working": "Setting up…",
     "or": "or",
-    "signedInAs": "Signed in as {{email}}"
+    "signedInAs": "Signed in as {{email}}",
+    "wizard": {
+      "step1Title": "Institute Identity",
+      "step1Sub": "Basic information, BANBEIS EIIN, and Education Board affiliation",
+      "step2Title": "Shifts & Medium",
+      "step2Sub": "Operational shifts, language medium, and academic session",
+      "step3Title": "Academic Structure & Fees",
+      "step3Sub": "Initial classes, sections, and default fee heads",
+      "step4Title": "Review & Launch",
+      "step4Sub": "Verify your institution configuration and launch EduOS"
+    },
+    "fields": {
+      "eiin": "BANBEIS EIIN",
+      "eiinPlaceholder": "e.g. 108234",
+      "eiinHint": "6-digit institution identifier issued by BANBEIS",
+      "board": "Education Board",
+      "instituteType": "Institute Type",
+      "shift": "Operational Shift",
+      "medium": "Curriculum Medium",
+      "academicYear": "Academic Session / Year",
+      "academicYearPlaceholder": "e.g. 2026",
+      "address": "Campus Address & District",
+      "addressPlaceholder": "e.g. House 12, Road 4, Dhanmondi, Dhaka-1205",
+      "classes": "Initial Classes",
+      "sections": "Sections",
+      "feeHeads": "Default Fee Heads (BDT)",
+      "reviewAccreditation": "Official Accreditation",
+      "reviewStructure": "Operations & Structure",
+      "reviewClasses": "Classes & Fee Structure"
+    },
+    "errors": {
+      "eiinRequired": "EIIN is required",
+      "eiinFormat": "EIIN must be exactly 6 numeric digits",
+      "nameRequired": "School name is required",
+      "classRequired": "Select at least one class"
+    },
+    "actions": {
+      "next": "Next step",
+      "prev": "Back",
+      "launch": "Launch Institution Dashboard",
+      "launching": "Setting up institution…"
+    }
   },
   "search": {
     "title": "Search",
@@ -843,5 +1155,877 @@
     "bannerDesc": "You are currently previewing sample school records.",
     "createOwnSchool": "Create your school",
     "dismiss": "Dismiss"
+  },
+  "admissions": {
+    "portal": {
+      "title": "Online Admission Application",
+      "sub": "Apply for Academic Session 2026 at EduOS Model School",
+      "stepStudent": "Student Details",
+      "stepGuardian": "Guardian Details",
+      "stepAcademic": "Academic & Class",
+      "studentName": "Student Full Name (English)",
+      "studentNameBn": "Student Name (Bangla)",
+      "dob": "Date of Birth",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "religion": "Religion",
+      "religions": {
+        "islam": "Islam",
+        "hinduism": "Hinduism",
+        "buddhism": "Buddhism",
+        "christianity": "Christianity",
+        "other": "Other"
+      },
+      "bloodGroup": "Blood Group",
+      "birthCertificate": "17-Digit Digital Birth Certificate No",
+      "appliedClass": "Applying For Class",
+      "previousSchool": "Previous School / Institution",
+      "previousGpa": "Previous Marks / GPA",
+      "guardianName": "Guardian Full Name",
+      "guardianPhone": "Guardian Mobile Phone",
+      "guardianEmail": "Guardian Email",
+      "guardianOccupation": "Guardian Occupation",
+      "presentAddress": "Present Address",
+      "submit": "Submit Admission Application",
+      "submitting": "Submitting Application...",
+      "successTitle": "Application Submitted Successfully!",
+      "successSub": "Please save your Application Number for future reference and test schedules.",
+      "appNo": "Application No",
+      "printSlip": "Download Application Slip (PDF)",
+      "applyAnother": "Submit Another Application",
+      "backToLogin": "Return to School Portal",
+      "validation": {
+        "nameRequired": "Student full name is required.",
+        "birthCertInvalid": "Birth certificate must be exactly 17 digits.",
+        "phoneInvalid": "Enter a valid 11-digit Bangladeshi mobile number.",
+        "guardianRequired": "Guardian name and phone are required.",
+        "classRequired": "Please select a class."
+      }
+    },
+    "dashboard": {
+      "title": "Admissions & Applications",
+      "sub": "Manage applicant pipelines, admission tests, and student enrollment.",
+      "kpis": {
+        "total": "Total Applications",
+        "review": "Under Review",
+        "shortlisted": "Shortlisted for Test",
+        "admitted": "Admitted Students",
+        "rate": "Admission Rate"
+      },
+      "tabs": {
+        "all": "All Applications",
+        "submitted": "Submitted",
+        "under_review": "Under Review",
+        "shortlisted": "Shortlisted",
+        "admitted": "Admitted",
+        "rejected": "Rejected"
+      },
+      "table": {
+        "appNo": "App No",
+        "student": "Applicant Name",
+        "class": "Class",
+        "guardian": "Guardian & Phone",
+        "appliedDate": "Applied On",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "view": "Review Application",
+        "shortlist": "Shortlist for Test",
+        "admit": "Admit Student",
+        "reject": "Reject",
+        "enroll": "Enroll as Active Student",
+        "sendSms": "Send Status SMS",
+        "downloadAdmitCard": "Download Admit Card (PDF)",
+        "downloadVoucher": "Download Fee Voucher (PDF)",
+        "portalLink": "Open Public Application Portal"
+      },
+      "modal": {
+        "reviewTitle": "Admission Applicant Review",
+        "studentInfo": "Applicant Profile",
+        "guardianInfo": "Guardian Contact",
+        "academicInfo": "Academic Background",
+        "testDetails": "Admission Test Arrangement",
+        "examRoll": "Test Roll No",
+        "examDate": "Test Date",
+        "examVenue": "Venue / Hall",
+        "fee": "Admission Fee (BDT)",
+        "statusChanged": "Applicant status updated successfully.",
+        "smsSent": "BTRC SMS alert dispatched to guardian.",
+        "enrolled": "Applicant enrolled as active student in school roster.",
+        "empty": "No admission applications found",
+        "emptySub": "Prospective students can submit applications via the online portal."
+      }
+    }
+  },
+  "library": {
+    "title": "Library & Textbooks",
+    "sub": "Manage book catalog, circulation loans, overdue fines, and NCTB textbook distribution.",
+    "kpis": {
+      "totalBooks": "Total Books",
+      "activeLoans": "Active Loans",
+      "overdueCount": "Overdue Books",
+      "totalFines": "Accrued Fines",
+      "nctbDistributed": "NCTB Distributed"
+    },
+    "tabs": {
+      "catalog": "Book Catalog",
+      "circulation": "Circulation Desk",
+      "nctb": "NCTB Textbook Register",
+      "overdue": "Overdue & Fines"
+    },
+    "catalog": {
+      "addBook": "Add New Book",
+      "searchPlaceholder": "Search by title, author, accession no…",
+      "allCategories": "All Categories",
+      "accessionNo": "Accession No",
+      "bookTitle": "Book Title",
+      "author": "Author",
+      "shelf": "Shelf / Location",
+      "copies": "Copies",
+      "available": "Available",
+      "status": "Status",
+      "actions": "Actions",
+      "issue": "Issue Book"
+    },
+    "circulation": {
+      "issueNew": "Issue Book",
+      "book": "Book",
+      "borrower": "Borrower",
+      "borrowerType": "Type",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "returnDate": "Return Date",
+      "fine": "Fine (BDT)",
+      "returnAction": "Return Book",
+      "renewAction": "Renew (14 Days)"
+    },
+    "modal": {
+      "addBookTitle": "Add Book to Catalog",
+      "issueTitle": "Issue Book Loan",
+      "returnTitle": "Return Book & Settle Fine",
+      "titleField": "Book Title (English)",
+      "titleBnField": "Book Title (Bangla)",
+      "authorField": "Author Name",
+      "authorBnField": "Author Name (Bangla)",
+      "categoryField": "Category",
+      "shelfField": "Shelf / Location",
+      "copiesField": "Total Copies",
+      "selectBook": "Select Book",
+      "selectBorrowerType": "Borrower Type",
+      "student": "Student",
+      "teacher": "Teacher / Staff",
+      "borrowerName": "Borrower Full Name",
+      "rollOrDesignation": "Class Roll or Designation",
+      "classField": "Class / Grade",
+      "phoneField": "Contact Phone",
+      "loanDuration": "Loan Duration (Days)",
+      "accruedFine": "Accrued Late Fine",
+      "waiveFine": "Waive Late Fine",
+      "markPaid": "Mark Fine as Paid",
+      "confirmReturn": "Confirm Book Return",
+      "confirmIssue": "Confirm Book Issue",
+      "confirmAdd": "Add Book to Catalog",
+      "close": "Close"
+    },
+    "nctb": {
+      "selectClass": "Select Class",
+      "distributeAll": "Distribute All to Class",
+      "downloadReport": "Download UEO Register (PDF)",
+      "studentRoster": "Student Roster & Textbook Checklist",
+      "roll": "Roll",
+      "studentName": "Student Name",
+      "distributedStatus": "Textbooks Received",
+      "signed": "Guardian Signed",
+      "allComplete": "All Complete",
+      "partially": "Partial",
+      "pending": "Pending"
+    },
+    "overdue": {
+      "downloadNotice": "Download Overdue Notice (PDF)",
+      "settleFine": "Settle Fine",
+      "waiveFine": "Waive Fine",
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "waived": "Waived"
+    },
+    "categories": {
+      "fiction": "Literature & Fiction",
+      "science": "Science & Tech",
+      "history": "History & Liberation War",
+      "biography": "Biography",
+      "religion": "Religious & Moral",
+      "reference": "Reference & Dictionary",
+      "olympiad": "Olympiad & Math",
+      "nctb": "NCTB Curriculum",
+      "other": "General / Other"
+    },
+    "notifications": {
+      "bookAdded": "New book successfully added to catalog",
+      "bookIssued": "Book successfully issued",
+      "bookReturned": "Book returned and inventory updated",
+      "bookRenewed": "Book loan renewed for 14 days",
+      "fineSettled": "Fine status updated",
+      "allDistributed": "All NCTB textbooks distributed to class",
+      "subjectToggled": "Textbook distribution status updated"
+    }
+  },
+  "payroll": {
+    "title": "Payroll & Staff Compensation",
+    "subtitle": "Monthly salary sheet, MPO & institutional scale allowances, statutory deductions, bank disbursement & payslip generator",
+    "kpis": {
+      "totalExpense": "Total Monthly Payroll",
+      "disbursed": "Disbursed Amount",
+      "pending": "Pending Disbursement",
+      "totalStaff": "Staff on Payroll"
+    },
+    "tabs": {
+      "salarySheet": "Monthly Salary Sheet",
+      "disbursements": "Disbursement Ledger",
+      "profiles": "Salary Structure & Profiles"
+    },
+    "actions": {
+      "generatePayroll": "Generate Monthly Sheet",
+      "downloadBankSheet": "Bank Statement (PDF)",
+      "downloadPayslip": "Payslip (PDF)",
+      "disburse": "Disburse Salary",
+      "bulkDisburse": "Bulk Disburse Selected",
+      "editProfile": "Edit Structure",
+      "previewPayslip": "View Payslip"
+    },
+    "table": {
+      "staffId": "Staff ID",
+      "employee": "Employee Name",
+      "designation": "Designation & Type",
+      "gross": "Gross Salary",
+      "deductions": "Deductions",
+      "netPay": "Net Payable",
+      "status": "Status",
+      "paymentChannel": "Payment Channel",
+      "actions": "Actions"
+    },
+    "status": {
+      "draft": "Draft",
+      "approved": "Approved",
+      "disbursed": "Disbursed",
+      "void": "Void"
+    },
+    "channels": {
+      "bank_transfer": "Bank Transfer (BEFTN)",
+      "bkash": "bKash Corporate",
+      "nagad": "Nagad Corporate",
+      "cash": "Cash"
+    },
+    "types": {
+      "mpo": "Govt MPO Scale",
+      "non_mpo": "Institutional Private",
+      "contractual": "Contractual"
+    },
+    "earnings": {
+      "basic": "Basic Pay",
+      "houseRent": "House Rent Allowance",
+      "medical": "Medical Allowance",
+      "conveyance": "Conveyance Allowance",
+      "festivalBonus": "Festival Bonus",
+      "special": "Special Allowance"
+    },
+    "deductions": {
+      "pf": "Provident Fund (GPF)",
+      "welfare": "Welfare Trust (4%)",
+      "retirement": "Retirement Fund (6%)",
+      "tax": "Income Tax (TDS)",
+      "unpaidLeave": "Unpaid Leave Deduction",
+      "advance": "Advance / Loan Deduction"
+    },
+    "modal": {
+      "generateTitle": "Generate Monthly Salary Sheet",
+      "selectMonth": "Billing Month",
+      "selectYear": "Billing Year",
+      "festivalBonusPercent": "Festival Bonus (% of Basic)",
+      "none": "None (0%)",
+      "eidTeachers": "Eid/Puja Bonus (Teachers - 25%)",
+      "eidStaff": "Eid/Puja Bonus (Staff - 50%)",
+      "fullBonus": "Full Basic Bonus (100%)",
+      "generateBtn": "Compute & Generate",
+      "disburseTitle": "Disburse Salary Payment",
+      "disbursementDate": "Payment Date",
+      "reference": "Transaction Ref / Cheque No",
+      "confirmDisburse": "Confirm Disbursement",
+      "editProfileTitle": "Edit Staff Salary Structure",
+      "saveStructure": "Save Salary Structure",
+      "payslipPreviewTitle": "Staff Pay Slip Preview"
+    },
+    "filter": {
+      "allChannels": "All Channels",
+      "allStatuses": "All Statuses"
+    },
+    "messages": {
+      "generated": "Monthly salary sheet generated successfully!",
+      "disbursed": "Salary marked as disbursed successfully!",
+      "profileUpdated": "Salary structure updated successfully!",
+      "bulkDisbursed": "Selected salaries disbursed successfully!"
+    },
+    "empty": {
+      "title": "No Salary Records Found",
+      "desc": "Generate payroll for the selected month to view staff salary sheets."
+    }
+  },
+  "certificates": {
+    "title": "Certificate & Document Center",
+    "subtitle": "Official institutional Transfer Certificates (TC), SSC/HSC Testimonials, and Bonafide study certificates with security serials",
+    "kpis": {
+      "total": "Total Issued",
+      "tc": "Transfer Certificates (TC)",
+      "testimonials": "SSC/HSC Testimonials",
+      "bonafide": "Bonafide Certificates"
+    },
+    "tabs": {
+      "all": "All Certificates",
+      "tc": "Transfer Certificate (TC)",
+      "testimonial": "Testimonials",
+      "bonafide": "Bonafide Certificates"
+    },
+    "actions": {
+      "issue": "Issue Certificate",
+      "download": "Download PDF",
+      "preview": "View Certificate",
+      "revoke": "Revoke"
+    },
+    "table": {
+      "serial": "Serial No",
+      "student": "Student Name",
+      "type": "Certificate Type",
+      "class": "Class & Roll",
+      "issueDate": "Issue Date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "types": {
+      "tc": "Transfer Certificate (TC)",
+      "testimonial": "Academic Testimonial",
+      "bonafide": "Bonafide Certificate"
+    },
+    "status": {
+      "issued": "Issued",
+      "pending": "Pending Approval",
+      "revoked": "Revoked"
+    },
+    "modal": {
+      "issueTitle": "Issue Official Certificate",
+      "selectType": "Certificate Type",
+      "studentInfo": "Student Information",
+      "studentName": "Student Full Name",
+      "studentNameBn": "Student Name (Bangla)",
+      "fatherName": "Father's Full Name",
+      "motherName": "Mother's Full Name",
+      "birthRegNo": "Digital Birth Reg No (17 Digits)",
+      "dob": "Date of Birth",
+      "class": "Class / Grade",
+      "section": "Section",
+      "roll": "Roll Number",
+      "gender": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "tcDetails": "Transfer Certificate Details",
+      "reasonForLeaving": "Reason for Leaving",
+      "conduct": "Conduct & Character",
+      "promotedTo": "Promoted / Eligible Class",
+      "duesCleared": "Dues Cleared Up To",
+      "testimonialDetails": "Testimonial Academic Credentials",
+      "board": "Education Board",
+      "boardRoll": "Board Roll No",
+      "boardReg": "Board Registration No",
+      "passingYear": "Passing Year",
+      "gpa": "GPA Achieved",
+      "grade": "Letter Grade",
+      "activities": "Co-Curricular Activities",
+      "bonafideDetails": "Bonafide Certificate Details",
+      "purpose": "Official Purpose of Certificate",
+      "validUntil": "Validity Date",
+      "submitBtn": "Generate & Issue Certificate",
+      "previewTitle": "Certificate Document Preview"
+    },
+    "messages": {
+      "issued": "Certificate issued successfully with verification serial!",
+      "revoked": "Certificate revoked successfully."
+    },
+    "empty": {
+      "title": "No Certificates Found",
+      "desc": "Issue a new Transfer Certificate, Testimonial, or Bonafide Certificate to view records here."
+    }
+  },
+  "hostel": {
+    "title": "Hostel & Dormitory Management",
+    "subtitle": "Residential halls, room & bed allocation, student out-pass curfew tracking, and monthly mess ledger",
+    "kpis": {
+      "capacity": "Total Capacity (Beds)",
+      "boarders": "Current Boarders",
+      "vacant": "Vacant Beds",
+      "occupancyRate": "Occupancy Rate"
+    },
+    "tabs": {
+      "rooms": "Rooms & Capacity",
+      "boarders": "Boarder Roster",
+      "gatepass": "Gate Pass & Curfew"
+    },
+    "actions": {
+      "allocate": "Allocate Seat",
+      "issuePass": "Issue Gate Pass",
+      "downloadRegister": "Occupancy Register (PDF)",
+      "downloadPass": "Gate Pass Slip (PDF)",
+      "markReturned": "Mark Returned",
+      "vacate": "Vacate Seat"
+    },
+    "table": {
+      "roomNo": "Room No",
+      "building": "Hostel Building",
+      "type": "Type & Gender",
+      "capacity": "Capacity / Occupied",
+      "seatRent": "Monthly Rent",
+      "status": "Status",
+      "student": "Boarder Name",
+      "class": "Class & Roll",
+      "bed": "Bed No",
+      "guardianPhone": "Guardian Contact",
+      "messFee": "Mess Fee",
+      "passNo": "Pass Number",
+      "destination": "Destination & Reason",
+      "departure": "Departure",
+      "expectedReturn": "Expected Return",
+      "actions": "Actions"
+    },
+    "status": {
+      "paid": "Paid",
+      "due": "Due",
+      "overdue": "Overdue",
+      "approved": "Approved",
+      "active": "Active (Out)",
+      "returned": "Returned",
+      "overdueCurfew": "Curfew Delayed"
+    },
+    "modal": {
+      "allocateTitle": "Allocate Hostel Seat to Student",
+      "studentInfo": "Student Information",
+      "studentName": "Student Full Name",
+      "studentNameBn": "Student Name (Bangla)",
+      "class": "Class",
+      "roll": "Roll No",
+      "building": "Hostel Building",
+      "room": "Room Number",
+      "bed": "Bed Identifier (e.g. Bed-A)",
+      "guardianName": "Guardian Name",
+      "guardianPhone": "Guardian Phone",
+      "seatRent": "Monthly Seat Rent (BDT)",
+      "messFee": "Monthly Mess Fee (BDT)",
+      "confirmAllocate": "Confirm Seat Allocation",
+      "gatePassTitle": "Issue Student Hostel Gate Pass / Out-Pass",
+      "destination": "Destination Address",
+      "reason": "Reason for Leave",
+      "departureDate": "Departure Date",
+      "departureTime": "Departure Time",
+      "expectedReturnDate": "Expected Return Date",
+      "expectedReturnTime": "Curfew Return Time",
+      "confirmPass": "Authorize & Issue Pass"
+    },
+    "messages": {
+      "allocated": "Student allocated to hostel seat successfully!",
+      "passIssued": "Gate pass issued successfully!",
+      "returned": "Student return logged successfully.",
+      "vacated": "Seat vacated successfully."
+    },
+    "empty": {
+      "title": "No Hostel Records",
+      "desc": "Allocate student seats or issue gate passes to see active records."
+    }
+  },
+  "admitCards": {
+    "title": "Exam Admit Cards & Hall Seat Planner",
+    "subtitle": "Fee clearance verification, student admit card issuance, and anti-cheating exam hall seat planning",
+    "kpis": {
+      "totalCandidates": "Total Examinees",
+      "cleared": "Admit Cards Ready",
+      "withheld": "Dues Pending (Withheld)",
+      "halls": "Active Exam Halls"
+    },
+    "tabs": {
+      "admitCards": "Admit Card Desk",
+      "seatPlan": "Hall Seat Planner",
+      "invigilation": "Invigilation Schedule"
+    },
+    "actions": {
+      "batchPrint": "Print Class Admit Cards (PDF)",
+      "downloadAdmitCard": "Download Admit Card",
+      "doorNotice": "Hall Door Notice (PDF)",
+      "benchStickers": "Bench Stickers (PDF)",
+      "recalculateSeatPlan": "Auto-Allocate Seating (Zigzag)",
+      "overrideFee": "Authorize Clearance"
+    },
+    "table": {
+      "candidate": "Examinee Name",
+      "classRoll": "Class & Roll",
+      "admitNo": "Admit Card No",
+      "feeStatus": "Fee Clearance",
+      "bench": "Bench No",
+      "seat": "Assigned Seat",
+      "hall": "Exam Hall",
+      "invigilator": "Duty Invigilator",
+      "actions": "Actions"
+    },
+    "status": {
+      "cleared": "Cleared",
+      "withheld": "Dues Withheld",
+      "overridden": "Special Clearance"
+    },
+    "modal": {
+      "overrideTitle": "Authorize Special Examination Clearance",
+      "overrideSub": "Grant provisional exam permission despite unpaid fees with recorded remarks",
+      "remarks": "Reason / Authority Notes",
+      "authorizedBy": "Authorized By",
+      "confirmOverride": "Confirm Clearance"
+    },
+    "empty": {
+      "title": "No Examinees Found",
+      "desc": "Select another class or exam session to view registered candidates."
+    }
+  },
+  "leave": {
+    "title": "Leave Management",
+    "subtitle": "Teacher leave ledgers, student leave applications, approval workflows & attendance integration",
+    "applyLeave": "Apply for Leave",
+    "exportSummary": "Export Leave Summary (PDF)",
+    "tabs": {
+      "students": "Student Leaves",
+      "teachers": "Teacher Leave Ledger",
+      "archive": "Applications Archive"
+    },
+    "kpis": {
+      "totalApps": "Total Applications",
+      "pendingReview": "Pending Approvals",
+      "onLeaveToday": "On Leave Today",
+      "quotaUsed": "Staff Quota Utilization"
+    },
+    "types": {
+      "casual": "Casual Leave (CL)",
+      "medical": "Medical Leave",
+      "maternity": "Maternity Leave",
+      "earned": "Earned Leave",
+      "duty": "Duty Leave",
+      "sick": "Sick Leave",
+      "urgent": "Urgent / Family",
+      "religious": "Religious / Pilgrimage",
+      "bereavement": "Bereavement"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "table": {
+      "appNo": "App No",
+      "applicant": "Applicant",
+      "category": "Category",
+      "type": "Leave Type",
+      "duration": "Duration",
+      "dates": "Leave Dates",
+      "reason": "Reason",
+      "status": "Status",
+      "actions": "Actions",
+      "substitute": "Substitute",
+      "guardianPhone": "Guardian Phone",
+      "clBalance": "CL (Casual)",
+      "medicalBalance": "Medical",
+      "earnedBalance": "Earned",
+      "totalUsed": "Total Used"
+    },
+    "modals": {
+      "applyTitle": "Submit Leave Application",
+      "reviewTitle": "Review Leave Application",
+      "approve": "Approve & Sanction",
+      "reject": "Reject Application",
+      "remarksPlaceholder": "Enter remarks or administrative directives...",
+      "attendanceSyncNote": "Approved student leaves are automatically recorded as 'Leave' ('L' - Excused) in daily attendance.",
+      "selectCategory": "Category",
+      "teacherCategory": "Teacher / Staff",
+      "studentCategory": "Student / Parent",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "calculatedDays": "Calculated Working Days (Excl. Friday)",
+      "reasonPlaceholder": "Explain reason for leave...",
+      "downloadAppPdf": "Download Application (PDF)",
+      "downloadOrderPdf": "Download Sanction Order (PDF)",
+      "successApplied": "Leave application submitted successfully.",
+      "successReviewed": "Leave application updated successfully."
+    }
+  },
+  "notices": {
+    "title": "Digital Notice Board & Circulars",
+    "subtitle": "Publish institutional circulars, emergency weather closures, exam notifications, and broadcast SMS alerts",
+    "publishNotice": "Publish Notice",
+    "exportSummary": "Export Notice Register (PDF)",
+    "kpis": {
+      "activeNotices": "Active Notices",
+      "pinnedNotices": "Pinned Circulars",
+      "emergencyNotices": "Emergency Notices",
+      "smsDispatched": "SMS Alerts Sent"
+    },
+    "categories": {
+      "all": "All Notices",
+      "academic": "Academic",
+      "exam": "Examination",
+      "holiday": "Holiday & Vacation",
+      "emergency": "Emergency & Weather",
+      "administrative": "Administrative"
+    },
+    "audiences": {
+      "all": "All Concerned",
+      "students": "Students",
+      "teachers": "Teachers & Staff",
+      "parents": "Guardians & Parents"
+    },
+    "priorities": {
+      "normal": "Normal",
+      "important": "Important",
+      "urgent": "Urgent"
+    },
+    "badges": {
+      "pinned": "PINNED",
+      "smsSent": "SMS Sent"
+    },
+    "card": {
+      "memo": "Memo",
+      "published": "Published",
+      "expires": "Expires",
+      "audience": "Target",
+      "downloadPdf": "Download Circular (PDF)",
+      "pinToggle": "Pin / Unpin",
+      "readMore": "Read Full Circular"
+    },
+    "modals": {
+      "createTitle": "Publish Official Circular",
+      "viewTitle": "Official Circular Notice",
+      "titleLabel": "Notice Subject / Title",
+      "memoLabel": "Memo Number",
+      "categoryLabel": "Notice Category",
+      "priorityLabel": "Priority Level",
+      "audienceLabel": "Target Audience",
+      "publishDateLabel": "Publish Date",
+      "expiryDateLabel": "Expiry Date (Optional)",
+      "contentLabel": "Notice Content / Resolution",
+      "pinLabel": "Pin to Top of Notice Board",
+      "smsBroadcastLabel": "Broadcast Instant SMS Alert via EduOS Gateway",
+      "smsPreview": "SMS Text Preview",
+      "chars": "Characters",
+      "segments": "SMS Parts",
+      "signLabel": "Issuing Authority / Signatory",
+      "successPublished": "Notice published successfully.",
+      "successDeleted": "Notice removed.",
+      "close": "Close"
+    }
+  },
+  "portal": {
+    "title": "Dedicated Parent & Student Portal",
+    "subtitle": "Track attendance, collegiate standing, tuition fee dues, report cards, admit cards, and homework submissions",
+    "selectChild": "Select Child / Student",
+    "academicYear": "Session 2026",
+    "downloadDossier": "Download Progress Dossier (PDF)",
+    "kpis": {
+      "attendance": "Attendance Rate",
+      "collegiateStanding": "Collegiate Standing",
+      "totalDues": "Outstanding Fees",
+      "gpa": "Term Result (GPA)",
+      "homeworkDue": "Homework Pending"
+    },
+    "standing": {
+      "collegiate": "Collegiate (Eligible)",
+      "non_collegiate": "Non-Collegiate (Fine Required)",
+      "dis_collegiate": "Dis-Collegiate (Barred)"
+    },
+    "tabs": {
+      "overview": "Overview & Routine",
+      "attendance": "Attendance Record",
+      "fees": "Fees & bKash Pay",
+      "academics": "Academic Marksheet",
+      "homework": "Homework Tracker"
+    },
+    "routine": {
+      "title": "Today's Class Routine",
+      "period": "Period",
+      "subject": "Subject",
+      "teacher": "Teacher",
+      "time": "Time Slot",
+      "room": "Room",
+      "noClasses": "No classes scheduled for today."
+    },
+    "attendance": {
+      "title": "NCTB Board Attendance Standing",
+      "ruleTitle": "Education Board Examination Collegiate Rules",
+      "ruleCollegiate": "Collegiate (>= 75%): Full eligibility to sit for board and final term examinations without restriction.",
+      "ruleNonCollegiate": "Non-Collegiate (60% - 74.9%): Permitted to sit for examinations only upon payment of penalty fee and headmaster approval.",
+      "ruleDisCollegiate": "Dis-Collegiate (< 60%): Strictly barred from sitting for terminal and board public examinations as per NCTB regulations.",
+      "daysAttended": "Days Attended",
+      "totalDays": "Total Working Days",
+      "rateLabel": "Overall Attendance Percentage"
+    },
+    "fees": {
+      "title": "Tuition Fees & Payments",
+      "subtitle": "Pay school fees instantly via bKash, Nagad, or Rocket",
+      "invoiceNo": "Invoice ID",
+      "description": "Description",
+      "amount": "Fee Amount",
+      "paidAmount": "Paid",
+      "dueAmount": "Balance Due",
+      "dueDate": "Due Date",
+      "status": "Status",
+      "action": "Action",
+      "payNow": "Pay with bKash / Nagad",
+      "paid": "Paid",
+      "due": "Due",
+      "overdue": "Overdue",
+      "lastPayment": "Last Trx",
+      "receipt": "Money Receipt (PDF)"
+    },
+    "mfsModal": {
+      "title": "Instant Fee Checkout",
+      "subtitle": "Bangladeshi Mobile Financial Services (MFS) Gateway",
+      "selectGateway": "Select Payment Channel",
+      "bkash": "bKash",
+      "nagad": "Nagad",
+      "rocket": "Rocket",
+      "amountToPay": "Amount to Pay",
+      "bdt": "BDT (৳)",
+      "mobileNumber": "Enter 11-digit Wallet Mobile Number",
+      "mobilePlaceholder": "017XXXXXXXX / 018XXXXXXXX",
+      "cancel": "Cancel",
+      "confirmPayment": "Confirm & Pay Now",
+      "processing": "Verifying transaction...",
+      "successMessage": "Fee payment verified successfully! Transaction ID: "
+    },
+    "academics": {
+      "title": "Continuous Assessment & Terminal Results",
+      "subject": "Subject",
+      "caMarks": "Continuous Assessment (20)",
+      "finalMarks": "Terminal Exam (80)",
+      "total": "Total (100)",
+      "letterGrade": "Letter Grade",
+      "gradePoint": "Grade Point",
+      "status": "Result",
+      "passed": "Passed",
+      "failed": "Failed",
+      "overallGpa": "Cumulative GPA",
+      "meritPosition": "Merit Position in Class",
+      "downloadReportCard": "Download NCTB Report Card (PDF)",
+      "downloadAdmitCard": "Download Exam Admit Card (PDF)"
+    },
+    "homework": {
+      "title": "Homework & Assignment Tracker",
+      "subject": "Subject",
+      "taskTitle": "Assignment Title",
+      "due": "Due Date",
+      "instructions": "Teacher Instructions",
+      "status": "Submission Status",
+      "pending": "Pending",
+      "submitted": "Submitted",
+      "graded": "Graded",
+      "submitWork": "Submit Homework",
+      "submittedOn": "Submitted on",
+      "teacherNote": "Remarks / Grade"
+    },
+    "hwModal": {
+      "title": "Submit Homework Solution",
+      "instructionsLabel": "Task Instructions",
+      "noteLabel": "Student Submission Remarks & Solutions",
+      "notePlaceholder": "Enter your answer or describe your completed work...",
+      "submit": "Submit Assignment",
+      "cancel": "Cancel",
+      "success": "Homework solution submitted successfully!"
+    }
+  },
+  "quizzes": {
+    "title": "Online Quizzes & Model Test Engine",
+    "subtitle": "Conduct timed model tests, practice NCTB question sets, auto-grade MCQ answers with negative marking, and export diagnostic reports",
+    "kpis": {
+      "activeTests": "Active Model Tests",
+      "bankItems": "Question Bank Items",
+      "submissions": "Student Submissions",
+      "avgAccuracy": "Average Accuracy"
+    },
+    "tabs": {
+      "tests": "Model Tests",
+      "live": "Live Quiz Taker",
+      "bank": "Question Bank",
+      "results": "Results & Leaderboard"
+    },
+    "testCard": {
+      "duration": "Duration",
+      "mins": "mins",
+      "questions": "Questions",
+      "marks": "Marks",
+      "passMarks": "Pass Marks",
+      "negativeMarking": "Negative Marking",
+      "noPenalty": "No Penalty",
+      "perWrong": "per wrong answer",
+      "startTest": "Take Quiz",
+      "viewReport": "Diagnostic Report"
+    },
+    "live": {
+      "selectQuizPrompt": "Select a Model Test to Begin",
+      "chooseTest": "Choose Quiz / Test",
+      "startNow": "Start Assessment Now",
+      "timeLeft": "Time Remaining",
+      "questionPalette": "Question Navigator",
+      "submitQuiz": "Submit Assessment",
+      "clearSelection": "Clear Option",
+      "unansweredWarning": "You have unanswered questions. Are you sure you want to finish?",
+      "confirmSubmit": "Confirm & Submit",
+      "cancel": "Cancel"
+    },
+    "modal": {
+      "resultTitle": "Assessment Diagnostic Result",
+      "scoreLabel": "Total Score",
+      "accuracyLabel": "Accuracy Rate",
+      "passed": "PASSED",
+      "failed": "FAILED",
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "unanswered": "Unanswered",
+      "downloadPdf": "Download Diagnostic PDF",
+      "close": "Close",
+      "explanation": "Explanation"
+    },
+    "bank": {
+      "searchPlaceholder": "Search questions by topic or keyword...",
+      "filterSubject": "All Subjects",
+      "filterDifficulty": "All Difficulties",
+      "addQuestion": "Add Question",
+      "questionNo": "Q#",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "addModal": {
+      "title": "Add Question to NCTB Bank",
+      "subjectLabel": "Subject",
+      "classLabel": "Class",
+      "chapterLabel": "Chapter / Topic",
+      "questionTextLabel": "Question Text",
+      "optionsLabel": "Multiple Choice Options (A, B, C, D)",
+      "correctKeyLabel": "Correct Option",
+      "explanationLabel": "Answer Explanation",
+      "save": "Save Question",
+      "success": "Question successfully added to question bank!"
+    },
+    "results": {
+      "student": "Student Name",
+      "roll": "Roll",
+      "test": "Model Test",
+      "score": "Score",
+      "status": "Status",
+      "time": "Time Taken",
+      "action": "Action"
+    }
   }
 }

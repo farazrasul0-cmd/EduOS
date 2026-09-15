@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import {
   Save, User, School, BookOpen, Bell, CreditCard, Plug, Shield, Upload, Plus,
   Pencil, Rocket, ExternalLink, GraduationCap, MessageCircle, Video, LogOut, Loader2,
-  KeyRound, QrCode, CheckCircle2, Copy,
+  KeyRound, QrCode, CheckCircle2, Copy, MessageSquare, Send,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { PageHeader } from '@/components/ui/PageHeader'
@@ -16,6 +16,9 @@ import { Field, Input, Select, Textarea } from '@/components/ui/form'
 import { useToast } from '@/components/ui/Toast'
 import { supabase } from '@/lib/supabase'
 import { cn, initials, formatNumber } from '@/lib/utils'
+import { calculateSmsParts, sendSms } from '@/lib/sms-gateway'
+import { validateBdMobile } from '@/lib/mfs-validation'
+import { BANGLADESH_BOARDS } from '@/lib/school-onboarding'
 import { useAuth } from '@/auth/context'
 import { useSchool, useUpdateSchool, useUpdateProfile } from '@/data/school'
 import { useClasses, useClassTeachers, useSaveClass, useStudents } from '@/data/students'
@@ -41,6 +44,7 @@ const ADMIN_TABS = new Set<Tab>(['school', 'classes', 'billing', 'integrations']
 const INTEGRATIONS: { key: IntegrationProvider; icon: LucideIcon }[] = [
   { key: 'classroom', icon: GraduationCap },
   { key: 'sslcommerz', icon: CreditCard },
+  { key: 'bulksmsbd', icon: MessageSquare },
   { key: 'whatsapp', icon: MessageCircle },
   { key: 'zoom', icon: Video },
 ]
@@ -100,11 +104,35 @@ export default function Settings() {
   const [integrationDraft,setIntegrationDraft]=useState<{provider:IntegrationProvider;label:string}|null>(null)
   const [integrationError,setIntegrationError]=useState('')
 
+  const [testSmsModalOpen, setTestSmsModalOpen] = useState(false)
+  const [testSmsPhone, setTestSmsPhone] = useState('')
+  const [testSmsMessage, setTestSmsMessage] = useState('EduOS SMS Test: আপনার স্কুলের জন্য টেস্ট বার্তা সফলভাবে পাঠানো হয়েছে।')
+  const [testSmsSending, setTestSmsSending] = useState(false)
+
+  async function handleSendTestSms() {
+    if (!validateBdMobile(testSmsPhone)) {
+      toast.error('Enter a valid 11-digit Bangladesh mobile number (01XXXXXXXXX)')
+      return
+    }
+    setTestSmsSending(true)
+    try {
+      const res = await sendSms(testSmsPhone, testSmsMessage)
+      if (res.success) {
+        toast.success(t('settings.integrations.testSuccess', { phone: testSmsPhone }))
+        setTestSmsModalOpen(false)
+      } else {
+        toast.error(t('settings.integrations.testFailed', { error: res.error }))
+      }
+    } finally {
+      setTestSmsSending(false)
+    }
+  }
+
   // Local edits layered over loaded values (saved on "Save changes").
   const [edits, setEdits] = useState<Record<string, string>>({})
   useEffect(() => { const p=preferencesQuery.data; if(!p)return; const timer=setTimeout(()=>{setNotif({absent:p.absent,fees:p.fees,reply:p.reply,ai:p.ai});setChannels({sms:p.sms,email:p.email,whatsapp:p.whatsapp})},0);return()=>clearTimeout(timer) }, [preferencesQuery.data])
   const val = (key: string, fallback: string | null | undefined) => edits[key] ?? fallback ?? ''
-  const set = (key: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+  const set = (key: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setEdits((p) => ({ ...p, [key]: e.target.value }))
 
   useEffect(() => {
@@ -363,7 +391,17 @@ export default function Settings() {
                     <Input value={val('schoolName', school?.name)} onChange={set('schoolName')} />
                   </Field>
                   <Field label={t('settings.school.affiliation')}>
-                    <Input value={val('affiliation', school?.affiliation)} onChange={set('affiliation')} />
+                    <Select
+                      value={val('affiliation', school?.affiliation)}
+                      onChange={set('affiliation')}
+                    >
+                      <option value="">Select Education Board</option>
+                      {BANGLADESH_BOARDS.map((b) => (
+                        <option key={b.id} value={b.nameEn}>
+                          {lang === 'bn' ? b.nameBn : b.nameEn}
+                        </option>
+                      ))}
+                    </Select>
                   </Field>
                   <Field className="sm:col-span-2" label={t('settings.school.address')}>
                     <Textarea value={val('address', school?.address)} onChange={set('address')} />
@@ -506,13 +544,25 @@ export default function Settings() {
                       <div className="text-xs text-fg-3">{t(`settings.integrations.items.${key}Sub`)}</div>
                       {connection?.account_label&&<div className="mt-0.5 text-[11px] text-fg-3">{connection.account_label}</div>}
                     </div>
-                    {configured ? (
-                      <Button variant="ghost" size="sm" onClick={()=>{setIntegrationError('');setIntegrationDraft({provider:key,label:connection.account_label??''})}}>{t('settings.integrations.manage')}</Button>
-                    ) : (
-                      <Button variant="secondary" size="sm" onClick={()=>{setIntegrationError('');setIntegrationDraft({provider:key,label:''})}}>
-                        {t('actions.connect')}
-                      </Button>
-                    )}
+                    <div className="flex items-center gap-1.5">
+                      {key === 'bulksmsbd' && configured && (
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          icon={<Send size={14} />}
+                          onClick={() => setTestSmsModalOpen(true)}
+                        >
+                          {t('settings.integrations.testSms')}
+                        </Button>
+                      )}
+                      {configured ? (
+                        <Button variant="ghost" size="sm" onClick={()=>{setIntegrationError('');setIntegrationDraft({provider:key,label:connection.account_label??''})}}>{t('settings.integrations.manage')}</Button>
+                      ) : (
+                        <Button variant="secondary" size="sm" onClick={()=>{setIntegrationError('');setIntegrationDraft({provider:key,label:''})}}>
+                          {t('actions.connect')}
+                        </Button>
+                      )}
+                    </div>
                   </div>)
                 })}
               </div>
@@ -627,6 +677,61 @@ export default function Settings() {
       </div>
       <Modal open={integrationDraft!=null} onClose={()=>setIntegrationDraft(null)} title={integrationDraft?t(`settings.integrations.items.${integrationDraft.provider}Title`):''} sub={t('settings.integrations.setupSub')} footer={<><Button variant="secondary" onClick={()=>setIntegrationDraft(null)}>{t('actions.cancel')}</Button>{integrationDraft&&integrationsQuery.data?.find((x)=>x.provider===integrationDraft.provider)?.status==='configured'&&<Button variant="danger" disabled={configureIntegration.isPending} onClick={()=>void submitIntegration(false)}>{t('settings.integrations.disconnect')}</Button>}<Button variant="primary" disabled={configureIntegration.isPending} onClick={()=>void submitIntegration(true)}>{configureIntegration.isPending?t('common.saving'):t('settings.integrations.saveSetup')}</Button></>}>
         {integrationDraft&&<><Field label={t('settings.integrations.accountLabel')}><Input value={integrationDraft.label} onChange={(e)=>setIntegrationDraft({...integrationDraft,label:e.target.value})} placeholder={t('settings.integrations.accountPlaceholder')}/></Field><div className="mt-3 rounded-sm bg-warning-tint px-3 py-2 text-xs text-warning">{t('settings.integrations.secretNotice')}</div>{integrationError&&<div className="mt-3 rounded-sm bg-danger-tint px-3 py-2 text-sm text-danger">{integrationError}</div>}</>}
+      </Modal>
+
+      {/* Test SMS modal */}
+      <Modal
+        open={testSmsModalOpen}
+        onClose={() => setTestSmsModalOpen(false)}
+        title={t('settings.integrations.testSmsModalTitle')}
+        sub={t('settings.integrations.testSmsModalSub')}
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setTestSmsModalOpen(false)}>
+              {t('actions.cancel')}
+            </Button>
+            <Button
+              variant="primary"
+              disabled={testSmsSending || !testSmsPhone.trim() || !testSmsMessage.trim()}
+              icon={<Send size={14} />}
+              onClick={() => void handleSendTestSms()}
+            >
+              {testSmsSending ? t('settings.integrations.testSending') : t('settings.integrations.testSendBtn')}
+            </Button>
+          </>
+        }
+      >
+        <div className="flex flex-col gap-4">
+          <Field label={t('settings.integrations.testPhone')}>
+            <Input
+              type="tel"
+              value={testSmsPhone}
+              onChange={(e) => setTestSmsPhone(e.target.value)}
+              placeholder={t('settings.integrations.testPhonePlaceholder')}
+              autoFocus
+            />
+          </Field>
+          <Field label={t('settings.integrations.testMessage')}>
+            <Textarea
+              rows={3}
+              value={testSmsMessage}
+              onChange={(e) => setTestSmsMessage(e.target.value)}
+            />
+            {(() => {
+              const calc = calculateSmsParts(testSmsMessage)
+              return (
+                <div className="mt-1.5 flex items-center justify-between text-xs text-fg-3">
+                  <span>
+                    Encoding: <strong className="text-fg-1">{calc.encoding}</strong> ({calc.charCount} chars)
+                  </span>
+                  <span>
+                    Parts: <strong className="text-fg-1">{calc.partsCount}</strong> ({calc.remainingInPart} left in part)
+                  </span>
+                </div>
+              )
+            })()}
+          </Field>
+        </div>
       </Modal>
       <Modal open={billingOpen} onClose={()=>setBillingOpen(false)} title={t('settings.billing.manageTitle')} sub={t('settings.billing.manageSub')} footer={<><Button variant="secondary" onClick={()=>setBillingOpen(false)}>{t('actions.cancel')}</Button><Button variant="primary" disabled={updateSubscription.isPending} onClick={()=>void submitBilling()}>{updateSubscription.isPending?t('common.saving'):t('actions.saveChanges')}</Button></>}>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">{(['starter','growth','school'] as SubscriptionPlan[]).map((plan)=><button type="button" key={plan} onClick={()=>setBillingDraft({...billingDraft,plan})} className={cn('rounded-md border p-3 text-left',billingDraft.plan===plan?'border-primary bg-primary-tint':'border-border')}><div className="font-semibold">{t(`settings.billing.plans.${plan}`)}</div><div className="text-xs text-fg-3">{t(`settings.billing.planPrices.${plan}`)}</div></button>)}</div>
