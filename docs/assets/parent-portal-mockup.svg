@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%">
+  <defs>
+    <linearGradient id="portalBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+
+  <rect width="960" height="540" rx="14" fill="url(#portalBg)" stroke="#334155" stroke-width="2" />
+
+  <!-- App Bar -->
+  <rect width="960" height="50" rx="14" fill="#1e293b" />
+  <circle cx="24" cy="25" r="5" fill="#ef4444" />
+  <circle cx="40" cy="25" r="5" fill="#f59e0b" />
+  <circle cx="56" cy="25" r="5" fill="#10b981" />
+
+  <text x="80" y="32" font-family="system-ui, sans-serif" font-size="16" font-weight="900" fill="#ffffff">
+    Edu<tspan fill="#10b981">OS</tspan>
+    <tspan font-weight="500" font-size="12" fill="#94a3b8"> | Dedicated Parent &amp; Student Portal</tspan>
+  </text>
+
+  <!-- Multi-Child Switcher Tabs -->
+  <g transform="translate(620, 10)">
+    <rect width="150" height="30" rx="6" fill="#065f46" stroke="#10b981" stroke-width="1" />
+    <text x="75" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">👦 তানভীর (১০ম শ্রেণি)</text>
+
+    <g transform="translate(160, 0)">
+      <rect width="150" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="75" y="20" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#94a3b8" text-anchor="middle">👧 সাদিয়া (৭ম শ্রেণি)</text>
+    </g>
+  </g>
+
+  <!-- Content Body -->
+  <g transform="translate(40, 70)">
+    <!-- Student Profile Card Banner -->
+    <rect width="880" height="70" rx="10" fill="#1e293b" stroke="#334155" />
+    <circle cx="45" cy="35" r="22" fill="#10b981" opacity="0.2" />
+    <text x="45" y="42" font-family="system-ui, sans-serif" font-size="20" text-anchor="middle">🎓</text>
+    <text x="85" y="30" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#ffffff">তানভীর আহমেদ (Tanvir Ahmed)</text>
+    <text x="85" y="48" font-family="system-ui, sans-serif" font-size="12" fill="#94a3b8">রোল: ০১ • শ্রেণি: ১০ম (বিজ্ঞান) • শাখা: মেঘনা • শিক্ষাবর্ষ: ২০২৬</text>
+
+    <rect x="700" y="18" width="160" height="34" rx="6" fill="#064e3b" stroke="#34d399" stroke-width="1" />
+    <text x="780" y="39" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#a7f3d0" text-anchor="middle">📄 প্রগ্রেস ডসিয়ার PDF</text>
+  </g>
+
+  <!-- 3 Performance Cards -->
+  <g transform="translate(40, 160)">
+    <!-- Collegiate Standing -->
+    <rect width="280" height="110" rx="10" fill="#0f172a" stroke="#334155" />
+    <text x="16" y="28" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#94a3b8">উপস্থিতি ও কলেজিয়েট স্ট্যাটাস</text>
+    <text x="16" y="66" font-family="system-ui, sans-serif" font-size="30" font-weight="900" fill="#34d399">৯১.২%</text>
+    <rect x="150" y="44" width="114" height="26" rx="6" fill="#064e3b" />
+    <text x="207" y="61" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#6ee7b7" text-anchor="middle">কলেজিয়েট (Collegiate)</text>
+    <text x="16" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">অনুমোদিত ছুটি: ৩ দিন • অনুপস্থিত: ১ দিন</text>
+
+    <!-- Tuition Fees & Direct bKash Pay -->
+    <g transform="translate(300, 0)">
+      <rect width="280" height="110" rx="10" fill="#0f172a" stroke="#334155" />
+      <text x="16" y="28" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#94a3b8">বকেয়া টিউশন ফি (Unpaid Dues)</text>
+      <text x="16" y="66" font-family="system-ui, sans-serif" font-size="28" font-weight="900" fill="#f43f5e">৳ ১,৮৫০</text>
+      <rect x="150" y="44" width="114" height="28" rx="6" fill="#e11d48" />
+      <text x="207" y="62" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">⚡ bKash Pay</text>
+      <text x="16" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">মার্চ ২০২৬ সেশন ফি ও ল্যাব চার্জ</text>
+    </g>
+
+    <!-- GPA 5.0 Continuous Assessment -->
+    <g transform="translate(600, 0)">
+      <rect width="280" height="110" rx="10" fill="#0f172a" stroke="#334155" />
+      <text x="16" y="28" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#94a3b8">সর্বশেষ টার্ম মূল্যায়ন (NCTB)</text>
+      <text x="16" y="66" font-family="system-ui, sans-serif" font-size="30" font-weight="900" fill="#38bdf8">GPA 5.00</text>
+      <rect x="180" y="44" width="84" height="26" rx="6" fill="#1e3a8a" />
+      <text x="222" y="61" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#bfdbfe" text-anchor="middle">Grade A+</text>
+      <text x="16" y="94" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">মেধাক্রম: ১ম (বিজ্ঞান বিভাগ)</text>
+    </g>
+  </g>
+
+  <!-- Homework & Quizzes Row -->
+  <g transform="translate(40, 290)">
+    <rect width="880" height="210" rx="10" fill="#0f172a" stroke="#334155" />
+    <text x="20" y="28" font-family="system-ui, sans-serif" font-size="14" font-weight="800" fill="#f8fafc">আজকের ক্লাসের বাড়ির কাজ ও অনলাইন টেস্ট (Active Tasks)</text>
+
+    <!-- Task 1 -->
+    <g transform="translate(20, 46)">
+      <rect width="840" height="42" rx="6" fill="#1e293b" />
+      <text x="16" y="26" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">পদার্থবিজ্ঞান (Physics): অধ্যায় ৪ — কাজ, ক্ষমতা ও শক্তি অনুশীলনীর গাণিতিক সমস্যা</text>
+      <rect x="710" y="8" width="115" height="26" rx="4" fill="#065f46" />
+      <text x="767" y="25" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#a7f3d0" text-anchor="middle">জমা দিন (Submit)</text>
+    </g>
+
+    <!-- Task 2 -->
+    <g transform="translate(20, 96)">
+      <rect width="840" height="42" rx="6" fill="#1e293b" />
+      <text x="16" y="26" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#ffffff">উচ্চতর গণিত (Higher Math): উপপাদ্য ১২ এর প্রমাণ খাতায় লিখে ছবি আপলোড করুন</text>
+      <rect x="710" y="8" width="115" height="26" rx="4" fill="#065f46" />
+      <text x="767" y="25" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#a7f3d0" text-anchor="middle">জমা দিন (Submit)</text>
+    </g>
+
+    <!-- Task 3 (Quiz) -->
+    <g transform="translate(20, 146)">
+      <rect width="840" height="42" rx="6" fill="#1e1b4b" stroke="#6366f1" stroke-width="1" />
+      <text x="16" y="26" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#c7d2fe">🎯 সাধারণ বিজ্ঞান এমসিকিউ মডেল টেস্ট ২০২৬ — ২০ টি প্রশ্ন • সময়: ২৫ মিনিট</text>
+      <rect x="710" y="8" width="115" height="26" rx="4" fill="#4f46e5" />
+      <text x="767" y="25" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">টেস্ট শুরু করুন</text>
+    </g>
+  </g>
+</svg>

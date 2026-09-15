@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 580" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dbBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#021f19" />
+    </linearGradient>
+    <linearGradient id="kpiGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <rect width="1000" height="580" rx="14" fill="url(#dbBg)" stroke="#334155" stroke-width="2" />
+
+  <!-- Top App Window Bar -->
+  <rect width="1000" height="46" rx="14" fill="#1e293b" />
+  <circle cx="24" cy="23" r="5" fill="#ef4444" />
+  <circle cx="40" cy="23" r="5" fill="#f59e0b" />
+  <circle cx="56" cy="23" r="5" fill="#10b981" />
+
+  <!-- Topbar Search & Switcher -->
+  <rect x="180" y="10" width="360" height="26" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <text x="196" y="27" font-family="system-ui, sans-serif" font-size="11" fill="#64748b">🔍 Search students, roll, fees, exams... (Ctrl + K)</text>
+
+  <!-- Language Switcher Pill -->
+  <g transform="translate(810, 10)">
+    <rect width="90" height="26" rx="6" fill="#0f172a" stroke="#334155" />
+    <rect x="2" y="2" width="42" height="22" rx="4" fill="#065f46" />
+    <text x="23" y="17" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#a7f3d0" text-anchor="middle">বাংলা</text>
+    <text x="66" y="17" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#94a3b8" text-anchor="middle">EN</text>
+  </g>
+
+  <!-- User Avatar -->
+  <circle cx="940" cy="23" r="13" fill="#047857" />
+  <text x="940" y="27" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">HM</text>
+
+  <!-- Left Sidebar -->
+  <g transform="translate(0, 46)">
+    <rect width="180" height="534" fill="#090e1a" stroke="#1e293b" stroke-width="1" />
+    
+    <!-- Logo in Sidebar -->
+    <text x="20" y="36" font-family="system-ui, sans-serif" font-size="18" font-weight="900" fill="#ffffff">
+      Edu<tspan fill="#10b981">OS</tspan>
+    </text>
+
+    <!-- Nav Items -->
+    <g transform="translate(12, 60)">
+      <!-- Active Item -->
+      <rect width="156" height="34" rx="6" fill="#064e3b" />
+      <text x="14" y="22" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#34d399">📊 ড্যাশবোর্ড (Dashboard)</text>
+
+      <g transform="translate(0, 42)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">👨‍🎓 শিক্ষার্থীরা (Students)</text>
+      </g>
+      <g transform="translate(0, 78)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">📅 হাজিরা (Attendance)</text>
+      </g>
+      <g transform="translate(0, 114)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">💳 বেতন ও ফি (Fees)</text>
+      </g>
+      <g transform="translate(0, 150)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">📝 পরীক্ষা ও ফলাফল (Exams)</text>
+      </g>
+      <g transform="translate(0, 186)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">🗂️ ব্রডশিট (Broadsheet)</text>
+      </g>
+      <g transform="translate(0, 222)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">🎫 প্রবেশপত্র (Admit Cards)</text>
+      </g>
+      <g transform="translate(0, 258)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">💰 বেতন বিল (Payroll)</text>
+      </g>
+      <g transform="translate(0, 294)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">📢 নোটিশ বোর্ড (Notices)</text>
+      </g>
+      <g transform="translate(0, 330)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">👨‍👩‍👧 অভিভাবক পোর্টাল (Portal)</text>
+      </g>
+      <g transform="translate(0, 366)">
+        <text x="14" y="20" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#94a3b8">🎯 অনলাইন কুইজ (Quiz)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Main Dashboard Canvas Area -->
+  <g transform="translate(200, 62)">
+    <!-- Institution Banner -->
+    <rect width="780" height="54" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="20" y="25" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#f8fafc">মতিঝিল মডেল স্কুল অ্যান্ড কলেজ (EIIN: 108421)</text>
+    <text x="20" y="42" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">ঢাকা শিক্ষা বোর্ড • প্রাতঃ ও দিবা শাখা • বর্তমান শিক্ষাবর্ষ: ২০২৬</text>
+
+    <rect x="660" y="12" width="105" height="30" rx="6" fill="#065f46" />
+    <text x="712" y="31" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#a7f3d0" text-anchor="middle">⚡ লাইভ সেশন</text>
+
+    <!-- 4 KPI Cards -->
+    <g transform="translate(0, 68)">
+      <!-- KPI 1 -->
+      <rect width="186" height="88" rx="8" fill="#0f172a" stroke="#334155" filter="url(#cardShadow)" />
+      <text x="14" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">মোট শিক্ষার্থী (Students)</text>
+      <text x="14" y="56" font-family="system-ui, sans-serif" font-size="24" font-weight="900" fill="#ffffff">১,৪৮২</text>
+      <text x="14" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#34d399">↑ ৯৮% সক্রিয় শিক্ষার্থী</text>
+
+      <!-- KPI 2 -->
+      <g transform="translate(198, 0)">
+        <rect width="186" height="88" rx="8" fill="#0f172a" stroke="#334155" filter="url(#cardShadow)" />
+        <text x="14" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">আজকের উপস্থিতি (Attendance)</text>
+        <text x="14" y="56" font-family="system-ui, sans-serif" font-size="24" font-weight="900" fill="#34d399">৯৪.৮%</text>
+        <text x="14" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#64748b">বায়োমেট্রিক ও আরএফআইডি</text>
+      </g>
+
+      <!-- KPI 3 -->
+      <g transform="translate(396, 0)">
+        <rect width="186" height="88" rx="8" fill="#0f172a" stroke="#334155" filter="url(#cardShadow)" />
+        <text x="14" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">চলতি মাসের ফি (bKash/Nagad)</text>
+        <text x="14" y="56" font-family="system-ui, sans-serif" font-size="22" font-weight="900" fill="#10b981">৳ ৮,৪২,০০০</text>
+        <text x="14" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#38bdf8">৮২% আদায় সম্পন্ন</text>
+      </g>
+
+      <!-- KPI 4 -->
+      <g transform="translate(594, 0)">
+        <rect width="186" height="88" rx="8" fill="#0f172a" stroke="#334155" filter="url(#cardShadow)" />
+        <text x="14" y="26" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#94a3b8">মডেল টেস্ট ও কুইজ (Quizzes)</text>
+        <text x="14" y="56" font-family="system-ui, sans-serif" font-size="24" font-weight="900" fill="#38bdf8">৪ টি</text>
+        <text x="14" y="74" font-family="system-ui, sans-serif" font-size="10" fill="#a855f7">নেগেটিভ মার্কিং সক্রিয়</text>
+      </g>
+    </g>
+
+    <!-- Lower Split: Table + Routine Summary -->
+    <g transform="translate(0, 172)">
+      <!-- Left Table: Recent Transactions / Defaulters -->
+      <rect width="480" height="315" rx="8" fill="#0f172a" stroke="#334155" filter="url(#cardShadow)" />
+      <text x="18" y="28" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">সর্বশেষ ফি পরিশোধ লেজার (MFS Transactions)</text>
+
+      <!-- Table Header -->
+      <g transform="translate(18, 44)">
+        <rect width="444" height="26" fill="#1e293b" rx="4" />
+        <text x="12" y="17" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8">শিক্ষার্থী ও রোল</text>
+        <text x="150" y="17" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8">শ্রেণি</text>
+        <text x="240" y="17" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8">পরিমাণ</text>
+        <text x="340" y="17" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#94a3b8">মাধ্যম &amp; স্ট্যাটাস</text>
+      </g>
+
+      <!-- Row 1 -->
+      <g transform="translate(18, 76)">
+        <text x="12" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">তানভীর আহমেদ (রোল ০১)</text>
+        <text x="150" y="18" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">১০ম শ্রেণি - বিজ্ঞান</text>
+        <text x="240" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#34d399">৳ ৩,৫০০</text>
+        <rect x="340" y="4" width="46" height="18" rx="4" fill="#831843" />
+        <text x="363" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f472b6" text-anchor="middle">bKash</text>
+        <rect x="392" y="4" width="46" height="18" rx="4" fill="#064e3b" />
+        <text x="415" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#34d399" text-anchor="middle">পরিশোধ</text>
+      </g>
+
+      <!-- Row 2 -->
+      <g transform="translate(18, 114)">
+        <text x="12" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">সাদিয়া জাহান (রোল ০৪)</text>
+        <text x="150" y="18" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">৯ম শ্রেণি - মানবিক</text>
+        <text x="240" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#34d399">৳ ২,৮০০</text>
+        <rect x="340" y="4" width="46" height="18" rx="4" fill="#7c2d12" />
+        <text x="363" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#fdba74" text-anchor="middle">Nagad</text>
+        <rect x="392" y="4" width="46" height="18" rx="4" fill="#064e3b" />
+        <text x="415" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#34d399" text-anchor="middle">পরিশোধ</text>
+      </g>
+
+      <!-- Row 3 -->
+      <g transform="translate(18, 152)">
+        <text x="12" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#f1f5f9">আরিফুর রহমান (রোল ১৫)</text>
+        <text x="150" y="18" font-family="system-ui, sans-serif" font-size="11" fill="#94a3b8">৮ম শ্রেণি - শাখা ক</text>
+        <text x="240" y="18" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#34d399">৳ ২,২০০</text>
+        <rect x="340" y="4" width="46" height="18" rx="4" fill="#831843" />
+        <text x="363" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#f472b6" text-anchor="middle">bKash</text>
+        <rect x="392" y="4" width="46" height="18" rx="4" fill="#064e3b" />
+        <text x="415" y="16" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#34d399" text-anchor="middle">পরিশোধ</text>
+      </g>
+
+      <!-- Right Panel: Quick PDF Generation & Action Center -->
+      <g transform="translate(498, 0)">
+        <rect width="282" height="315" rx="8" fill="#0f172a" stroke="#334155" filter="url(#cardShadow)" />
+        <text x="18" y="28" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#f8fafc">১-ক্লিক ভেক্টর পিডিএফ এক্সপোর্ট</text>
+
+        <g transform="translate(18, 48)">
+          <rect width="246" height="52" rx="6" fill="#1e293b" stroke="#334155" />
+          <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">📄 প্রবেশপত্র (Admit Cards)</text>
+          <text x="14" y="40" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">স্বয়ংক্রিয় বকেয়া ফিল্টার ও কিউআর কোড</text>
+        </g>
+
+        <g transform="translate(18, 108)">
+          <rect width="246" height="52" rx="6" fill="#1e293b" stroke="#334155" />
+          <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">📊 ট্যাবুলেশন শিট (A3 Broadsheet)</text>
+          <text x="14" y="40" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">ধারাবাহিক মূল্যায়ন (২০%) + ফাইনাল (৮০%)</text>
+        </g>
+
+        <g transform="translate(18, 168)">
+          <rect width="246" height="52" rx="6" fill="#1e293b" stroke="#334155" />
+          <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#f1f5f9">🪪 শিক্ষার্থী আইডি কার্ড (CR80 PVC)</text>
+          <text x="14" y="40" font-family="system-ui, sans-serif" font-size="10" fill="#94a3b8">ফ্রন্ট ও ব্যাক প্রিন্ট প্রিভিউ ও কিউআর</text>
+        </g>
+
+        <g transform="translate(18, 228)">
+          <rect width="246" height="52" rx="6" fill="#065f46" stroke="#10b981" />
+          <text x="14" y="23" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#ffffff">📜 প্রশংসা ও ছাড়পত্র (TC &amp; Certs)</text>
+          <text x="14" y="40" font-family="system-ui, sans-serif" font-size="10" fill="#a7f3d0">অ্যান্টি-টেম্পার যাচাইকরণ কোডসহ</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
