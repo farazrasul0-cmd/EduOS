@@ -28,6 +28,7 @@ const AdmitCards = lazy(() => import('@/pages/AdmitCards'))
 const Leave = lazy(() => import('@/pages/Leave'))
 const NoticeBoard = lazy(() => import('@/pages/NoticeBoard'))
 const ParentPortal = lazy(() => import('@/pages/ParentPortal'))
+const OnlineQuizzes = lazy(() => import('@/pages/OnlineQuizzes'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function PageFallback() {
@@ -70,6 +71,7 @@ export default function App() {
             </Route>
             <Route path="/timetable" element={<Timetable />} />
             <Route path="/assignments" element={<Assignments />} />
+            <Route path="/quizzes" element={<OnlineQuizzes />} />
             <Route path="/exams" element={<Exams />} />
             <Route path="/results" element={<Results />} />
             <Route element={<RequireRole roles={['owner', 'admin', 'parent', 'student']} />}>

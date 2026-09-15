@@ -33,7 +33,8 @@
     "admitCards": "Admit Cards & Seating",
     "leave": "Leave Management",
     "notices": "Notice Board",
-    "portal": "Parent & Student Portal"
+    "portal": "Parent & Student Portal",
+    "quizzes": "Online Quizzes"
   },
   "topbar": {
     "menu": "Menu",
@@ -1940,6 +1941,91 @@
       "submit": "Submit Assignment",
       "cancel": "Cancel",
       "success": "Homework solution submitted successfully!"
+    }
+  },
+  "quizzes": {
+    "title": "Online Quizzes & Model Test Engine",
+    "subtitle": "Conduct timed model tests, practice NCTB question sets, auto-grade MCQ answers with negative marking, and export diagnostic reports",
+    "kpis": {
+      "activeTests": "Active Model Tests",
+      "bankItems": "Question Bank Items",
+      "submissions": "Student Submissions",
+      "avgAccuracy": "Average Accuracy"
+    },
+    "tabs": {
+      "tests": "Model Tests",
+      "live": "Live Quiz Taker",
+      "bank": "Question Bank",
+      "results": "Results & Leaderboard"
+    },
+    "testCard": {
+      "duration": "Duration",
+      "mins": "mins",
+      "questions": "Questions",
+      "marks": "Marks",
+      "passMarks": "Pass Marks",
+      "negativeMarking": "Negative Marking",
+      "noPenalty": "No Penalty",
+      "perWrong": "per wrong answer",
+      "startTest": "Take Quiz",
+      "viewReport": "Diagnostic Report"
+    },
+    "live": {
+      "selectQuizPrompt": "Select a Model Test to Begin",
+      "chooseTest": "Choose Quiz / Test",
+      "startNow": "Start Assessment Now",
+      "timeLeft": "Time Remaining",
+      "questionPalette": "Question Navigator",
+      "submitQuiz": "Submit Assessment",
+      "clearSelection": "Clear Option",
+      "unansweredWarning": "You have unanswered questions. Are you sure you want to finish?",
+      "confirmSubmit": "Confirm & Submit",
+      "cancel": "Cancel"
+    },
+    "modal": {
+      "resultTitle": "Assessment Diagnostic Result",
+      "scoreLabel": "Total Score",
+      "accuracyLabel": "Accuracy Rate",
+      "passed": "PASSED",
+      "failed": "FAILED",
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "unanswered": "Unanswered",
+      "downloadPdf": "Download Diagnostic PDF",
+      "close": "Close",
+      "explanation": "Explanation"
+    },
+    "bank": {
+      "searchPlaceholder": "Search questions by topic or keyword...",
+      "filterSubject": "All Subjects",
+      "filterDifficulty": "All Difficulties",
+      "addQuestion": "Add Question",
+      "questionNo": "Q#",
+      "difficulty": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "addModal": {
+      "title": "Add Question to NCTB Bank",
+      "subjectLabel": "Subject",
+      "classLabel": "Class",
+      "chapterLabel": "Chapter / Topic",
+      "questionTextLabel": "Question Text",
+      "optionsLabel": "Multiple Choice Options (A, B, C, D)",
+      "correctKeyLabel": "Correct Option",
+      "explanationLabel": "Answer Explanation",
+      "save": "Save Question",
+      "success": "Question successfully added to question bank!"
+    },
+    "results": {
+      "student": "Student Name",
+      "roll": "Roll",
+      "test": "Model Test",
+      "score": "Score",
+      "status": "Status",
+      "time": "Time Taken",
+      "action": "Action"
     }
   }
 }
