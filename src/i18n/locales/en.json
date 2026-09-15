@@ -32,7 +32,8 @@
     "hostel": "Hostel & Dormitory",
     "admitCards": "Admit Cards & Seating",
     "leave": "Leave Management",
-    "notices": "Notice Board"
+    "notices": "Notice Board",
+    "portal": "Parent & Student Portal"
   },
   "topbar": {
     "menu": "Menu",
@@ -1821,6 +1822,124 @@
       "successPublished": "Notice published successfully.",
       "successDeleted": "Notice removed.",
       "close": "Close"
+    }
+  },
+  "portal": {
+    "title": "Dedicated Parent & Student Portal",
+    "subtitle": "Track attendance, collegiate standing, tuition fee dues, report cards, admit cards, and homework submissions",
+    "selectChild": "Select Child / Student",
+    "academicYear": "Session 2026",
+    "downloadDossier": "Download Progress Dossier (PDF)",
+    "kpis": {
+      "attendance": "Attendance Rate",
+      "collegiateStanding": "Collegiate Standing",
+      "totalDues": "Outstanding Fees",
+      "gpa": "Term Result (GPA)",
+      "homeworkDue": "Homework Pending"
+    },
+    "standing": {
+      "collegiate": "Collegiate (Eligible)",
+      "non_collegiate": "Non-Collegiate (Fine Required)",
+      "dis_collegiate": "Dis-Collegiate (Barred)"
+    },
+    "tabs": {
+      "overview": "Overview & Routine",
+      "attendance": "Attendance Record",
+      "fees": "Fees & bKash Pay",
+      "academics": "Academic Marksheet",
+      "homework": "Homework Tracker"
+    },
+    "routine": {
+      "title": "Today's Class Routine",
+      "period": "Period",
+      "subject": "Subject",
+      "teacher": "Teacher",
+      "time": "Time Slot",
+      "room": "Room",
+      "noClasses": "No classes scheduled for today."
+    },
+    "attendance": {
+      "title": "NCTB Board Attendance Standing",
+      "ruleTitle": "Education Board Examination Collegiate Rules",
+      "ruleCollegiate": "Collegiate (>= 75%): Full eligibility to sit for board and final term examinations without restriction.",
+      "ruleNonCollegiate": "Non-Collegiate (60% - 74.9%): Permitted to sit for examinations only upon payment of penalty fee and headmaster approval.",
+      "ruleDisCollegiate": "Dis-Collegiate (< 60%): Strictly barred from sitting for terminal and board public examinations as per NCTB regulations.",
+      "daysAttended": "Days Attended",
+      "totalDays": "Total Working Days",
+      "rateLabel": "Overall Attendance Percentage"
+    },
+    "fees": {
+      "title": "Tuition Fees & Payments",
+      "subtitle": "Pay school fees instantly via bKash, Nagad, or Rocket",
+      "invoiceNo": "Invoice ID",
+      "description": "Description",
+      "amount": "Fee Amount",
+      "paidAmount": "Paid",
+      "dueAmount": "Balance Due",
+      "dueDate": "Due Date",
+      "status": "Status",
+      "action": "Action",
+      "payNow": "Pay with bKash / Nagad",
+      "paid": "Paid",
+      "due": "Due",
+      "overdue": "Overdue",
+      "lastPayment": "Last Trx",
+      "receipt": "Money Receipt (PDF)"
+    },
+    "mfsModal": {
+      "title": "Instant Fee Checkout",
+      "subtitle": "Bangladeshi Mobile Financial Services (MFS) Gateway",
+      "selectGateway": "Select Payment Channel",
+      "bkash": "bKash",
+      "nagad": "Nagad",
+      "rocket": "Rocket",
+      "amountToPay": "Amount to Pay",
+      "bdt": "BDT (৳)",
+      "mobileNumber": "Enter 11-digit Wallet Mobile Number",
+      "mobilePlaceholder": "017XXXXXXXX / 018XXXXXXXX",
+      "cancel": "Cancel",
+      "confirmPayment": "Confirm & Pay Now",
+      "processing": "Verifying transaction...",
+      "successMessage": "Fee payment verified successfully! Transaction ID: "
+    },
+    "academics": {
+      "title": "Continuous Assessment & Terminal Results",
+      "subject": "Subject",
+      "caMarks": "Continuous Assessment (20)",
+      "finalMarks": "Terminal Exam (80)",
+      "total": "Total (100)",
+      "letterGrade": "Letter Grade",
+      "gradePoint": "Grade Point",
+      "status": "Result",
+      "passed": "Passed",
+      "failed": "Failed",
+      "overallGpa": "Cumulative GPA",
+      "meritPosition": "Merit Position in Class",
+      "downloadReportCard": "Download NCTB Report Card (PDF)",
+      "downloadAdmitCard": "Download Exam Admit Card (PDF)"
+    },
+    "homework": {
+      "title": "Homework & Assignment Tracker",
+      "subject": "Subject",
+      "taskTitle": "Assignment Title",
+      "due": "Due Date",
+      "instructions": "Teacher Instructions",
+      "status": "Submission Status",
+      "pending": "Pending",
+      "submitted": "Submitted",
+      "graded": "Graded",
+      "submitWork": "Submit Homework",
+      "submittedOn": "Submitted on",
+      "teacherNote": "Remarks / Grade"
+    },
+    "hwModal": {
+      "title": "Submit Homework Solution",
+      "instructionsLabel": "Task Instructions",
+      "noteLabel": "Student Submission Remarks & Solutions",
+      "notePlaceholder": "Enter your answer or describe your completed work...",
+      "submit": "Submit Assignment",
+      "cancel": "Cancel",
+      "success": "Homework solution submitted successfully!"
     }
   }
 }

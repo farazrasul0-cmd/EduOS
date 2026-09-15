@@ -27,6 +27,7 @@ const Hostel = lazy(() => import('@/pages/Hostel'))
 const AdmitCards = lazy(() => import('@/pages/AdmitCards'))
 const Leave = lazy(() => import('@/pages/Leave'))
 const NoticeBoard = lazy(() => import('@/pages/NoticeBoard'))
+const ParentPortal = lazy(() => import('@/pages/ParentPortal'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 function PageFallback() {
@@ -90,6 +91,7 @@ export default function App() {
             </Route>
             <Route path="/leave" element={<Leave />} />
             <Route path="/notices" element={<NoticeBoard />} />
+            <Route path="/portal" element={<ParentPortal />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Route>
