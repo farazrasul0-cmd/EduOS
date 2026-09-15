@@ -19,6 +19,7 @@ import {
   CalendarClock,
   Megaphone,
   Smartphone,
+  CheckSquare,
   type LucideIcon,
 } from 'lucide-react'
 import type { UserRole } from '@/types/models'
@@ -48,6 +49,7 @@ export const NAV: NavGroup[] = [
       { id: 'attendance', labelKey: 'nav.attendance', icon: CalendarCheck, path: '/attendance', roles: ['owner', 'admin', 'teacher'] },
       { id: 'timetable', labelKey: 'nav.timetable', icon: CalendarDays, path: '/timetable', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
       { id: 'assignments', labelKey: 'nav.assignments', icon: FileText, path: '/assignments', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
+      { id: 'quizzes', labelKey: 'nav.quizzes', icon: CheckSquare, path: '/quizzes', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
       { id: 'exams', labelKey: 'nav.exams', icon: ClipboardList, path: '/exams', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
       { id: 'results', labelKey: 'nav.results', icon: Award, path: '/results', roles: ['owner', 'admin', 'teacher', 'parent', 'student'] },
     ],
