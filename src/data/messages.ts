@@ -19,7 +19,7 @@ type ThreadJoinRow = MessageThread & {
 
 export function useThreads(userId?: string) {
   const qc = useQueryClient()
-  useEffect(() => { const channel = supabase.channel('message-list').on('postgres_changes', { event:'*', schema:'public', table:'messages' }, () => { void qc.invalidateQueries({queryKey:['threads']}) }).subscribe(); return () => { void supabase.removeChannel(channel) } }, [qc])
+  useEffect(() => { const channel = supabase.channel(`message-list-${Math.random().toString(36).slice(2, 9)}`).on('postgres_changes', { event:'*', schema:'public', table:'messages' }, () => { void qc.invalidateQueries({queryKey:['threads']}) }).subscribe(); return () => { void supabase.removeChannel(channel) } }, [qc])
   return useQuery({
     queryKey: ['threads'],
     queryFn: async (): Promise<ThreadJoined[]> => {
@@ -45,7 +45,7 @@ export function useThreads(userId?: string) {
 
 export function useMessages(threadId: string | null) {
   const qc = useQueryClient()
-  useEffect(() => { if (!threadId) return; const channel = supabase.channel(`messages:${threadId}`).on('postgres_changes', { event:'*', schema:'public', table:'messages', filter:`thread_id=eq.${threadId}` }, () => { void qc.invalidateQueries({queryKey:['messages',threadId]}); void qc.invalidateQueries({queryKey:['threads']}) }).subscribe(); return () => { void supabase.removeChannel(channel) } }, [threadId,qc])
+  useEffect(() => { if (!threadId) return; const channel = supabase.channel(`messages:${threadId}-${Math.random().toString(36).slice(2, 9)}`).on('postgres_changes', { event:'*', schema:'public', table:'messages', filter:`thread_id=eq.${threadId}` }, () => { void qc.invalidateQueries({queryKey:['messages',threadId]}); void qc.invalidateQueries({queryKey:['threads']}) }).subscribe(); return () => { void supabase.removeChannel(channel) } }, [threadId,qc])
   return useQuery({
     queryKey: ['messages', threadId],
     enabled: !!threadId,

@@ -23,8 +23,9 @@ export interface AppNotification extends AppNotificationRow {
 export function useNotifications() {
   const qc = useQueryClient()
   useEffect(() => {
+    const channelId = `notifications-feed-${Math.random().toString(36).slice(2, 9)}`
     const channel = supabase
-      .channel('notifications-feed')
+      .channel(channelId)
       .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications' }, () => {
         void qc.invalidateQueries({ queryKey: ['notifications'] })
       })
