@@ -31,7 +31,9 @@ function RecoveryScreen({ error }: { error: Error | null }) {
     try {
       localStorage.clear()
       sessionStorage.clear()
-    } catch {}
+    } catch {
+      // Ignore storage access errors in restrictive browser environments
+    }
     window.location.href = '/login'
   }
 
